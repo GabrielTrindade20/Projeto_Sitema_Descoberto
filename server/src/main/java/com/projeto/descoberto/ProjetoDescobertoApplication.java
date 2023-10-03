@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 @EntityScan(basePackages = "com.projeto.descoberto.model")
 @ComponentScan(basePackages = "com.projeto.descoberto.*")
 
-@EnableJpaRepositories(basePackages = "com.projeto.senac.repository")
+@EnableJpaRepositories(basePackages = "com.projeto.descoberto.repository")
 @EnableTransactionManagement
 @RestController
 @EnableAutoConfiguration

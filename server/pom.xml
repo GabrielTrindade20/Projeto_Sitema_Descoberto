@@ -9,12 +9,12 @@
 		<version>2.7.5</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.projeto.senac</groupId>
-	<artifactId>projetosenac</artifactId>
+	<groupId>com.projeto.descoberto</groupId>
+	<artifactId>projetoDescoberto</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
-	<name>projetosenac</name>
-	<description>Projeto Senac</description>
+	<name>projetoDescoberto</name>
+	<description>Projeto Descoberto</description>
 	<properties>
 		<java.version>17</java.version>
 	</properties>
@@ -28,7 +28,7 @@
 		<dependency>
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
-			<version>42.2.13</version>
+			<version>42.2.16</version>
 		</dependency>
 
 

@@ -8,23 +8,27 @@ import com.projeto.descoberto.exception.EmailExistsException;
 import com.projeto.descoberto.model.Usuario;
 import com.projeto.descoberto.repository.UsuarioRepository;
 import com.projeto.descoberto.util.Util;
+
 @Service
 public class ServiceUsuario {
-	
+
 	@Autowired
 	UsuarioRepository usuarioRepository;
-	public void salvarUsuario(Usuario user) throws Exception{
+
+	public void salvarUsuario(Usuario user) throws Exception {
 		try {
-			if(usuarioRepository.findByEmail(user.getEmail()) != null)
-			{
-				throw new EmailExistsException("Existe um email cadastrado para :"+
-			    user.getEmail());
+			if (usuarioRepository.findByEmail(user.getEmail()) != null) {
+				throw new EmailExistsException("Existe um email cadastrado para :" + user.getEmail());
 			}
 			user.setSenha(Util.md5(user.getSenha()));
 		} catch (Exception e) {
 			throw new CriptoExistsException("Erro na criptografia da senha!");
 		}
 		usuarioRepository.save(user);
-	}
+	}// fim salvarUsuario
 
+	public Usuario loginUser(String email, String senha) throws Exception {
+		Usuario userLogin = usuarioRepository.buscarLogin(email, senha);
+		return userLogin;
+	}
 }
