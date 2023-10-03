@@ -1,4 +1,4 @@
-package com.projeto.senac.exception;
+package com.projeto.descoberto.exception;
 
 public class EmailExistsException extends Exception{
 	private static final long serialVersionUID = 1L;

@@ -1,13 +1,14 @@
-package com.projeto.senac.controller;
+package com.projeto.descoberto.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
-import com.projeto.senac.model.Usuario;
-import com.projeto.senac.repository.UsuarioRepository;
-import com.projeto.senac.service.ServiceUsuario;
+
+import com.projeto.descoberto.model.Usuario;
+import com.projeto.descoberto.repository.UsuarioRepository;
+import com.projeto.descoberto.service.ServiceUsuario;
 
 @Controller
 public class UsuarioController {

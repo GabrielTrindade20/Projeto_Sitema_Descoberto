@@ -1,8 +1,9 @@
-package com.projeto.senac.repository;
+package com.projeto.descoberto.repository;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
-import com.projeto.senac.model.Usuario;
+
+import com.projeto.descoberto.model.Usuario;
 
 public interface UsuarioRepository extends CrudRepository<Usuario, Long>{
 	

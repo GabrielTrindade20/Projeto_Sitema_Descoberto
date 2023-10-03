@@ -1,13 +1,13 @@
-package com.projeto.senac.service;
+package com.projeto.descoberto.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.projeto.senac.repository.UsuarioRepository;
-import com.projeto.senac.exception.CriptoExistsException;
-import com.projeto.senac.exception.EmailExistsException;
-import com.projeto.senac.model.Usuario;
-import com.projeto.senac.util.Util;
+import com.projeto.descoberto.exception.CriptoExistsException;
+import com.projeto.descoberto.exception.EmailExistsException;
+import com.projeto.descoberto.model.Usuario;
+import com.projeto.descoberto.repository.UsuarioRepository;
+import com.projeto.descoberto.util.Util;
 @Service
 public class ServiceUsuario {
 	
