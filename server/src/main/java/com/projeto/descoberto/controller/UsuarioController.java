@@ -25,47 +25,18 @@ public class UsuarioController {
 	@Autowired
 	ServiceUsuario serviceUsuario;
 
-	@GetMapping("/login")
-	public ModelAndView login() {
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("Login/login.html");
-		return mv;
+	@RestController
+	@RequestMapping("/api")
+	public class AuthController {
+		@PostMapping("/login")
+		public ResponseEntity<?> login(@RequestBody AuthRequest authRequest) {
+			// Implemente a lógica de autenticação aqui
+			// Verifique o usuário e a senha no banco de dados
+			// Retorne uma resposta com um token JWT ou outra forma de autenticação
+			// ou uma resposta de erro em caso de falha na autenticação
+		}
 	}
 
-	@GetMapping("/workSpace")
-	public ModelAndView index() {
-		ModelAndView mv = new ModelAndView();
-		mv.setViewName("Login/index");
-		return mv;
-	}// fim get workSpace
-
-	@PostMapping("/login")
-	public ModelAndView login(@Valid Usuario usuario, BindingResult br, HttpSession session)
-			throws NoSuchAlgorithmException, Exception {
-		ModelAndView mv = new ModelAndView();
-		mv.addObject("usuario", new Usuario());
-
-		if (br.hasErrors()) {
-			mv.setViewName("login/login");
-		}
-		Usuario userLogin = serviceUsuario.loginUser(usuario.getEmail(), Util.md5(usuario.getSenha()));
-		if (userLogin == null) {
-			mv.addObject("msg", "Usuário ou senha incorreta!");
-			mv.setViewName("login/login");
-		} else {
-			session.setAttribute("usuarioLogado", userLogin);
-			mv.setViewName("redirect:/workSpace");
-		}
-		return mv;
-	}// fim login
-
-	@GetMapping("/cadastro")
-	public ModelAndView cadastro() {
-		ModelAndView mv = new ModelAndView();
-		mv.addObject("usuario", new Usuario());
-		mv.setViewName("Login/cadastro");
-		return mv;
-	}
 
 	@PostMapping("/salvarUsuario")
 	public ModelAndView cadastroUsuario(Usuario user) throws Exception {
