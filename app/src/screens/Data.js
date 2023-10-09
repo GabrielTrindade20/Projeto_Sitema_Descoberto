@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useState } from 'react';
 import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
 
@@ -44,3 +45,17 @@ const styles = StyleSheet.create({
 });
 
 export default LoginScreen;
+=======
+import React from 'react'
+import { Text, View } from 'react-native'
+
+
+export default props => {
+
+    return (
+        <Text>
+            conectado no Data
+        </Text>
+    )
+}
+>>>>>>> b266c2b620630e54107b647eb2df261dd0be3f9c

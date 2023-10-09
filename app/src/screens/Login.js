@@ -28,6 +28,7 @@ const LoginScreen = ({ navigation }) => { // Certifique-se de que você está re
     }
   };
 
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Tela de Login</Text>

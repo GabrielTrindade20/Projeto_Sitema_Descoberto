@@ -9,9 +9,14 @@
     "web": "expo start --web"
   },
   "dependencies": {
+<<<<<<< HEAD
     "@react-navigation/native": "^6.1.8",
     "axios": "^1.5.1",
     "expo": "^44.0.6",
+=======
+    "axios": "^1.5.1",
+    "expo": "^49.0.13",
+>>>>>>> b266c2b620630e54107b647eb2df261dd0be3f9c
     "expo-status-bar": "~1.6.0",
     "react": "18.2.0",
     "react-native": "0.72.5"

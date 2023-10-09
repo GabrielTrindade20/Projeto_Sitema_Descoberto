@@ -43,7 +43,10 @@ public class UsuarioController {
 	}
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> b266c2b620630e54107b647eb2df261dd0be3f9c
 //	@RestController
 //	public class AuthController {
 //		@PostMapping("/login")
@@ -70,4 +73,8 @@ public class UsuarioController {
 //			}//fim login
 //		}
 
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> b266c2b620630e54107b647eb2df261dd0be3f9c
