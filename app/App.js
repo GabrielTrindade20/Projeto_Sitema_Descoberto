@@ -1,24 +1,23 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import LoginScreen from './src/screens/LoginScreen'; // Corrija o caminho de importação
+import LoginScreen from './src/screens/LoginScreen';
+import Navigation from './src/navigation/Navigation'; // Importe a navegação
 
 export default function App() {
-  const [loggedIn, setLoggedIn] = useState(false);
+    return <Navigation />;
+  }
 
-  const handleLogin = () => {
-    setLoggedIn(true);
-  };
+  // return (
+  //   <View style={styles.container}>
+  //     {loggedIn ? (
+  //       <Text>Você está logado! Redirecionar para a próxima tela aqui.</Text>
 
-  return (
-    <View style={styles.container}>
-      {loggedIn ? (
-        <Text>Você está logado! Redirecionar para a próxima tela aqui.</Text>
-      ) : (
-        <LoginScreen onLogin={handleLogin} />
-      )}
-    </View>
-  );
-}
+  //     ) : (
+  //       <LoginScreen onLogin={handleLogin} />
+  //     )}
+  //   </View>
+  // );
+// }
 
 
 const styles = StyleSheet.create({
