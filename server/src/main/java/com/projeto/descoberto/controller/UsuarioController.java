@@ -6,10 +6,12 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+// import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.projeto.descoberto.model.Usuario;
@@ -29,20 +31,26 @@ public class UsuarioController {
 	@RequestMapping("/api")
 	public class AuthController {
 		@PostMapping("/login")
-		public ResponseEntity<?> login(@RequestBody AuthRequest authRequest) {
-			// Implemente a lógica de autenticação aqui
-			// Verifique o usuário e a senha no banco de dados
-			// Retorne uma resposta com um token JWT ou outra forma de autenticação
-			// ou uma resposta de erro em caso de falha na autenticação
+		public ModelAndView login(@Valid Usuario usuario, BindingResult br, HttpSession session) 
+				   throws NoSuchAlgorithmException, Exception {
+				ModelAndView mv = new ModelAndView();
+				mv.addObject("usuario", new Usuario());
+				
+				if(br.hasErrors()) {
+					mv.setViewName("login/login");
+				}
+				Usuario userLogin = serviceUsuario.loginUser(usuario.getEmail(), 
+						                                     Util.md5(usuario.getSenha())
+						                                     );
+				if (userLogin == null) {
+					mv.addObject("msg", "Usuário ou senha incorreta!");
+					mv.setViewName("login/login");
+				}
+				else {
+					session.setAttribute("usuarioLogado", userLogin);
+					mv.setViewName("redirect:/workSpace");
+				}
+				return mv;
+			}//fim login
 		}
-	}
-
-
-	@PostMapping("/salvarUsuario")
-	public ModelAndView cadastroUsuario(Usuario user) throws Exception {
-		ModelAndView mv = new ModelAndView();
-		serviceUsuario.salvarUsuario(user);
-		mv.setViewName("redirect:/login");
-		return mv;
-	}
 }
