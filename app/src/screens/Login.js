@@ -1,31 +1,41 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
+import axios from 'axios'; // Importe o Axios
 
-const LoginScreen = () => {
-  const [username, setUsername] = useState('');
+const LoginScreen = ({ navigation }) => { // Certifique-se de que você está recebendo a prop "navigation"
+
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const handleLogin = async () => {
     try {
-      const response = await axios.post('/api/login', {
-        username,
-        password,
+      const response = await axios.post('http://192.168.1.9:8080/api/login', {
+        email: email,
+        senha: password,
       });
-      // Lida com a resposta do servidor (autenticação bem-sucedida ou erro)
+
+      if (response.status === 200) {
+        console.log('Redirecionando para a tela de dados');
+        navigation.navigate('Data');
+
+      } else {
+        // Exibir uma mensagem de erro para o usuário
+        alert('Nome de usuário ou senha incorreto.');
+      }
     } catch (error) {
       // Lida com erros de solicitação ou resposta do servidor
+      console.error('Erro ao fazer login:', error.message);
     }
   };
 
   return (
     <View style={styles.container}>
-
       <Text style={styles.title}>Tela de Login</Text>
       <TextInput
         style={styles.input}
         placeholder="Usuário"
-        value={username}
-        onChangeText={(text) => setUsername(text)}
+        value={email}
+        onChangeText={(text) => setEmail(text)}
       />
       <TextInput
         style={styles.input}
