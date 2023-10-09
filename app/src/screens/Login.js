@@ -20,7 +20,7 @@ const LoginScreen = () => {
   return (
     <View style={styles.container}>
 
-      <Text style={styles.heading}>Tela de Login</Text>
+      <Text style={styles.title}>Tela de Login</Text>
       <TextInput
         style={styles.input}
         placeholder="Usuário"
@@ -46,11 +46,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   title: {
-    fontSize: 24,
+    fontSize: 20,
     fontWeight: 'bold',
   },
   input: {
-    width: '30%',
+    width: '40%',
     marginVertical: 10,
     padding: 10,
     borderWidth: 1,
