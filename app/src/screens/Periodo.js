@@ -1,30 +1,32 @@
 import React, { useState } from 'react';
 import { View, Text, Button, TextInput, StyleSheet, SafeAreaView } from 'react-native';
-import axios from 'axios';
+import DatePicker from '@react-native-community/datetimepicker';
+
 
 import Header from '../components/Header';
 import CustomButton from '../components/CustomButton';
 
+// ...imports...
 
-export default function LoginScreen({ navigation }) {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+export default function PeriodoScreen({ navigation }) {
+    const [data, setData] = useState('');
+    const [turno, setTurno] = useState('');
 
-    const handleLogin = async () => {
+    const handlePeriodo = async () => {
         try {
-            const response = await axios.post('http://192.168.1.9:8080/api/login', {
-                email: email,
-                senha: password,
+            const response = await axios.post('http://192.168.1.9:8080/api/periodo', {
+                data: data,
+                turno: turno,
             });
 
             if (response.status === 200) {
-                console.log('Login bem-sucedido');
-                navigation.navigate('Periodo');
+                console.log('Período criado com sucesso');
+                navigation.navigate('CheckList');
             } else {
-                alert('Nome de usuário ou senha incorreto.');
+                alert('Erro ao criar o período.');
             }
         } catch (error) {
-            console.error('Erro ao fazer login:', error.message);
+            console.error('Erro ao criar o período:', error.message);
         }
     };
 
@@ -35,37 +37,42 @@ export default function LoginScreen({ navigation }) {
             <View style={styles.card}>
                 <View style={styles.view}>
                     <Text style={styles.label}>
-                        Usuário
+                        Data
                     </Text>
-                    <TextInput
-                        style={styles.input}
-                        placeholder="E-mail"
-                        value={email}
-                        onChangeText={(text) => setEmail(text)}
+                    <DatePicker
+                        style={{ width: 500 }}
+                        date={data} // Use o estado `data` aqui
+                        mode="date"
+                        format="DD/MM/YYYY" // Ajuste o formato de acordo com sua preferência
+                        onDateChange={(date) => setData(date)}
                     />
+
                 </View>
 
                 <View style={styles.view}>
                     <Text style={styles.label}>
-                        Senha
+                        Turno
                     </Text>
                     <TextInput
                         style={styles.input}
-                        placeholder="Senha"
-                        secureTextEntry
-                        value={password}
-                        onChangeText={(text) => setPassword(text)}
+                        placeholder="ex. diurno"
+                        value={turno}
+                        onChangeText={(text) => setTurno(text)}
                     />
                 </View>
 
-                <CustomButton title="Entrar" onPress={handleLogin} />
+                <CustomButton title="Entrar" onPress={handlePeriodo} />
             </View>
         </SafeAreaView>
-    );
+    )
 }
+
+// Restante do código...
+
 
 const styles = StyleSheet.create({
     container: {
+        flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
     },
