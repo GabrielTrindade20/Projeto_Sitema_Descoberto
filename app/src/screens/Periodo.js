@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
-import { View, Text, Button, TextInput, StyleSheet, SafeAreaView } from 'react-native';
-import DatePicker from '@react-native-community/datetimepicker';
+import { View, Text, Button, TextInput ,StyleSheet, SafeAreaView } from 'react-native';
+import DatePicker from 'react-date-picker';
+
+
 
 
 import Header from '../components/Header';
 import CustomButton from '../components/CustomButton';
 
-// ...imports...
-
 export default function PeriodoScreen({ navigation }) {
-    const [data, setData] = useState('');
+    const [data, setData] = useState(new Date()); // Inicialize com a data atual ou outra data padrão, se desejar
     const [turno, setTurno] = useState('');
 
     const handlePeriodo = async () => {
@@ -40,11 +40,8 @@ export default function PeriodoScreen({ navigation }) {
                         Data
                     </Text>
                     <DatePicker
-                        style={{ width: 500 }}
-                        date={data} // Use o estado `data` aqui
-                        mode="date"
-                        format="DD/MM/YYYY" // Ajuste o formato de acordo com sua preferência
-                        onDateChange={(date) => setData(date)}
+                        onChange={(date) => setData(date)} // Use onChange para atualizar o estado 'data'
+                        value={data} // Use o estado 'data' aqui
                     />
 
                 </View>
@@ -66,6 +63,9 @@ export default function PeriodoScreen({ navigation }) {
         </SafeAreaView>
     )
 }
+
+// Restante do código...
+
 
 // Restante do código...
 

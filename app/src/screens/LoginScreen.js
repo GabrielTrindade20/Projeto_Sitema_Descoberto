@@ -43,6 +43,7 @@ export default function LoginScreen({ navigation }) {
                         value={email}
                         onChangeText={(text) => setEmail(text)}
                     />
+
                 </View>
 
                 <View style={styles.view}>
