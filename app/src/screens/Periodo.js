@@ -1,16 +1,36 @@
 import React, { useState } from 'react';
-import { View, Text, Button, TextInput ,StyleSheet, SafeAreaView } from 'react-native';
-import DatePicker from 'react-date-picker';
+import { View, Text, Button, TextInput, StyleSheet, SafeAreaView } from 'react-native';
+import { DateTimePickerAndroid } from '@react-native-community/datetimepicker';
+import RNDateTimePicker from '@react-native-community/datetimepicker';
 
-
+import axios from 'axios';
 
 
 import Header from '../components/Header';
 import CustomButton from '../components/CustomButton';
 
 export default function PeriodoScreen({ navigation }) {
-    const [data, setData] = useState(new Date()); // Inicialize com a data atual ou outra data padrão, se desejar
+    const setData = (event: DateTimePickerEvent, data: Date) => {
+        const {
+          type,
+          nativeEvent: {timestamp, utcOffset},
+        } = event;
+      };
+    // const [data, setDate] = useState(new Date());
     const [turno, setTurno] = useState('');
+
+    const [show, setShow] = useState(false);
+    const [mode, setMode] = useState('data');
+
+    const selectDate = (e, selectedDate) => {
+        setDate(selectedDate);
+        setShow(false)
+    };
+
+    const showMode = (modeToShow) => {
+        setShow(true);
+        setMode(modeToShow);
+    }
 
     const handlePeriodo = async () => {
         try {
@@ -37,13 +57,19 @@ export default function PeriodoScreen({ navigation }) {
             <View style={styles.card}>
                 <View style={styles.view}>
                     <Text style={styles.label}>
-                        Data
+                        Data:
                     </Text>
-                    <DatePicker
-                        onChange={(date) => setData(date)} // Use onChange para atualizar o estado 'data'
-                        value={data} // Use o estado 'data' aqui
-                    />
+                    <Button title='selecione a data' onPress={() => showMode('data')} />
+                        { show && (
+                            <RNDateTimePicker
+                                value={data}
+                                mode={"mode"}
+                                is24Hour={true}
+                                onChange={selectDate}
+                            />
+                        )}               
 
+                    <Text>{data.toLocaleString()}</Text>
                 </View>
 
                 <View style={styles.view}>
