@@ -1,36 +1,32 @@
 import React, { useState } from 'react';
 import { View, Text, Button, TextInput, StyleSheet, SafeAreaView } from 'react-native';
-import { DateTimePickerAndroid } from '@react-native-community/datetimepicker';
-import RNDateTimePicker from '@react-native-community/datetimepicker';
-
+import DateTimePicker from '@react-native-community/datetimepicker';
 import axios from 'axios';
+import { useDispatch } from 'react-redux';
+
 
 
 import Header from '../components/Header';
 import CustomButton from '../components/CustomButton';
+import RadioButton from '../components/BotaoRadio';
 
 export default function PeriodoScreen({ navigation }) {
-    const setData = (event: DateTimePickerEvent, data: Date) => {
-        const {
-          type,
-          nativeEvent: {timestamp, utcOffset},
-        } = event;
-      };
-    // const [data, setDate] = useState(new Date());
+    const [data, setData] = useState(new Date());
     const [turno, setTurno] = useState('');
+    const [show, setShow] = useState(false); // Defina show no escopo principal
+    const [mode, setMode] = useState('date');
+    const dispatch = useDispatch();
 
-    const [show, setShow] = useState(false);
-    const [mode, setMode] = useState('data');
-
-    const selectDate = (e, selectedDate) => {
-        setDate(selectedDate);
-        setShow(false)
+    const setDate = (event, date) => {
+        if (event.type === 'set') {
+            setData(date);
+            setShow(false);
+        }
     };
 
     const showMode = (modeToShow) => {
         setShow(true);
-        setMode(modeToShow);
-    }
+    };
 
     const handlePeriodo = async () => {
         try {
@@ -59,28 +55,41 @@ export default function PeriodoScreen({ navigation }) {
                     <Text style={styles.label}>
                         Data:
                     </Text>
-                    <Button title='selecione a data' onPress={() => showMode('data')} />
-                        { show && (
-                            <RNDateTimePicker
-                                value={data}
-                                mode={"mode"}
-                                is24Hour={true}
-                                onChange={selectDate}
-                            />
-                        )}               
 
-                    <Text>{data.toLocaleString()}</Text>
+
+                    <View style={styles.containerData}>
+                        <View style={styles.containerBotao}>
+                            <Button title="Selecione a Data" onPress={() => showMode(true)} />
+                            {show && (
+                                <DateTimePicker
+                                    display="spinner"
+                                    mode="date"
+                                    locale="pt-BR"
+                                    toLocaleString="pt-BR"
+                                    timeZoneName="America/Fortaleza"
+                                    dateFormat="dayofweek day month"
+                                    value={data}
+                                    onChange={setDate}
+
+                                />
+                            )}
+                        </View>
+
+                        <Text style={styles.TextGrande}>Data Selecionada:</Text>
+
+                        <View>
+                            <Text style={styles.dataSelecionada}>{data.toLocaleString('pt-BR')}</Text>
+                        </View>
+                    </View>
+
                 </View>
 
                 <View style={styles.view}>
-                    <Text style={styles.label}>
-                        Turno
-                    </Text>
-                    <TextInput
-                        style={styles.input}
-                        placeholder="ex. diurno"
-                        value={turno}
-                        onChangeText={(text) => setTurno(text)}
+                    <Text style={styles.label}>Turno</Text>
+                    <RadioButton
+                        options={['Diurno', 'Noturno']}
+                        selected={turno} // Passe o turno selecionado aqui
+                        onChangeSelect={(opt) => setTurno(opt)} // Atualize a variável turno com a opção selecionada
                     />
                 </View>
 
@@ -89,12 +98,6 @@ export default function PeriodoScreen({ navigation }) {
         </SafeAreaView>
     )
 }
-
-// Restante do código...
-
-
-// Restante do código...
-
 
 const styles = StyleSheet.create({
     container: {
@@ -139,5 +142,38 @@ const styles = StyleSheet.create({
             width: 0,
             height: 5,
         },
+    },
+
+    containerData: {
+        width: '100%',
+        height: 90,
+        backgroundColor: 'white', // Cor de fundo
+        color: 'white', // Cor do texto
+        borderRadius: 10, // Borda arredondada
+        alignItems: 'center',
+
+    },
+
+    containerBotao: {
+        borderRadius: 10, // Borda arredondada
+        width: '100%',
+    },
+
+    dataSelecionada: {
+        width: '100%',
+        fontSize: 15,
+        fontWeight: '600',
+
+    },
+
+    TextGrande: {
+        marginTop: 5,
+        fontSize: 20,
+        fontWeight: '700',
+    },
+
+    optConteiner: {
+        flexDirection: 'row',
+        alignItems: 'center',
     },
 });

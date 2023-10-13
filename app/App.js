@@ -4,6 +4,7 @@ import LoginScreen from './src/screens/LoginScreen';
 import { NavigationContainer } from '@react-navigation/native';
 import Navigation from './src/navigation/Navigation'; // Importe a navegação
 
+
 export default function App() {
     return  <Navigation />;
 

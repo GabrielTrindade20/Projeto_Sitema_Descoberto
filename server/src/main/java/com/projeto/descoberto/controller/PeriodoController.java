@@ -20,9 +20,9 @@ import com.projeto.descoberto.service.ServicePeriodo;
 
 	    @PostMapping
 	    public ResponseEntity<?> criarPeriodo(@Valid @RequestBody Periodo periodo) {
-	        // Implemente a lógica para criar um novo período
 	        servicePeriodo.criarPeriodo(periodo);
 	        return ResponseEntity.ok("Período criado com sucesso.");
 	    }
+
 	}
 
