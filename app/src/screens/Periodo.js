@@ -146,9 +146,6 @@ const styles = StyleSheet.create({
 
     containerData: {
         width: '100%',
-        height: 90,
-        backgroundColor: 'white', // Cor de fundo
-        color: 'white', // Cor do texto
         borderRadius: 10, // Borda arredondada
         alignItems: 'center',
 

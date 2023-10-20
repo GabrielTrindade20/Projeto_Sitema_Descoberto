@@ -1,14 +1,17 @@
-import React, { useState } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import LoginScreen from './src/screens/LoginScreen';
-import { NavigationContainer } from '@react-navigation/native';
-import Navigation from './src/navigation/Navigation'; // Importe a navegação
+import React from 'react';
+import { Provider } from 'react-redux';
+import store from '../app/src/store/store'; // Importe sua store aqui
+import Navigation from './src/navigation/Navigation';
+import { StyleSheet } from 'react-native';
 
 
 export default function App() {
-    return  <Navigation />;
-
-  }
+  return (
+    <Provider store={store}>
+      <Navigation />
+    </Provider>
+  );
+}
 
 
 const styles = StyleSheet.create({
