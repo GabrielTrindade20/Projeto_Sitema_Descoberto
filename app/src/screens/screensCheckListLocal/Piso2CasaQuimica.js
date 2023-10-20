@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, SafeAreaView, StyleSheet, ScrollView, TouchableOpacity, TextInput, Button } from 'react-native';
 
 import Header from '../../components/Header';
@@ -44,21 +44,66 @@ export default function Piso2CasaQuimica() {
         setText(newObservacao);
     }
 
+    const [errorMessage, setErrorMessage] = useState('');
+    // Adicione o estado allOptionsSelected e a função checkAllOptionsSelected
+    const [allOptionsSelected, setAllOptionsSelected] = useState(false);
+
+    const checkAllOptionsSelected = () => {
+        // Verifique se todas as opções foram preenchidas
+        const {
+            iluminacaoBombas,
+            aguaDiluicao,
+            vazamentoTubulacoes,
+            limpezaEquipamentos,
+            alimentacaoAgua,
+            iluminacaoPiso1,
+            iluminacaoPiso2,
+            calhaAplicacao,
+            calhaDosagemSolucao,
+        } = areaPoliChoices;
+        const allSelected =
+            iluminacaoBombas &&
+            aguaDiluicao &&
+            vazamentoTubulacoes &&
+            limpezaEquipamentos &&
+            alimentacaoAgua &&
+            iluminacaoPiso1 &&
+            iluminacaoPiso2 &&
+            calhaAplicacao &&
+            calhaDosagemSolucao; // Adicione todas as opções aqui
+        setAllOptionsSelected(allSelected);
+    };
+
     async function handleEnviar() {
-        const data = {
-            iluminacaoBombas: areaPoliChoices.iluminacaoBombas,
-            aguaDiluicao: areaPoliChoices.aguaDiluicao,
-            vazamentoTubulacoes: areaPoliChoices.vazamentoTubulacoes,
-            limpezaEquipamentos: areaPoliChoices.limpezaEquipamentos,
-            alimentacaoAgua: areaPoliChoices.alimentacaoAgua,
-            iluminacaoPiso1: areaPoliChoices.iluminacaoPiso1,
-            iluminacaoPiso2: areaPoliChoices.iluminacaoPiso2,
-            calhaAplicacao: areaPoliChoices.calhaAplicacao,
-            calhaDosagemSolucao: areaPoliChoices.calhaDosagemSolucao,
-            observacao: text, // Usar diretamente o estado text para a observação
-        };
-        enviarDadosParaServidor(data);
+        if (allOptionsSelected) {
+            const data = {
+                iluminacaoBombas: areaPoliChoices.iluminacaoBombas,
+                aguaDiluicao: areaPoliChoices.aguaDiluicao,
+                vazamentoTubulacoes: areaPoliChoices.vazamentoTubulacoes,
+                limpezaEquipamentos: areaPoliChoices.limpezaEquipamentos,
+                alimentacaoAgua: areaPoliChoices.alimentacaoAgua,
+                iluminacaoPiso1: areaPoliChoices.iluminacaoPiso1,
+                iluminacaoPiso2: areaPoliChoices.iluminacaoPiso2,
+                calhaAplicacao: areaPoliChoices.calhaAplicacao,
+                calhaDosagemSolucao: areaPoliChoices.calhaDosagemSolucao,
+                observacao: text,
+            };
+            enviarDadosParaServidor(data);
+        } else {
+            // Mostrar a mensagem de erro
+            setErrorMessage('Por favor, selecione todas as opções.');
+
+            // Limpar a mensagem de erro após 5 segundos
+            setTimeout(() => {
+                setErrorMessage('');
+            }, 5000); // 5000 milissegundos = 5 segundos
+        }
     }
+
+    useEffect(() => {
+        checkAllOptionsSelected();
+    }, [areaPoliChoices]);
+
 
 
 
@@ -66,6 +111,7 @@ export default function Piso2CasaQuimica() {
         <SafeAreaView>
             <ScrollView style={styles.scrollView}>
                 <Header />
+
                 {showAreaPoli ? (
                     <View style={styles.containerContent}>
                         <TouchableOpacity onPress={() => setShowAreaPoli(!showAreaPoli)}>
@@ -73,7 +119,7 @@ export default function Piso2CasaQuimica() {
                         </TouchableOpacity>
 
                         <View style={styles.local}>
-                            <AreaPoli setChoices={setAreaPoliChoices} choices={areaPoliChoices} updateObservacao={updateObservacao}/>
+                            <AreaPoli setChoices={setAreaPoliChoices} choices={areaPoliChoices} updateObservacao={updateObservacao} />
                         </View>
                     </View>
                 ) : (
@@ -84,6 +130,15 @@ export default function Piso2CasaQuimica() {
 
                 <View style={styles.Button}>
                     <CustomButton title="Enviar" onPress={handleEnviar} />
+                </View>
+
+                <View style={styles.container}>
+                    {/* ... outros elementos da interface ... */}
+                    {errorMessage ? (
+                        <View style={styles.errorMessageContainer}>
+                            <Text style={styles.errorMessageText}>{errorMessage}</Text>
+                        </View>
+                    ) : null}
                 </View>
 
             </ScrollView>
@@ -124,5 +179,17 @@ const styles = StyleSheet.create({
         padding: 10,
 
     },
-
+    errorMessageContainer: {
+        backgroundColor: '#ff0000', // Cor de fundo vermelha
+        padding: 10,
+        alignItems: 'center',
+        justifyContent: 'center',
+        Button: 0,
+        left: 0,
+        right: 0,
+    },
+    errorMessageText: {
+        color: '#ffffff', // Cor do texto branca
+        fontSize: 20,
+    },
 });
