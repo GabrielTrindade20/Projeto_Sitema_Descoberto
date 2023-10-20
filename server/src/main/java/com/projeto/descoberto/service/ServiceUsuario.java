@@ -13,22 +13,24 @@ import com.projeto.descoberto.util.Util;
 public class ServiceUsuario {
 
 	@Autowired
-	UsuarioRepository usuarioRepository;
+	private UsuarioRepository usuarioRepository;
 
 	public void salvarUsuario(Usuario user) throws Exception {
 		try {
 			if (usuarioRepository.findByEmail(user.getEmail()) != null) {
 				throw new EmailExistsException("Existe um email cadastrado para :" + user.getEmail());
 			}
-			user.setSenha(Util.md5(user.getSenha()));
+			user.setSenha(Util.md5(user.getToken()));
 		} catch (Exception e) {
 			throw new CriptoExistsException("Erro na criptografia da senha!");
 		}
 		usuarioRepository.save(user);
-	}// fim salvarUsuario
+	}
 
 	public Usuario loginUser(String email, String senha) throws Exception {
 		Usuario userLogin = usuarioRepository.buscarLogin(email, senha);
 		return userLogin;
 	}
+
 }
+// fim da classe

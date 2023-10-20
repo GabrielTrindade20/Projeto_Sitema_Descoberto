@@ -1,18 +1,26 @@
 import React, { useState } from 'react';
-import { View, Text, SafeAreaView, StyleSheet, ScrollView } from 'react-native';
+import { View, Text, SafeAreaView, StyleSheet, ScrollView, TouchableOpacity, TextInput, Button } from 'react-native';
 
 import Header from '../../components/Header';
-import AreaPoli from './2 piso Casa Quimica I/AreaPoli';
-import AreaSulfato from './2 piso Casa Quimica I/AreaSulfato';
+import AreaPoli from '../screensCheckListLocal/2 piso Casa Quimica I/AreaPoli';
+import AreaSulfato from '../screensCheckListLocal/2 piso Casa Quimica I/AreaSulfato';
+import CustomButton from '../../components/CustomButton';
 
 export default function Piso2CasaQuimica() {
-    const [showAreaPoli, setShowAreaPoli] = useState(false);
-    const [showAreaSulfato, setShowAreaSulfato] = useState(false);
+    const [showAreaPoli, setShowAreaPoli] = useState(true);
+    const [showAreaSulfato, setShowAreaSulfato] = useState(true);
 
     // Estados para as escolhas do usuário
     const [areaPoliChoices, setAreaPoliChoices] = useState({
         iluminacaoBombas: null,
         aguaDiluicao: null,
+        vazamentoTubulacoes: null,
+        limpezaEquipamentos: null,
+        alimentacaoAgua: null,
+        iluminacaoPiso1: null,
+        iluminacaoPiso2: null,
+        calhaAplicacao: null,
+        calhaDosagemSolucao: null,
         // Adicione outros estados aqui
     });
 
@@ -24,15 +32,26 @@ export default function Piso2CasaQuimica() {
         <SafeAreaView>
             <ScrollView style={styles.scrollView}>
                 <Header />
-                {showAreaPoli && (
-                    <AreaPoli choices={areaPoliChoices} setChoices={setAreaPoliChoices} />
-                )}
-                {showAreaSulfato && (
-                    <AreaSulfato choices={areaSulfatoChoices} setChoices={setAreaSulfatoChoices} />
+                {showAreaPoli ? (
+                    <View style={styles.containerContent}>
+                        <TouchableOpacity onPress={() => setShowAreaPoli(!showAreaPoli)}>
+                            <Text style={styles.title}>Área Polieletrolito</Text>
+                        </TouchableOpacity>
+
+                        <View style={styles.local}>
+                            <AreaPoli choices={areaPoliChoices} setChoices={setAreaPoliChoices} />
+                        </View>
+                    </View>
+                ) : (
+                    <TouchableOpacity onPress={() => setShowAreaPoli(!showAreaPoli)}>
+                        <Text style={styles.title}>Área Polieletrolito</Text>
+                    </TouchableOpacity>
                 )}
 
+                <View style={styles.Button}>
+                    <CustomButton title="Enviar"  />
+                </View>
 
-                {/* O código restante permanece o mesmo */}
             </ScrollView>
         </SafeAreaView>
     );
@@ -63,6 +82,13 @@ const styles = StyleSheet.create({
     },
     scrollView: {
         flexGrow: 1,
+    },
+
+    Button: {
+        width: '100%',
+        alignItems: 'center',
+        padding: 10,
+
     },
 
 });

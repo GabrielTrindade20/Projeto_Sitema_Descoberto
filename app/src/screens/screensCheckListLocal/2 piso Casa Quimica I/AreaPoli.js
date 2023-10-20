@@ -3,28 +3,28 @@ import { View, Text, TouchableOpacity, StyleSheet, ScrollView, TextInput } from 
 import { Picker } from '@react-native-picker/picker';
 
 export default function AreaPoli({ choices, setChoices }) {
-    const { iluminacaoBombas, setIluminacaoBombas } = choices;
-    const { aguaDiluicao, setAguaDiluicao } = choices;
-    const { vazamentoTubulacoes, setVazamentoTubulacoes } = choices;
-    const { limpezaEquipamentos, setLimpezaEquipamentos } = choices;
-    const { alimentacaoAgua, setAlimentacaoAgua } = choices;
-    const { iluminacaoPiso1, setIluminacaoPiso1 } = choices;
-    const { iluminacaoPiso2, setIluminacaoPiso2 } = choices;
-    const { calhaAplicacao, setCalhaAplicacao } = choices;
-    const { calhaDosagemSolucao, setCalhaDosagemSolucao } = choices;
+    const { iluminacaoBombas,
+        aguaDiluicao,
+        vazamentoTubulacoes,
+        limpezaEquipamentos,
+        alimentacaoAgua,
+        iluminacaoPiso1,
+        iluminacaoPiso2,
+        calhaAplicacao,
+        calhaDosagemSolucao
+    } = choices;
+
     const [text, setText] = useState('');
 
-    // Resto do seu código...
-}
 
-return (
-    <ScrollView>
-        <View style={styles.conteiner}>
+
+    return (
+        <ScrollView>
             <View style={styles.questionContainer}>
                 <Text style={styles.questionText}>Iluminação do local das bombas ok?</Text>
                 <TouchableOpacity
                     style={styles.radioButton}
-                    onPress={() => setIluminacaoBombas('Sim')}
+                    onPress={() => setChoices({ ...choices, iluminacaoBombas: 'Sim' })}
                 >
                     <View
                         style={[
@@ -43,7 +43,7 @@ return (
                 </TouchableOpacity>
                 <TouchableOpacity
                     style={styles.radioButton}
-                    onPress={() => setIluminacaoBombas('Não')}
+                    onPress={() => setChoices({ ...choices, iluminacaoBombas: 'Não' })}
                 >
                     <View
                         style={[
@@ -61,12 +61,13 @@ return (
                     <Text style={{ color: iluminacaoBombas === 'Não' ? 'blue' : 'black', fontSize: 20 }}>Não</Text>
                 </TouchableOpacity>
             </View>
+            {/* Restante do seu código... */}
 
             <View style={styles.questionContainer}>
                 <Text style={styles.questionText}>Água de diluição linha Ceilândia ok?</Text>
                 <TouchableOpacity
                     style={styles.radioButton}
-                    onPress={() => setAguaDiluicao('Sim')}
+                    onPress={() => setChoices({ ...choices, aguaDiluicao: 'Sim' })}
                 >
                     <View
                         style={[
@@ -85,7 +86,7 @@ return (
                 </TouchableOpacity>
                 <TouchableOpacity
                     style={styles.radioButton}
-                    onPress={() => setAguaDiluicao('Não')}
+                    onPress={() => setChoices({ ...choices, aguaDiluicao: 'Não' })}
                 >
                     <View
                         style={[
@@ -108,7 +109,7 @@ return (
                 <Text style={styles.questionText}>Há vazamento nas MB’s  tubulações?</Text>
                 <TouchableOpacity
                     style={styles.radioButton}
-                    onPress={() => setVazamentoTubulacoes('Sim')}
+                    onPress={() => setChoices({ ...choices, vazamentoTubulacoes: 'Sim' })}
                 >
                     <View
                         style={[
@@ -127,7 +128,7 @@ return (
                 </TouchableOpacity>
                 <TouchableOpacity
                     style={styles.radioButton}
-                    onPress={() => setVazamentoTubulacoes('Não')}
+                    onPress={() => setChoices({ ...choices, vazamentoTubulacoes: 'Não' })}
                 >
                     <View
                         style={[
@@ -150,7 +151,7 @@ return (
                 <Text style={styles.questionText}>Limpeza nos equipamentos ok?</Text>
                 <TouchableOpacity
                     style={styles.radioButton}
-                    onPress={() => setLimpezaEquipamentos('Sim')}
+                    onPress={() => setChoices({ ...choices, limpezaEquipamentos: 'Sim' })}
                 >
                     <View
                         style={[
@@ -169,7 +170,7 @@ return (
                 </TouchableOpacity>
                 <TouchableOpacity
                     style={styles.radioButton}
-                    onPress={() => setLimpezaEquipamentos('Não')}
+                    onPress={() => setChoices({ ...choices, limpezaEquipamentos: 'Não' })}
                 >
                     <View
                         style={[
@@ -192,7 +193,7 @@ return (
                 <Text style={styles.questionText}>Alimentação Água?</Text>
                 <Picker
                     selectedValue={alimentacaoAgua}
-                    onValueChange={(itemValue) => setAlimentacaoAgua(itemValue)}
+                    onValueChange={(itemValue) => setChoices({ ...choices, alimentacaoAgua: itemValue })}
                     style={styles.picker}
                 >
                     <Picker.Item label="Linha Ceilândia" value="Linha Ceilândia" />
@@ -202,11 +203,12 @@ return (
                 </Picker>
             </View>
 
+
             <View style={styles.questionContainer}>
                 <Text style={styles.questionText}>Iluminação do piso 1º CQ I ok?</Text>
                 <TouchableOpacity
                     style={styles.radioButton}
-                    onPress={() => setIluminacaoPiso1('Sim')}
+                    onPress={() => setChoices({ ...choices, iluminacaoPiso1: 'Sim' })}
                 >
                     <View
                         style={[
@@ -225,7 +227,7 @@ return (
                 </TouchableOpacity>
                 <TouchableOpacity
                     style={styles.radioButton}
-                    onPress={() => setIluminacaoPiso1('Não')}
+                    onPress={() => setChoices({ ...choices, iluminacaoPiso1: 'Não' })}
                 >
                     <View
                         style={[
@@ -248,7 +250,7 @@ return (
                 <Text style={styles.questionText}>Iluminação do piso 2º CQ I ok?</Text>
                 <TouchableOpacity
                     style={styles.radioButton}
-                    onPress={() => setIluminacaoPiso2('Sim')}
+                    onPress={() => setChoices({ ...choices, iluminacaoPiso2: 'Sim' })}
                 >
                     <View
                         style={[
@@ -267,7 +269,7 @@ return (
                 </TouchableOpacity>
                 <TouchableOpacity
                     style={styles.radioButton}
-                    onPress={() => setIluminacaoPiso2('Não')}
+                    onPress={() => setChoices({ ...choices, iluminacaoPiso2: 'Não' })}
                 >
                     <View
                         style={[
@@ -290,7 +292,7 @@ return (
                 <Text style={styles.questionText}>Calha de aplicação Polieletrólito ok?</Text>
                 <TouchableOpacity
                     style={styles.radioButton}
-                    onPress={() => setCalhaAplicacao('Sim')}
+                    onPress={() => setChoices({ ...choices, calhaAplicacao: 'Sim' })}
                 >
                     <View
                         style={[
@@ -309,7 +311,7 @@ return (
                 </TouchableOpacity>
                 <TouchableOpacity
                     style={styles.radioButton}
-                    onPress={() => setCalhaAplicacao('Não')}
+                    onPress={() => setChoices({ ...choices, calhaAplicacao: 'Não' })}
                 >
                     <View
                         style={[
@@ -332,7 +334,7 @@ return (
                 <Text style={styles.questionText}>Calha de dosagem de solução limpa?</Text>
                 <TouchableOpacity
                     style={styles.radioButton}
-                    onPress={() => setCalhaDosagemSolucao('Sim')}
+                    onPress={() => setChoices({ ...choices, calhaDosagemSolucao: 'Sim' })}
                 >
                     <View
                         style={[
@@ -351,7 +353,7 @@ return (
                 </TouchableOpacity>
                 <TouchableOpacity
                     style={styles.radioButton}
-                    onPress={() => setCalhaDosagemSolucao('Não')}
+                    onPress={() => setChoices({ ...choices, calhaDosagemSolucao: 'Não' })}
                 >
                     <View
                         style={[
@@ -380,10 +382,10 @@ return (
                     placeholder="Digite seu texto aqui"
                 />
             </View>
-            {/* Repita o padrão para outras perguntas */}
-        </View>
-    </ScrollView>
-);
+
+        </ScrollView >
+    );
+}
 
 const styles = StyleSheet.create({
     conteiner: {
@@ -435,7 +437,7 @@ const styles = StyleSheet.create({
     },
 
     picker: {
-        backgroundColor: '#85BBE3',
+        backgroundColor: '#0C5AA5',
         width: '30%',
         borderRadius: 10,
         color: '#fff',
@@ -451,5 +453,7 @@ const styles = StyleSheet.create({
         padding: 10,
         fontSize: 16,
     },
-
+    selectedOutlineCircle: {
+        borderColor: 'blue', // Defina a cor da borda quando a opção estiver selecionada
+    },
 });

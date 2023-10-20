@@ -4,8 +4,6 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
 
-
-
 import Header from '../components/Header';
 import CustomButton from '../components/CustomButton';
 import RadioButton from '../components/BotaoRadio';
@@ -13,7 +11,7 @@ import RadioButton from '../components/BotaoRadio';
 export default function PeriodoScreen({ navigation }) {
     const [data, setData] = useState(new Date());
     const [turno, setTurno] = useState('');
-    const [show, setShow] = useState(false); // Defina show no escopo principal
+    const [show, setShow] = useState(false);
     const [mode, setMode] = useState('date');
     const dispatch = useDispatch();
 
@@ -56,7 +54,6 @@ export default function PeriodoScreen({ navigation }) {
                         Data:
                     </Text>
 
-
                     <View style={styles.containerData}>
                         <View style={styles.containerBotao}>
                             <Button title="Selecione a Data" onPress={() => showMode(true)} />
@@ -70,7 +67,6 @@ export default function PeriodoScreen({ navigation }) {
                                     dateFormat="dayofweek day month"
                                     value={data}
                                     onChange={setDate}
-
                                 />
                             )}
                         </View>
@@ -81,15 +77,14 @@ export default function PeriodoScreen({ navigation }) {
                             <Text style={styles.dataSelecionada}>{data.toLocaleString('pt-BR')}</Text>
                         </View>
                     </View>
-
                 </View>
 
                 <View style={styles.view}>
                     <Text style={styles.label}>Turno</Text>
                     <RadioButton
                         options={['Diurno', 'Noturno']}
-                        selected={turno} // Passe o turno selecionado aqui
-                        onChangeSelect={(opt) => setTurno(opt)} // Atualize a variável turno com a opção selecionada
+                        selected={turno}
+                        onChangeSelect={(opt) => setTurno(opt)}
                     />
                 </View>
 
@@ -98,6 +93,7 @@ export default function PeriodoScreen({ navigation }) {
         </SafeAreaView>
     )
 }
+
 
 const styles = StyleSheet.create({
     container: {
