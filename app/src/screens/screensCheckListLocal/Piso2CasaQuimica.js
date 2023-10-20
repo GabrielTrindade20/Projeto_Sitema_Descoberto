@@ -6,11 +6,27 @@ import AreaPoli from '../screensCheckListLocal/2 piso Casa Quimica I/AreaPoli';
 import AreaSulfato from '../screensCheckListLocal/2 piso Casa Quimica I/AreaSulfato';
 import CustomButton from '../../components/CustomButton';
 
+import axios from 'axios';
+
+async function enviarDadosParaServidor(data) {
+    try {
+        console.log('Enviando dados para o servidor:', data);
+        const response = await axios.post('http://192.168.1.9:8080/api/areapoli', data);
+
+        if (response.status === 200) {
+            console.log('Dados enviados com sucesso.');
+        } else {
+            console.error('Falha ao enviar dados para o servidor.');
+        }
+    } catch (error) {
+        console.error('Erro ao enviar dados para o servidor:', error);
+    }
+}
+
 export default function Piso2CasaQuimica() {
     const [showAreaPoli, setShowAreaPoli] = useState(true);
     const [showAreaSulfato, setShowAreaSulfato] = useState(true);
 
-    // Estados para as escolhas do usuário
     const [areaPoliChoices, setAreaPoliChoices] = useState({
         iluminacaoBombas: null,
         aguaDiluicao: null,
@@ -21,12 +37,30 @@ export default function Piso2CasaQuimica() {
         iluminacaoPiso2: null,
         calhaAplicacao: null,
         calhaDosagemSolucao: null,
-        // Adicione outros estados aqui
     });
 
-    const [areaSulfatoChoices, setAreaSulfatoChoices] = useState({
-        // Defina os estados para a área Sulfato de Alumínio
-    });
+    const [text, setText] = useState(""); // Observação do Piso2CasaQuimica
+    const updateObservacao = (newObservacao) => {
+        setText(newObservacao);
+    }
+
+    async function handleEnviar() {
+        const data = {
+            iluminacaoBombas: areaPoliChoices.iluminacaoBombas,
+            aguaDiluicao: areaPoliChoices.aguaDiluicao,
+            vazamentoTubulacoes: areaPoliChoices.vazamentoTubulacoes,
+            limpezaEquipamentos: areaPoliChoices.limpezaEquipamentos,
+            alimentacaoAgua: areaPoliChoices.alimentacaoAgua,
+            iluminacaoPiso1: areaPoliChoices.iluminacaoPiso1,
+            iluminacaoPiso2: areaPoliChoices.iluminacaoPiso2,
+            calhaAplicacao: areaPoliChoices.calhaAplicacao,
+            calhaDosagemSolucao: areaPoliChoices.calhaDosagemSolucao,
+            observacao: text, // Usar diretamente o estado text para a observação
+        };
+        enviarDadosParaServidor(data);
+    }
+
+
 
     return (
         <SafeAreaView>
@@ -39,7 +73,7 @@ export default function Piso2CasaQuimica() {
                         </TouchableOpacity>
 
                         <View style={styles.local}>
-                            <AreaPoli choices={areaPoliChoices} setChoices={setAreaPoliChoices} />
+                            <AreaPoli setChoices={setAreaPoliChoices} choices={areaPoliChoices} updateObservacao={updateObservacao}/>
                         </View>
                     </View>
                 ) : (
@@ -49,7 +83,7 @@ export default function Piso2CasaQuimica() {
                 )}
 
                 <View style={styles.Button}>
-                    <CustomButton title="Enviar"  />
+                    <CustomButton title="Enviar" onPress={handleEnviar} />
                 </View>
 
             </ScrollView>

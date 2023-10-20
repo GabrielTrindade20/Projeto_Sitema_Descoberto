@@ -2,7 +2,15 @@ import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, ScrollView, TextInput } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 
-export default function AreaPoli({ choices, setChoices }) {
+
+export default function AreaPoli({ choices, setChoices, updateObservacao }) {
+    const [text, setTextoAreaPoli] = useState("");
+
+    const handleObservacaoChange = (newText) => {
+        setTextoAreaPoli(newText);
+        updateObservacao(newText);
+    }
+
     const { iluminacaoBombas,
         aguaDiluicao,
         vazamentoTubulacoes,
@@ -11,12 +19,8 @@ export default function AreaPoli({ choices, setChoices }) {
         iluminacaoPiso1,
         iluminacaoPiso2,
         calhaAplicacao,
-        calhaDosagemSolucao
+        calhaDosagemSolucao,
     } = choices;
-
-    const [text, setText] = useState('');
-
-
 
     return (
         <ScrollView>
@@ -196,13 +200,13 @@ export default function AreaPoli({ choices, setChoices }) {
                     onValueChange={(itemValue) => setChoices({ ...choices, alimentacaoAgua: itemValue })}
                     style={styles.picker}
                 >
+                    <Picker.Item label="" value="" />
                     <Picker.Item label="Linha Ceilândia" value="Linha Ceilândia" />
                     <Picker.Item label="VC 1A" value="VC 1A" />
                     <Picker.Item label="VC 1B" value="VC 1B" />
                     <Picker.Item label="Elevado" value="Elevado" />
                 </Picker>
             </View>
-
 
             <View style={styles.questionContainer}>
                 <Text style={styles.questionText}>Iluminação do piso 1º CQ I ok?</Text>
@@ -375,13 +379,15 @@ export default function AreaPoli({ choices, setChoices }) {
             <View style={styles.questionContainer}>
                 <TextInput
                     style={styles.textInput}
-                    multiline={true} // Permite várias linhas
-                    numberOfLines={4} // Número de linhas visíveis inicialmente
-                    value={text}
-                    onChangeText={setText}
-                    placeholder="Digite seu texto aqui"
+                    multiline={true}
+                    numberOfLines={4}
+                    onChangeText={handleObservacaoChange} // Use a função de atualização
+                    defaultValue={text}
+                    placeholder="Digite sua observação aqui"
                 />
             </View>
+
+
 
         </ScrollView >
     );
