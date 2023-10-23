@@ -1,15 +1,17 @@
 package com.projeto.descoberto.model;
 
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-@Entity
+@Entity 
 public class AreaPoli {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 	private String iluminacaoBombas;
 	private String aguaDiluicao;
 	private String vazamentoTubulacoes;
@@ -19,18 +21,8 @@ public class AreaPoli {
 	private String iluminacaoPiso2;
 	private String calhaAplicacao;
 	private String calhaDosagemSolucao;
-	private String observacao;
-
+    private String observacao;
 	
-	
-	public String getObservacao() {
-		return observacao;
-	}
-
-	public void setObservacao(String observacao) {
-		this.observacao = observacao;
-	}
-
 	public String getIluminacaoBombas() {
 		return iluminacaoBombas;
 	}
@@ -103,4 +95,13 @@ public class AreaPoli {
 		this.calhaDosagemSolucao = calhaDosagemSolucao;
 	}
 
+	public String getObservacao() {
+		return observacao;
+	}
+
+	public void setObservacao(String observacao) {
+		this.observacao = observacao;
+	}
+
 }
+

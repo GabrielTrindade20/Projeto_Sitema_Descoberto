@@ -4,7 +4,13 @@ import { View, Text, SafeAreaView, StyleSheet, ScrollView, TouchableOpacity, Tex
 import Header from '../../components/Header';
 import AreaPoli from '../screensCheckListLocal/2 piso Casa Quimica I/AreaPoli';
 import AreaSulfato from '../screensCheckListLocal/2 piso Casa Quimica I/AreaSulfato';
+import AreaPac from '../screensCheckListLocal/2 piso Casa Quimica I/AreaPac'
+import AreaCalhaParshall from '../screensCheckListLocal/2 piso Casa Quimica I/AreaCalhaParshall'
+
+
 import CustomButton from '../../components/CustomButton';
+import OpcaoSelecao from '../../components/OpcaoSelecao';
+import Observacao from '../../components/Observacao';
 
 import axios from 'axios';
 
@@ -26,6 +32,8 @@ async function enviarDadosParaServidor(data) {
 export default function Piso2CasaQuimica() {
     const [showAreaPoli, setShowAreaPoli] = useState(true);
     const [showAreaSulfato, setShowAreaSulfato] = useState(true);
+    const [showAreaPac, setShowAreaPac] = useState(true);
+    const [showAreaCalhaParshall, setShowAreaCalhaParshall] = useState(true);
 
     const [areaPoliChoices, setAreaPoliChoices] = useState({
         iluminacaoBombas: null,
@@ -38,6 +46,43 @@ export default function Piso2CasaQuimica() {
         calhaAplicacao: null,
         calhaDosagemSolucao: null,
     });
+
+    const [areaSulfatoChoices, setAreaSulfatoChoices] = useState({
+        iluminacaoBombas: null,
+        aguaDiluicao: null,
+        vazamentoTubulacoes: null,
+        limpezaEquipamentos: null,
+        alimentacaoAgua: null,
+        iluminacaoPiso1: null,
+        iluminacaoPiso2: null,
+        calhaAplicacao: null,
+        calhaDosagemSolucao: null,
+    });
+
+    const [areaPacChoices, setAreaPacChoices] = useState({
+        iluminacaoBombas: null,
+        aguaDiluicao: null,
+        vazamentoTubulacoes: null,
+        limpezaEquipamentos: null,
+        alimentacaoAgua: null,
+        iluminacaoPiso1: null,
+        iluminacaoPiso2: null,
+        calhaAplicacao: null,
+        calhaDosagemSolucao: null,
+    });
+    
+    const [areaAreaCalhaParshallChoices, setAreaAreaCalhaParshallChoices] = useState({
+        iluminacaoBombas: null,
+        aguaDiluicao: null,
+        vazamentoTubulacoes: null,
+        limpezaEquipamentos: null,
+        alimentacaoAgua: null,
+        iluminacaoPiso1: null,
+        iluminacaoPiso2: null,
+        calhaAplicacao: null,
+        calhaDosagemSolucao: null,
+    });
+
 
     const [text, setText] = useState(""); // Observação do Piso2CasaQuimica
     const updateObservacao = (newObservacao) => {
@@ -125,6 +170,54 @@ export default function Piso2CasaQuimica() {
                 ) : (
                     <TouchableOpacity onPress={() => setShowAreaPoli(!showAreaPoli)}>
                         <Text style={styles.title}>Área Polieletrolito</Text>
+                    </TouchableOpacity>
+                )}
+
+                {showAreaSulfato ? (
+                    <View style={styles.containerContent}>
+                        <TouchableOpacity onPress={() => setShowAreaSulfato(!showAreaSulfato)}>
+                            <Text style={styles.title}>Área Sulfato</Text>
+                        </TouchableOpacity>
+
+                        <View style={styles.local}>
+                            <AreaSulfato setChoices={setAreaSulfatoChoices} choices={areaSulfatoChoices} updateObservacao={updateObservacao} />
+                        </View>
+                    </View>
+                ) : (
+                    <TouchableOpacity onPress={() => setShowAreaSulfato(!showAreaSulfato)}>
+                        <Text style={styles.title}>Área Sulfato</Text>
+                    </TouchableOpacity>
+                )}
+
+                {showAreaPac ? (
+                    <View style={styles.containerContent}>
+                        <TouchableOpacity onPress={() => setShowAreaPac(!showAreaPac)}>
+                            <Text style={styles.title}>Área Pac</Text>
+                        </TouchableOpacity>
+
+                        <View style={styles.local}>
+                            <AreaPac setChoices={setAreaPacChoices} choices={areaPacChoices} updateObservacao={updateObservacao} />
+                        </View>
+                    </View>
+                ) : (
+                    <TouchableOpacity onPress={() => setShowAreaPac(!showAreaPac)}>
+                        <Text style={styles.title}>Área Pac</Text>
+                    </TouchableOpacity>
+                )}
+
+                {showAreaCalhaParshall ? (
+                    <View style={styles.containerContent}>
+                        <TouchableOpacity onPress={() => setShowAreaCalhaParshall(!showAreaCalhaParshall)}>
+                            <Text style={styles.title}>Área Calha Parshall</Text>
+                        </TouchableOpacity>
+
+                        <View style={styles.local}>
+                            <AreaCalhaParshall setChoices={setAreaAreaCalhaParshallChoices} choices={areaAreaCalhaParshallChoices} updateObservacao={updateObservacao} />
+                        </View>
+                    </View>
+                ) : (
+                    <TouchableOpacity onPress={() => setShowAreaCalhaParshall(!showAreaCalhaParshall)}>
+                        <Text style={styles.title}>Área Calha Parshall</Text>
                     </TouchableOpacity>
                 )}
 
