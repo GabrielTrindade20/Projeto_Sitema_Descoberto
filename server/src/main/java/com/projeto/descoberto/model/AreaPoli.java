@@ -1,9 +1,14 @@
 package com.projeto.descoberto.model;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class AreaPoli {
@@ -21,7 +26,10 @@ public class AreaPoli {
 	private String calhaDosagemSolucao;
 	private String observacao;
 
-	
+	    
+	@ManyToOne
+	@JoinColumn(name = "periodo_id") // O nome da coluna de chave estrangeira na tabela AreaPoli
+	private Periodo periodo;
 	
 	public String getObservacao() {
 		return observacao;

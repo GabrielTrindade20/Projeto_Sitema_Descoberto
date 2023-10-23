@@ -11,6 +11,13 @@ import com.projeto.descoberto.repository.AreaPoliRepository;
 public class ServiceAreaPoli {
     private final AreaPoliRepository areaPoliRepository;
 
+
+    public AreaPoli createAreaPoli(AreaPoli areaPoli) {
+        // Implemente a lógica para criar uma nova área associada a um período
+        // Você precisará adicionar a associação com o período, assim como fez para o usuário em ServicePeriodo.
+        return areaPoliRepository.save(areaPoli);
+    }
+    
     @Autowired
     public ServiceAreaPoli(AreaPoliRepository areaPoliRepository) {
         this.areaPoliRepository = areaPoliRepository;

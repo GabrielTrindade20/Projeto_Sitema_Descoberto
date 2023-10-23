@@ -7,10 +7,14 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import com.projeto.descoberto.model.AreaPoli;
+import com.projeto.descoberto.model.Periodo;
 
 
 public interface AreaPoliRepository extends JpaRepository<AreaPoli, Long> {
-    @Query("SELECT a FROM AreaPoli a WHERE a.iluminacaoBombas = :iluminacaoBombas")
+	
+	List<AreaPoli> findByPeriodo(Periodo periodo);
+	
+	@Query("SELECT a FROM AreaPoli a WHERE a.iluminacaoBombas = :iluminacaoBombas")
     List<AreaPoli> findByiluminacaoBombas(@Param("iluminacaoBombas") String iluminacaoBombas);
     
     @Query("SELECT a FROM AreaPoli a WHERE a.aguaDiluicao = :aguaDiluicao")

@@ -12,36 +12,41 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.projeto.descoberto.model.AreaPoli;
+import com.projeto.descoberto.model.Periodo;
 import com.projeto.descoberto.service.ServiceAreaPoli;
 
 @RestController
 @RequestMapping("/api/areapoli")
 public class AreaPoliController {
-    private final ServiceAreaPoli areaPoliService;
+	private final ServiceAreaPoli areaPoliService;
 
-    @Autowired
-    public AreaPoliController(ServiceAreaPoli areaPoliService) {
-        this.areaPoliService = areaPoliService;
-    }
-
-    @PostMapping
+	@Autowired
+    private ServiceAreaPoli ServiceAreaPoli;
+	
+	@PostMapping
     public AreaPoli createAreaPoli(@RequestBody AreaPoli areaPoli) {
-        return areaPoliService.saveAreaPoli(areaPoli);
+        return ServiceAreaPoli.createAreaPoli(areaPoli);
     }
+	
+	@Autowired
+	public AreaPoliController(ServiceAreaPoli areaPoliService) {
+		this.areaPoliService = areaPoliService;
+	}
 
-    @GetMapping
-    public List<AreaPoli> getAllAreaPolis() {
-        return areaPoliService.getAllAreaPolis();
-    }
 
-    @GetMapping("/{id}")
-    public AreaPoli getAreaPoliById(@PathVariable Long id) {
-        return areaPoliService.getAreaPoliById(id);
-    }
+	@GetMapping
+	public List<AreaPoli> getAllAreaPolis() {
+		return areaPoliService.getAllAreaPolis();
+	}
 
-    @DeleteMapping("/{id}")
-    public void deleteAreaPoli(@PathVariable Long id) {
-    	areaPoliService.deleteAreaPoli(id);
-    }
+	@GetMapping("/{id}")
+	public AreaPoli getAreaPoliById(@PathVariable Long id) {
+		return areaPoliService.getAreaPoliById(id);
+	}
+
+	@DeleteMapping("/{id}")
+	public void deleteAreaPoli(@PathVariable Long id) {
+		areaPoliService.deleteAreaPoli(id);
+	}
+
 }
-
