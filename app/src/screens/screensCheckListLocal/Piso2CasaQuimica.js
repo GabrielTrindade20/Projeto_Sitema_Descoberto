@@ -1,155 +1,123 @@
+import axios from 'axios';
 import React, { useState, useEffect } from 'react';
-import { View, Text, SafeAreaView, StyleSheet, ScrollView, TouchableOpacity, TextInput, Button } from 'react-native';
+import { ScrollView, View, Text, TouchableOpacity, StyleSheet, SafeAreaView } from 'react-native';
+import Header from '../../components/Header'  // Importe o componente de cabeçalho
 
-import Header from '../../components/Header';
 import AreaPoli from '../screensCheckListLocal/2 piso Casa Quimica I/AreaPoli';
 import AreaSulfato from '../screensCheckListLocal/2 piso Casa Quimica I/AreaSulfato';
 import AreaPac from '../screensCheckListLocal/2 piso Casa Quimica I/AreaPac'
 import AreaCalhaParshall from '../screensCheckListLocal/2 piso Casa Quimica I/AreaCalhaParshall'
 
-
 import CustomButton from '../../components/CustomButton';
-import OpcaoSelecao from '../../components/OpcaoSelecao';
-import Observacao from '../../components/Observacao';
 
-import axios from 'axios';
+function Piso2CasaQuimica() {
 
-async function enviarDadosParaServidor(data) {
-    try {
-        console.log('Enviando dados para o servidor:', data);
-        const response = await axios.post('http://192.168.1.9:8080/api/areapoli', data);
-
-        if (response.status === 200) {
-            console.log('Dados enviados com sucesso.');
-        } else {
-            console.error('Falha ao enviar dados para o servidor.');
-        }
-    } catch (error) {
-        console.error('Erro ao enviar dados para o servidor:', error);
+    const [observacoes, setObservacoes] = useState({});
+    const updateObservacao = (area, observacao) => {
+        setObservacoes({ ...observacoes, [area]: observacao });
     }
-}
-
-export default function Piso2CasaQuimica() {
-    const [showAreaPoli, setShowAreaPoli] = useState(true);
-    const [showAreaSulfato, setShowAreaSulfato] = useState(true);
-    const [showAreaPac, setShowAreaPac] = useState(true);
-    const [showAreaCalhaParshall, setShowAreaCalhaParshall] = useState(true);
-
-    const [areaPoliChoices, setAreaPoliChoices] = useState({
-        iluminacaoBombas: null,
-        aguaDiluicao: null,
-        vazamentoTubulacoes: null,
-        limpezaEquipamentos: null,
-        alimentacaoAgua: null,
-        iluminacaoPiso1: null,
-        iluminacaoPiso2: null,
-        calhaAplicacao: null,
-        calhaDosagemSolucao: null,
-    });
-
-    const [areaSulfatoChoices, setAreaSulfatoChoices] = useState({
-        iluminacaoBombas: null,
-        aguaDiluicao: null,
-        vazamentoTubulacoes: null,
-        limpezaEquipamentos: null,
-        alimentacaoAgua: null,
-        iluminacaoPiso1: null,
-        iluminacaoPiso2: null,
-        calhaAplicacao: null,
-        calhaDosagemSolucao: null,
-    });
-
-    const [areaPacChoices, setAreaPacChoices] = useState({
-        iluminacaoBombas: null,
-        aguaDiluicao: null,
-        vazamentoTubulacoes: null,
-        limpezaEquipamentos: null,
-        alimentacaoAgua: null,
-        iluminacaoPiso1: null,
-        iluminacaoPiso2: null,
-        calhaAplicacao: null,
-        calhaDosagemSolucao: null,
-    });
-    
-    const [areaAreaCalhaParshallChoices, setAreaAreaCalhaParshallChoices] = useState({
-        iluminacaoBombas: null,
-        aguaDiluicao: null,
-        vazamentoTubulacoes: null,
-        limpezaEquipamentos: null,
-        alimentacaoAgua: null,
-        iluminacaoPiso1: null,
-        iluminacaoPiso2: null,
-        calhaAplicacao: null,
-        calhaDosagemSolucao: null,
-    });
-
-
-    const [text, setText] = useState(""); // Observação do Piso2CasaQuimica
-    const updateObservacao = (newObservacao) => {
-        setText(newObservacao);
-    }
-
-    const [errorMessage, setErrorMessage] = useState('');
-    // Adicione o estado allOptionsSelected e a função checkAllOptionsSelected
-    const [allOptionsSelected, setAllOptionsSelected] = useState(false);
-
-    const checkAllOptionsSelected = () => {
-        // Verifique se todas as opções foram preenchidas
-        const {
-            iluminacaoBombas,
-            aguaDiluicao,
-            vazamentoTubulacoes,
-            limpezaEquipamentos,
-            alimentacaoAgua,
-            iluminacaoPiso1,
-            iluminacaoPiso2,
-            calhaAplicacao,
-            calhaDosagemSolucao,
-        } = areaPoliChoices;
-        const allSelected =
-            iluminacaoBombas &&
-            aguaDiluicao &&
-            vazamentoTubulacoes &&
-            limpezaEquipamentos &&
-            alimentacaoAgua &&
-            iluminacaoPiso1 &&
-            iluminacaoPiso2 &&
-            calhaAplicacao &&
-            calhaDosagemSolucao; // Adicione todas as opções aqui
-        setAllOptionsSelected(allSelected);
-    };
 
     async function handleEnviar() {
-        if (allOptionsSelected) {
+        for (const area in areaData) {
             const data = {
-                iluminacaoBombas: areaPoliChoices.iluminacaoBombas,
-                aguaDiluicao: areaPoliChoices.aguaDiluicao,
-                vazamentoTubulacoes: areaPoliChoices.vazamentoTubulacoes,
-                limpezaEquipamentos: areaPoliChoices.limpezaEquipamentos,
-                alimentacaoAgua: areaPoliChoices.alimentacaoAgua,
-                iluminacaoPiso1: areaPoliChoices.iluminacaoPiso1,
-                iluminacaoPiso2: areaPoliChoices.iluminacaoPiso2,
-                calhaAplicacao: areaPoliChoices.calhaAplicacao,
-                calhaDosagemSolucao: areaPoliChoices.calhaDosagemSolucao,
-                observacao: text,
+                ...areaData[area],
+                observacao: observacoes[area],
             };
-            enviarDadosParaServidor(data);
-        } else {
-            // Mostrar a mensagem de erro
-            setErrorMessage('Por favor, selecione todas as opções.');
-
-            // Limpar a mensagem de erro após 5 segundos
-            setTimeout(() => {
-                setErrorMessage('');
-            }, 5000); // 5000 milissegundos = 5 segundos
+            enviarDadosParaServidor(data, area.toLowerCase());
         }
     }
 
-    useEffect(() => {
-        checkAllOptionsSelected();
-    }, [areaPoliChoices]);
 
+    // Função para enviar dados para o servidor
+    async function enviarDadosParaServidor(data, area) {
+        try {
+            console.log('Enviando dados para o servidor:', data);
+            const response = await axios.post(`http://192.168.1.9:8080/api/${area}`, data);
 
+            if (response.status === 200) {
+                console.log('Dados enviados com sucesso.');
+            } else {
+                console.error('Falha ao enviar dados para o servidor.');
+            }
+        } catch (error) {
+            console.error('Erro ao enviar dados para o servidor:', error);
+        }
+    }
+
+    // Função para verificar se todas as opções foram selecionadas
+    function checkAllOptionsSelected(areaChoices) {
+        for (const choice in areaChoices) {
+            if (areaChoices[choice] === null) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    const [areaData, setAreaData] = useState({
+        AreaPoli: {
+            iluminacaoBombas: null,
+            aguaDiluicao: null,
+            vazamentoTubulacoes: null,
+            limpezaEquipamentos: null,
+            alimentacaoAgua: null,
+            iluminacaoPiso1: null,
+            iluminacaoPiso2: null,
+            calhaAplicacao: null,
+            calhaDosagemSolucao: null,
+            // ... outras opções
+        },
+        AreaSulfato: {
+            caixasolucao: null,
+            calhaDeDosagem: null,
+            aguaDiluicao: null,
+            iluminacaoBombas: null,
+            limpezaLocal: null,
+            vazamentoTubulacoes: null,
+            // ... outras opções
+        },
+        AreaPac: {
+            situacao: null,
+            iluminacaoBombas: null,
+            calhaDeDosagem: null,
+            aguaDiluicao: null,
+            vazamentoTubulacoes: null,
+            limpezaEquipamentos: null,
+            DescargaPac: null,
+            TranferenciaPac: null,
+            // ... outras opções
+        },
+        // Adicione outras áreas conforme necessário
+    });
+
+    const [showArea, setShowArea] = useState({
+        AreaPoli: true,
+        AreaSulfato: true,
+        AreaPac: true,
+        // Defina outras áreas aqui como 'true' se você quiser exibi-las inicialmente.
+    });
+
+    const toggleArea = (area) => {
+        setShowArea({
+            ...showArea,
+            [area]: !showArea[area], // Inverte a visibilidade da área clicada
+        });
+    };
+
+    const [showAreaPoli, setShowAreaPoli] = useState(true);
+    const toggleAreaPoli = () => {
+        setShowAreaPoli(!showAreaPoli);
+    };
+
+    const [showAreaSulfato, setShowAreaSulfato] = useState(true);
+    const toggleAreaSulfato = () => {
+        setShowAreaSulfato(!showAreaSulfato);
+    };
+
+    const [showAreaPac, setShowAreaPac] = useState(true);
+    const toggleAreaPac = () => {
+        setShowAreaPac(!showAreaPac);
+    };
 
 
     return (
@@ -157,87 +125,54 @@ export default function Piso2CasaQuimica() {
             <ScrollView style={styles.scrollView}>
                 <Header />
 
-                {showAreaPoli ? (
-                    <View style={styles.containerContent}>
-                        <TouchableOpacity onPress={() => setShowAreaPoli(!showAreaPoli)}>
-                            <Text style={styles.title}>Área Polieletrolito</Text>
-                        </TouchableOpacity>
-
-                        <View style={styles.local}>
-                            <AreaPoli setChoices={setAreaPoliChoices} choices={areaPoliChoices} updateObservacao={updateObservacao} />
+                {Object.entries(areaData).map(([area, options]) => (
+                    showArea[area] ? (
+                        <View style={styles.containerContent} key={area}>
+                            <TouchableOpacity onPress={() => toggleArea(area)}>
+                                <Text style={styles.title}>Área {area}</Text>
+                            </TouchableOpacity>
+                            <View style={styles.local}>
+                                {area === 'AreaPoli' && (
+                                    <AreaPoli
+                                        choices={options}
+                                        setChoices={(newChoices) => setAreaData({ ...areaData, [area]: newChoices })}
+                                        updateObservacao={(newObservacao) => updateObservacao(area, newObservacao)}
+                                    />
+                                )}
+                                {area === 'AreaSulfato' && (
+                                    <AreaSulfato
+                                        choices={options}
+                                        setChoices={(newChoices) => setAreaData({ ...areaData, [area]: newChoices })}
+                                        updateObservacao={(newObservacao) => updateObservacao(area, newObservacao)}
+                                    />
+                                )}
+                                {area === 'AreaPac' && (
+                                    <AreaPac
+                                        choices={options}
+                                        setChoices={(newChoices) => setAreaData({ ...areaData, [area]: newChoices })}
+                                        updateObservacao={(newObservacao) => updateObservacao(area, newObservacao)}
+                                    />
+                                )}
+                            </View>
                         </View>
-                    </View>
-                ) : (
-                    <TouchableOpacity onPress={() => setShowAreaPoli(!showAreaPoli)}>
-                        <Text style={styles.title}>Área Polieletrolito</Text>
-                    </TouchableOpacity>
-                )}
-
-                {showAreaSulfato ? (
-                    <View style={styles.containerContent}>
-                        <TouchableOpacity onPress={() => setShowAreaSulfato(!showAreaSulfato)}>
-                            <Text style={styles.title}>Área Sulfato</Text>
+                    ) : (
+                        <TouchableOpacity onPress={() => toggleArea(area)}>
+                            <Text style={styles.title}>Área {area}</Text>
                         </TouchableOpacity>
-
-                        <View style={styles.local}>
-                            <AreaSulfato setChoices={setAreaSulfatoChoices} choices={areaSulfatoChoices} updateObservacao={updateObservacao} />
-                        </View>
-                    </View>
-                ) : (
-                    <TouchableOpacity onPress={() => setShowAreaSulfato(!showAreaSulfato)}>
-                        <Text style={styles.title}>Área Sulfato</Text>
-                    </TouchableOpacity>
-                )}
-
-                {showAreaPac ? (
-                    <View style={styles.containerContent}>
-                        <TouchableOpacity onPress={() => setShowAreaPac(!showAreaPac)}>
-                            <Text style={styles.title}>Área Pac</Text>
-                        </TouchableOpacity>
-
-                        <View style={styles.local}>
-                            <AreaPac setChoices={setAreaPacChoices} choices={areaPacChoices} updateObservacao={updateObservacao} />
-                        </View>
-                    </View>
-                ) : (
-                    <TouchableOpacity onPress={() => setShowAreaPac(!showAreaPac)}>
-                        <Text style={styles.title}>Área Pac</Text>
-                    </TouchableOpacity>
-                )}
-
-                {showAreaCalhaParshall ? (
-                    <View style={styles.containerContent}>
-                        <TouchableOpacity onPress={() => setShowAreaCalhaParshall(!showAreaCalhaParshall)}>
-                            <Text style={styles.title}>Área Calha Parshall</Text>
-                        </TouchableOpacity>
-
-                        <View style={styles.local}>
-                            <AreaCalhaParshall setChoices={setAreaAreaCalhaParshallChoices} choices={areaAreaCalhaParshallChoices} updateObservacao={updateObservacao} />
-                        </View>
-                    </View>
-                ) : (
-                    <TouchableOpacity onPress={() => setShowAreaCalhaParshall(!showAreaCalhaParshall)}>
-                        <Text style={styles.title}>Área Calha Parshall</Text>
-                    </TouchableOpacity>
-                )}
+                    )
+                ))}
 
                 <View style={styles.Button}>
                     <CustomButton title="Enviar" onPress={handleEnviar} />
-                </View>
-
-                <View style={styles.container}>
-                    {/* ... outros elementos da interface ... */}
-                    {errorMessage ? (
-                        <View style={styles.errorMessageContainer}>
-                            <Text style={styles.errorMessageText}>{errorMessage}</Text>
-                        </View>
-                    ) : null}
                 </View>
 
             </ScrollView>
         </SafeAreaView>
     );
 }
+
+export default Piso2CasaQuimica;
+
 
 const styles = StyleSheet.create({
     containerContent: {

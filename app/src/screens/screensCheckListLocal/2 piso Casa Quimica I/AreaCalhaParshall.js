@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, ScrollView, TextInput } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 
+import OpcaoSelecao from '../../../components/OpcaoSelecao';
 
 export default function AreaPoli({ choices, setChoices, updateObservacao }) {
         const [text, setTextoAreaPoli] = useState("");

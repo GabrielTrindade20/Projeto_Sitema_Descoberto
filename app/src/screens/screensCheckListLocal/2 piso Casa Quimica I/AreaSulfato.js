@@ -1,62 +1,172 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, TextInput, StyleSheet } from 'react-native';
 
-export default function AreaPoli() {
-    const [iluminacaoBombas, setIluminacaoBombas] = useState(null);
-    const [aguaDiluicao, setAguaDiluicao] = useState(null);
-    const [vazamentoTubulacoes, setVazamentoTubulacoes] = useState(null);
-    const [limpezaEquipamentos, setLimpezaEquipamentos] = useState(null);
-    const [alimentacaoAgua, setAlimentacaoAgua] = useState(null);
-    const [iluminacaoPiso1, setIluminacaoPiso1] = useState(null);
-    const [iluminacaoPiso2, setIluminacaoPiso2] = useState(null);
-    const [calhaAplicacao, setCalhaAplicacao] = useState(null);
-    const [calhaDosagemSolucao, setCalhaDosagemSolucao] = useState(null);
-    // Adicione estados semelhantes para outras perguntas
+import OpcaoSelecao from '../../../components/OpcaoSelecao';
+
+export default function AreaSulfato({ choices, setChoices, updateObservacao }) {
+    const [text, setTextoAreaSulfato] = useState("");
+
+    const handleObservacaoChange = (newText) => {
+        setTextoAreaSulfato(newText);
+        updateObservacao(newText);
+    }
+
+    const { caixasolucao,
+        calhaDeDosagem,
+        aguaDiluicao,
+        iluminacaoBombas,
+        limpezaLocal,
+        vazamentoTubulacoes,
+    } = choices;
+
+    const setCaixasolucao = (value) => {
+        setChoices({ ...choices, caixasolucao: value });
+    };
+
+    const setCalhaDeDosagem = (value) => {
+        setChoices({ ...choices, calhaDeDosagem: value });
+    };
+
+    const setAguaDiluicao = (value) => {
+        setChoices({ ...choices, aguaDiluicao: value });
+    };
+
+    const setIluminacaoBombas = (value) => {
+        setChoices({ ...choices, iluminacaoBombas: value });
+    };
+
+    const setLimpezaLocal = (value) => {
+        setChoices({ ...choices, limpezaLocal: value });
+    };
+
+    const setVazamentoTubulacoes = (value) => {
+        setChoices({ ...choices, vazamentoTubulacoes: value });
+    };
 
     return (
         <View style={styles.conteiner}>
             <View style={styles.questionContainer}>
-                <Text style={styles.questionText}>Iluminação do local das bombas ok?</Text>
-                <TouchableOpacity
-                    style={styles.radioButton}
-                    onPress={() => setIluminacaoBombas('Sim')}
-                >
-                    <View
-                        style={[
-                            styles.outlineCircle,
-                            iluminacaoBombas === 'Sim' && styles.selectedOutlineCircle,
-                        ]}
-                    >
-                        <View
-                            style={[
-                                styles.innerCircle,
-                                iluminacaoBombas === 'Sim' && styles.selectedInnerCircle,
-                            ]}
-                        />
-                    </View>
-                    <Text style={{ color: iluminacaoBombas === 'Sim' ? 'blue' : 'black', fontSize: 20 }}>Sim</Text>
-                </TouchableOpacity>
-                <TouchableOpacity
-                    style={styles.radioButton}
-                    onPress={() => setIluminacaoBombas('Não')}
-                >
-                    <View
-                        style={[
-                            styles.outlineCircle,
-                            iluminacaoBombas === 'Não' && styles.selectedOutlineCircle,
-                        ]}
-                    >
-                        <View
-                            style={[
-                                styles.innerCircle,
-                                iluminacaoBombas === 'Não' && styles.selectedInnerCircle,
-                            ]}
-                        />
-                    </View>
-                    <Text style={{ color: iluminacaoBombas === 'Não' ? 'blue' : 'black', fontSize: 20 }}>Não</Text>
-                </TouchableOpacity>
+                <View style={styles.Options}>
+                    <Text style={styles.questionText}>Caixa de solução de sulfato fechada?</Text>
+                </View>
+                <OpcaoSelecao
+                    label="Caixa de solução de sulfato fechada?"
+                    value="Sim"
+                    selectedValue={caixasolucao}
+                    onValueChange={(value) => setCaixasolucao(value)}
+                />
+                <OpcaoSelecao
+                    label="Caixa de solução de sulfato fechada?"
+                    value="Não"
+                    selectedValue={caixasolucao}
+                    onValueChange={(value) => setCaixasolucao(value)}
+
+                />
             </View>
 
+            <View style={styles.questionContainer}>
+                <View style={styles.Options}>
+                    <Text style={styles.questionText}>Calha de dosagem de solução limpa?</Text>
+                </View>
+                <OpcaoSelecao
+                    label="Calha de dosagem de solução limpa?"
+                    value="Sim"
+                    selectedValue={calhaDeDosagem}
+                    onValueChange={(value) => setCalhaDeDosagem(value)}
+                />
+                <OpcaoSelecao
+                    label="Calha de dosagem de solução limpa?"
+                    value="Não"
+                    selectedValue={calhaDeDosagem}
+                    onValueChange={(value) => setCalhaDeDosagem(value)}
+                />
+            </View>
+
+            <View style={styles.questionContainer}>
+                <View style={styles.Options}>
+                    <Text style={styles.questionText}>Água de diluição ok?</Text>
+                </View>
+                <OpcaoSelecao
+                    label="Água de diluição ok?"
+                    value="Sim"
+                    selectedValue={aguaDiluicao}
+                    onValueChange={(value) => setAguaDiluicao(value)}
+                />
+                <OpcaoSelecao
+                    label="Água de diluição ok?"
+                    value="Não"
+                    selectedValue={aguaDiluicao}
+                    onValueChange={(value) => setAguaDiluicao(value)}
+                />
+            </View>
+
+            <View style={styles.questionContainer}>
+                <View style={styles.Options}>
+                    <Text style={styles.questionText}>Iluminação das bombas ok?</Text>
+                </View>
+                <OpcaoSelecao
+                    label="Iluminação das bombas ok?"
+                    value="Sim"
+                    selectedValue={iluminacaoBombas}
+                    onValueChange={(value) => setIluminacaoBombas(value)}
+                />
+                <OpcaoSelecao
+                    label="Iluminação das bombas ok?"
+                    value="Não"
+                    selectedValue={iluminacaoBombas}
+                    onValueChange={(value) => setIluminacaoBombas(value)}
+                />
+            </View>
+
+            <View style={styles.questionContainer}>
+                <View style={styles.Options}>
+                    <Text style={styles.questionText}>Limpeza do local ok?</Text>
+                </View>
+                <OpcaoSelecao
+                    label="Limpeza do local ok?"
+                    value="Sim"
+                    selectedValue={limpezaLocal}
+                    onValueChange={(value) => setLimpezaLocal(value)}
+                />
+                <OpcaoSelecao
+                    label="Limpeza do local ok?"
+                    value="Não"
+                    selectedValue={limpezaLocal}
+                    onValueChange={(value) => setLimpezaLocal(value)}
+                />
+            </View>
+
+            <View style={styles.questionContainer}>
+                <View style={styles.Options}>
+                    <Text style={styles.questionText}>Há vazamentos nas MB’s de tubulações?</Text>
+                </View>
+                <OpcaoSelecao
+                    label="Há vazamentos nas MB’s de tubulações?"
+                    value="Sim"
+                    selectedValue={vazamentoTubulacoes}
+                    onValueChange={(value) => setVazamentoTubulacoes(value)}
+                />
+                <OpcaoSelecao
+                    label="Há vazamentos nas MB’s de tubulações?"
+                    value="Não"
+                    selectedValue={vazamentoTubulacoes}
+                    onValueChange={(value) => setVazamentoTubulacoes(value)}
+                />
+            </View>
+
+            <View style={styles.questionContainer}>
+                <View style={styles.conteinerObservacao}>
+                <Text style={styles.questionText}>Observações:</Text>
+                <TextInput
+                    style={styles.textInput}
+                    multiline={true}
+                    numberOfLines={4}
+                    onChangeText={handleObservacaoChange} // Use a função de atualização
+                    defaultValue={text}
+                    placeholder="Digite sua observação aqui"
+                />
+                </View>
+            </View>
             {/* Repita o padrão para outras perguntas */}
         </View>
     );
@@ -64,15 +174,19 @@ export default function AreaPoli() {
 
 const styles = StyleSheet.create({
     conteiner: {
-        flexDirection: 'row',
+        flexDirection: 'column',
         padding: 10,
-
+        width: '100%',
     },
     questionContainer: {
+        marginBottom: 15,
         flexDirection: 'row',
+        width: '100%',
+    },
+    Options: {
+        width: '75%',
     },
     questionText: {
-        width: '100%',
         fontSize: 20,
         flexDirection: 'row',
         // Estilos do texto da pergunta
@@ -86,26 +200,16 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         // Estilos dos botões de rádio
     },
-    outlineCircle: {
-        width: 20,
-        height: 20,
-        borderRadius: 35,
-        borderColor: '#777',
-        borderWidth: 2,
-        justifyContent: 'center',
-        alignItems: 'center',
-        marginRight: 5,
+    conteinerObservacao:{
+        width: '100%',
+
     },
-    selectedOutlineCircle: {
-        borderColor: 'blue',
-    },
-    innerCircle: {
-        width: 10,
-        height: 10,
-        borderRadius: 25,
-        backgroundColor: 'transparent',
-    },
-    selectedInnerCircle: {
-        backgroundColor: 'blue',
+    textInput: {
+        width: '100%',
+        backgroundColor: '#fff',
+        borderWidth: 1,
+        borderColor: '#0005',
+        padding: 10,
+        fontSize: 16,
     },
 });
