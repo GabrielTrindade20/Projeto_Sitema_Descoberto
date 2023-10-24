@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, ScrollView, TextInput } from 'react-native';
+import { View, Text, StyleSheet, TextInput } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 
 import OpcaoSelecao from '../../../components/OpcaoSelecao';
@@ -39,26 +39,25 @@ export default function AreaPac({ choices, setChoices, updateObservacao }) {
     };
 
     const setLimpezaEquipamento = (value) => {
-        setChoices({ ...choices, limpezaLocal: value });
+        setChoices({ ...choices, limpezaEquipamentos: value });
     };
 
 
     return (
         <View style={styles.conteiner}>
-            <View style={styles.questionContainer}>
+            <View style={styles.conteinerSituacao}>
                 <View style={styles.Options}>
                     <Text style={styles.questionText}>Situação: </Text>
                 </View>
                 <Picker
                     selectedValue={situacao}
                     onValueChange={(itemValue) => setChoices({ ...choices, situacao: itemValue })}
-                    style={styles.picker}
+                    style={styles.Situacaopicker}
                 >
-                    <Picker.Item label="Equpamento:" />
-                    <Picker.Item label="Linha Ceilândia" value="Linha Ceilândia" />
-                    <Picker.Item label="VC 1A" value="VC 1A" />
-                    <Picker.Item label="VC 1B" value="VC 1B" />
-                    <Picker.Item label="Elevado" value="Elevado" />
+                    <Picker.Item label="Situação:" />
+                    <Picker.Item label="Operando" value="Operando" />
+                    <Picker.Item label="Desligado" value="Desligado" />
+
                 </Picker>
             </View>
 
@@ -137,22 +136,56 @@ export default function AreaPac({ choices, setChoices, updateObservacao }) {
 
             <View style={styles.questionContainer}>
                 <View style={styles.Options}>
-                    <Text style={styles.questionText}>Limpeza do local ok?</Text>
+                    <Text style={styles.questionText}>Limpeza nos equipamentos ok?</Text>
                 </View>
                 <OpcaoSelecao
-                    label="Limpeza do local ok?"
+                    label="Limpeza nos equipamentos ok?"
                     value="Sim"
                     selectedValue={limpezaEquipamentos}
-                    onValueChange={(value) => setLimpezaElimpezaEquipamentos(value)}
+                    onValueChange={(value) => setLimpezaEquipamento(value)}
                 />
                 <OpcaoSelecao
-                    label="Limpeza do local ok?"
+                    label="Limpeza nos equipamentos ok?"
                     value="Não"
                     selectedValue={limpezaEquipamentos}
                     onValueChange={(value) => setLimpezaEquipamento(value)}
                 />
             </View>
 
+
+
+
+            <View style={styles.conteinerEquipamento}>
+                <Text style={styles.questionText}>Motores em Uso:</Text>
+                
+                <View style={styles.questionContainerPiker}>
+                    <View style={styles.conteinerPiker}>
+                        <Text style={styles.questionText}>Descarga de Pac:</Text>
+                        <Picker
+                            selectedValue={DescargaPac}
+                            onValueChange={(itemValue) => setChoices({ ...choices, DescargaPac: itemValue })}
+                            style={styles.picker}
+                        >
+                            <Picker.Item label="Equpamento:" />
+                            <Picker.Item label="MB 6A" value="MB 6A" />
+                            <Picker.Item label="MB 6B" value="MB 6B" />
+                        </Picker>
+                    </View>
+
+                    <View style={styles.conteinerPiker}>
+                        <Text style={styles.questionText}>Tranferencia de Pac:</Text>
+                        <Picker
+                            selectedValue={TranferenciaPac}
+                            onValueChange={(itemValue) => setChoices({ ...choices, TranferenciaPac: itemValue })}
+                            style={styles.picker}
+                        >
+                            <Picker.Item label="Equpamento:" />
+                            <Picker.Item label="MB 7A" value="MB 7A" />
+                            <Picker.Item label="MB 7B" value="MB 7B" />
+                        </Picker>
+                    </View>
+                </View>
+            </View>
 
             <View style={styles.questionContainer}>
                 <View style={styles.conteinerObservacao}>
@@ -168,33 +201,7 @@ export default function AreaPac({ choices, setChoices, updateObservacao }) {
                 </View>
             </View>
 
-            <View style={styles.questionContainer}>
-                <Text style={styles.questionText}>Motores em Uso:</Text>
-                <View>
-                    <Picker
-                        selectedValue={DescargaPac}
-                        onValueChange={(itemValue) => setChoices({ ...choices, DescargaPac: itemValue })}
-                        style={styles.picker}
-                    >
-                        <Picker.Item label="Equpamento:" />
-                        <Picker.Item label="MB 6A" value="MB 6A" />
-                        <Picker.Item label="MB 6B" value="MB 6B" />
-                    </Picker>
-                </View>
 
-                <View>
-                    <Picker
-                        selectedValue={TranferenciaPac}
-                        onValueChange={(itemValue) => setChoices({ ...choices, TranferenciaPac: itemValue })}
-                        style={styles.picker}
-                    >
-                        <Picker.Item label="Equpamento:" />
-                        <Picker.Item label="MB 7A" value="MB 7A" />
-                        <Picker.Item label="MB 7B" value="MB 7B" />                      
-                    </Picker>
-                </View>
-
-            </View>
 
 
             {/* Repita o padrão para outras perguntas */}
@@ -205,27 +212,30 @@ export default function AreaPac({ choices, setChoices, updateObservacao }) {
 
 const styles = StyleSheet.create({
     conteiner: {
+        flexDirection: 'column',
         padding: 10,
+        width: '100%',
     },
     questionContainer: {
+        marginBottom: 15,
         flexDirection: 'row',
-        alignItems: 'center',
-        marginVertical: 10,
-        marginLeft: 10,
-        marginRight: 20,
+        width: '100%',
+    },
+    Options: {
+        width: '75%',
     },
     questionText: {
-        flexGrow: 1,
-        fontSize: 18,
+        fontSize: 20,
+        flexDirection: 'row',
         // Estilos do texto da pergunta
     },
     buttonContainer: {
         flexDirection: 'row',
     },
     radioButton: {
+        marginLeft: 30,
         flexDirection: 'row',
         alignItems: 'center',
-        marginLeft: 20,
         // Estilos dos botões de rádio
     },
     outlineCircle: {
@@ -251,15 +261,41 @@ const styles = StyleSheet.create({
         fontSize: 18,
         color: 'black',
     },
-    picker: {
+    conteinerSituacao: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginBottom: 10,
+    },
+    Situacaopicker: {
         backgroundColor: '#0C5AA5',
         width: '30%',
         borderRadius: 10,
         color: '#fff',
         fontWeight: 'bold',
+        marginLeft: -55,
+    },
+    conteinerEquipamento: {
+        flexDirection: 'column',
+    },
+    conteinerPiker: {
+        flexDirection: 'column',
+        width: '30%',
+        marginTop: 10,
+        marginBottom: 10,
+    },
+    questionContainerPiker: {
+        width: '100%',
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+    },
+    picker: {
+        backgroundColor: '#0C5AA5',
+        width: '100%',
+        borderRadius: 10,
+        color: '#fff',
+        fontWeight: 'bold',
 
     },
-
     textInput: {
         width: '100%',
         backgroundColor: '#fff',
@@ -270,5 +306,9 @@ const styles = StyleSheet.create({
     },
     selectedOutlineCircle: {
         borderColor: 'blue', // Defina a cor da borda quando a opção estiver selecionada
+    },
+    conteinerObservacao: {
+        width: '100%',
+
     },
 });
