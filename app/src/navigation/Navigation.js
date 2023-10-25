@@ -4,8 +4,8 @@ import { createStackNavigator } from '@react-navigation/stack';
 import LoginScreen from '../screens/LoginScreen';
 import PeriodoScreen from '../screens/Periodo';
 import CheckListScreen from '../screens/CheckList';
-import Piso2CasaQuimica from '../screens/screensCheckListLocal/Piso2CasaQuimica'
-import Piso3CasaQuimica from '../screens/screensCheckListLocal/Piso3CasaQuimica'
+import Piso2CasaQuimica from '../screens/screensCheckListLocal/Piso2CasaQuimica/AbasPiso2CasaQuimica'
+import Piso3CasaQuimica from '../screens/screensCheckListLocal/Piso3CasaQuimica/AbasPiso3CasaQuimica'
 import TabNavigation from './TabNavigation';
 
 const Stack = createStackNavigator();
