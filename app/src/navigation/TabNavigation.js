@@ -3,6 +3,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import CheckList from '../screens/CheckList';
 import CheckListLocal from '../screens/screensCheckListLocal/CheckListLocal';
 
+
 const Tab = createBottomTabNavigator();
 
 export default function TabNavigation() {

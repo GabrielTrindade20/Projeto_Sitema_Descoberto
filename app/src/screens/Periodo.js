@@ -28,7 +28,7 @@ export default function PeriodoScreen({ navigation }) {
 
     const handlePeriodo = async () => {
         try {
-            const response = await axios.post('http://192.168.1.9:8080/api/periodo', {
+            const response = await axios.post('http://192.168.1.5:8080/api/periodo', {
                 data: data,
                 turno: turno,
             });

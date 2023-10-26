@@ -8,7 +8,7 @@ import Piso3CasaQuimica from './Piso3CasaQuimica'
 
 import CustomButton from '../../../components/CustomButton';
 
-export default function Piso2CasaQuimica() {
+export default function AbaPiso3() {
 
     const [observacoes, setObservacoes] = useState({});
     const updateObservacao = (area, observacao) => {
@@ -46,7 +46,7 @@ export default function Piso2CasaQuimica() {
     async function enviarDadosParaServidor(data, area) {
         try {
             console.log('Enviando dados para o servidor:', data);
-            const response = await axios.post(`http://192.168.1.9:8080/api/${area}`, data);
+            const response = await axios.post(`http://192.168.1.5:8080/api/${area}`, data);
 
             if (response.status === 200) {
                 console.log('Dados enviados com sucesso.');

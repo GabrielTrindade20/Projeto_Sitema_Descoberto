@@ -3,14 +3,12 @@ import React, { useState, useEffect } from 'react';
 import { ScrollView, View, Text, TouchableOpacity, StyleSheet, SafeAreaView } from 'react-native';
 import Header from '../../../components/Header'  // Importe o componente de cabeçalho
 
-import AreaPoli from './AreaPoli';
-import AreaSulfato from './AreaSulfato';
-import AreaPac from './AreaPac'
-import AreaCalhaParshall from './AreaCalhaParshall'
+import AreaFluor from './AreaFluor'
+
 
 import CustomButton from '../../../components/CustomButton';
 
-export default function AbaPiso2() {
+export default function AbaFluor() {
 
     const [observacoes, setObservacoes] = useState({});
     const updateObservacao = (area, observacao) => {
@@ -26,13 +24,13 @@ export default function AbaPiso2() {
                 observacao: observacoes[area],
             };
 
-            if (area === 'AreaPac' && areaData.AreaPac.situacao === 'Operando') {
-                if (!checkAllOptionsSelected(areaData.AreaPac)) {
-                    console.error('Você deve selecionar todas as opções na ÁreaPac quando a situação é Operando.');
-                    validationFailed = true;
-                    break; // Sai do loop e exibe uma mensagem de erro
-                }
-            }
+            // if (area === 'AreaFluor' && areaData.AreaFluor.situacao === 'Operando') {
+            //     if (!checkAllOptionsSelected(areaData.AreaFluor)) {
+            //         console.error('Você deve selecionar todas as opções na quando a situação é Operando.');
+            //         validationFailed = true;
+            //         break; // Sai do loop e exibe uma mensagem de erro
+            //     }
+            // }
 
             // Agora envie os dados para o servidor
             await enviarDadosParaServidor(data, area.toLowerCase());
@@ -71,52 +69,23 @@ export default function AbaPiso2() {
     }
 
     const [areaData, setAreaData] = useState({
-        AreaPoli: {
-            iluminacaoBombas: null,
-            aguaDiluicao: null,
-            vazamentoTubulacoes: null,
-            limpezaEquipamentos: null,
-            alimentacaoAgua: null,
-            iluminacaoPiso1: null,
-            iluminacaoPiso2: null,
-            calhaAplicacao: null,
-            calhaDosagemSolucao: null,
+        AreaFluor: {
+            tanqueNeutralizacao: null,
+            registroAlimentacao: null,
+            areaContencao: null,
+            salaDosagem: null,
+            vazamentos: null,
+            iluminacaoArea: null,
+            registroAgua: null,
+            calhaContencao: null,
+            chuveiroEmergencia: null,
             // ... outras opções
         },
-        AreaSulfato: {
-            caixasolucao: null,
-            calhaDeDosagem: null,
-            aguaDiluicao: null,
-            iluminacaoBombas: null,
-            limpezaLocal: null,
-            vazamentoTubulacoes: null,
-            // ... outras opções
-        },
-        AreaPac: {
-            situacao: null,
-            iluminacaoBombas: null,
-            calhaDeDosagem: null,
-            aguaDiluicao: null,
-            vazamentoTubulacoes: null,
-            limpezaEquipamentos: null,
-            DescargaPac: null,
-            TranferenciaPac: null,
-            // ... outras opções
-        },
-        AreaCalhaParshall: {
-            bombaAguaBruta: null,
-            limpezaPreAlcalinizacao: null,
-            bombaAguaCoagulada: null,
-            analizadorChemtrac: null,
-        }
         // Adicione outras áreas conforme necessário
     });
 
     const [showArea, setShowArea] = useState({
-        AreaPoli: false,
-        AreaSulfato: false,
-        AreaPac: false,
-        AreaCalhaParshall: false,
+        AreaFluor: true,
         // Defina outras áreas aqui como 'true' se você quiser exibi-las inicialmente.
     });
 
@@ -127,24 +96,9 @@ export default function AbaPiso2() {
         });
     };
 
-    const [showAreaPoli, setShowAreaPoli] = useState(true);
-    const toggleAreaPoli = () => {
-        setShowAreaPoli(!showAreaPoli);
-    };
-
-    const [showAreaSulfato, setShowAreaSulfato] = useState(true);
-    const toggleAreaSulfato = () => {
-        setShowAreaSulfato(!showAreaSulfato);
-    };
-
-    const [showAreaPac, setShowAreaPac] = useState(true);
-    const toggleAreaPac = () => {
-        setShowAreaPac(!showAreaPac);
-    };
-
-    const [showAreaCalhaParshall, setShowAreaCalhaParshall] = useState(true);
-    const toggleAreaCalhaParshall = () => {
-        setShowAreaPac(!showAreaPac);
+    const [showAreaFluor, setShowAreaFluor] = useState(true);
+    const toggleAreaFluor = () => {
+        setShowAreaFluor(!showAreaFluor);
     };
 
 
@@ -160,38 +114,15 @@ export default function AbaPiso2() {
                                 <Text style={styles.title}>Área {area}</Text>
                             </TouchableOpacity>
                             <View style={styles.local}>
-                                {area === 'AreaPoli' && (
-                                    <AreaPoli
+                                {area === 'AreaFluor' && (
+                                    <AreaFluor
                                         key={area} // Adicione a chave aqui
                                         choices={options}
                                         setChoices={(newChoices) => setAreaData({ ...areaData, [area]: newChoices })}
                                         updateObservacao={(newObservacao) => updateObservacao(area, newObservacao)}
                                     />
                                 )}
-                                {area === 'AreaSulfato' && (
-                                    <AreaSulfato
-                                        key={area} // Adicione a chave aqui
-                                        choices={options}
-                                        setChoices={(newChoices) => setAreaData({ ...areaData, [area]: newChoices })}
-                                        updateObservacao={(newObservacao) => updateObservacao(area, newObservacao)}
-                                    />
-                                )}
-                                {area === 'AreaPac' && (
-                                    <AreaPac
-                                        key={area} // Adicione a chave aqui
-                                        choices={options}
-                                        setChoices={(newChoices) => setAreaData({ ...areaData, [area]: newChoices })}
-                                        updateObservacao={(newObservacao) => updateObservacao(area, newObservacao)}
-                                    />
-                                )}
-                                {area === 'AreaCalhaParshall' && (
-                                    <AreaCalhaParshall
-                                        key={area} // Adicione a chave aqui
-                                        choices={options}
-                                        setChoices={(newChoices) => setAreaData({ ...areaData, [area]: newChoices })}
-                                        updateObservacao={(newObservacao) => updateObservacao(area, newObservacao)}
-                                    />
-                                )}
+
                             </View>
                         </View>
                     ) : (

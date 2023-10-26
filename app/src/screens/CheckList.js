@@ -7,12 +7,20 @@ import Header from '../components/Header';
 export default function CheckList() {
     const navigation = useNavigation();
 
-    const navigateToPiso2 = () => {
+    const navigateToPiso2CasaQuimica = () => {
         navigation.navigate('Piso2CasaQuimica');
     };
 
-    const navigateToPiso3 = () => {
+    const navigateToPiso3CasaQuimica = () => {
         navigation.navigate('Piso3CasaQuimica');
+    };
+
+    const navigateToAreaFluor = () => {
+        navigation.navigate('AreaFluor');
+    };
+
+    const navigateToDosadoresCloro = () => {
+        navigation.navigate('DosadoresCloro');
     };
 
     return (
@@ -23,39 +31,39 @@ export default function CheckList() {
                 <View>
                     <Text style={styles.title}>Check List Local</Text>
                     <View style={styles.Card}>
-                        <TouchableOpacity onPress={navigateToPiso2} style={styles.containerContent}>
+                        <TouchableOpacity onPress={navigateToPiso2CasaQuimica} style={styles.containerContent}>
                             <Text style={styles.local}>2º Piso - Casa Química I</Text>
                         </TouchableOpacity>
 
-                        <TouchableOpacity onPress={navigateToPiso3} style={styles.containerContent}>
+                        <TouchableOpacity onPress={navigateToPiso3CasaQuimica} style={styles.containerContent}>
                             <Text style={styles.local}>3º Piso - Casa Química I</Text>
                         </TouchableOpacity>
 
-                        <TouchableOpacity onPress={navigateToPiso2} style={styles.containerContent}>
+                        <TouchableOpacity onPress={navigateToAreaFluor} style={styles.containerContent}>
                             <Text style={styles.local}>Área Fluor</Text>
                         </TouchableOpacity>
 
-                        <TouchableOpacity onPress={navigateToPiso2} style={styles.containerContent}>
-                            <Text style={styles.local}>Área Tanques de Sulfato</Text>
-                        </TouchableOpacity>
-
-                        <TouchableOpacity onPress={navigateToPiso2} style={styles.containerContent}>
-                            <Text style={styles.local}>Área Dioxido de Cloro</Text>
-                        </TouchableOpacity>
-
-                        <TouchableOpacity onPress={navigateToPiso2} style={styles.containerContent}>
-                            <Text style={styles.local}>Área Geocalcio</Text>
-                        </TouchableOpacity>
-
-                        <TouchableOpacity onPress={navigateToPiso2} style={styles.containerContent}>
+                        <TouchableOpacity onPress={navigateToDosadoresCloro} style={styles.containerContent}>
                             <Text style={styles.local}>Área Dosadores de Cloro</Text>
                         </TouchableOpacity>
 
-                        <TouchableOpacity onPress={navigateToPiso2} style={styles.containerContent}>
+                        <TouchableOpacity onPress={navigateToPiso2CasaQuimica} style={styles.containerContent}>
+                            <Text style={styles.local}>Área Dioxido de Cloro</Text>
+                        </TouchableOpacity>
+
+                        <TouchableOpacity onPress={navigateToPiso2CasaQuimica} style={styles.containerContent}>
+                            <Text style={styles.local}>Área Geocalcio</Text>
+                        </TouchableOpacity>
+
+                        <TouchableOpacity onPress={navigateToPiso2CasaQuimica} style={styles.containerContent}>
+                            <Text style={styles.local}>Área Dosadores de Cloro</Text>
+                        </TouchableOpacity>
+
+                        <TouchableOpacity onPress={navigateToPiso2CasaQuimica} style={styles.containerContent}>
                             <Text style={styles.local}>Área Evaporadores de Cloro</Text>
                         </TouchableOpacity>
 
-                        <TouchableOpacity onPress={navigateToPiso2} style={styles.containerContent}>
+                        <TouchableOpacity onPress={navigateToPiso2CasaQuimica} style={styles.containerContent}>
                             <Text style={styles.local}>TAPQ</Text>
                         </TouchableOpacity>
                     </View>
