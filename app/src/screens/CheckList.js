@@ -23,6 +23,14 @@ export default function CheckList() {
         navigation.navigate('DosadoresCloro');
     };
 
+    const navigateToAreaTanqueSulfato = () => {
+        navigation.navigate('AreaTanqueSulfato');
+    };
+
+    const navigateToClimaTempo = () => {
+        navigation.navigate('ClimaTempo');
+    };
+
     return (
         <SafeAreaView>
             <ScrollView>
@@ -47,12 +55,12 @@ export default function CheckList() {
                             <Text style={styles.local}>Área Dosadores de Cloro</Text>
                         </TouchableOpacity>
 
-                        <TouchableOpacity onPress={navigateToPiso2CasaQuimica} style={styles.containerContent}>
-                            <Text style={styles.local}>Área Dioxido de Cloro</Text>
+                        <TouchableOpacity onPress={navigateToAreaTanqueSulfato} style={styles.containerContent}>
+                            <Text style={styles.local}>Tanques de Sulfato de Alumínio</Text>
                         </TouchableOpacity>
 
-                        <TouchableOpacity onPress={navigateToPiso2CasaQuimica} style={styles.containerContent}>
-                            <Text style={styles.local}>Área Geocalcio</Text>
+                        <TouchableOpacity onPress={navigateToClimaTempo} style={styles.containerContent}>
+                            <Text style={styles.local}>Clima-Tempo</Text>
                         </TouchableOpacity>
 
                         <TouchableOpacity onPress={navigateToPiso2CasaQuimica} style={styles.containerContent}>

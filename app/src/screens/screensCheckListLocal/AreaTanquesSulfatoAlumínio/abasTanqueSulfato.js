@@ -3,12 +3,12 @@ import React, { useState, useEffect } from 'react';
 import { ScrollView, View, Text, TouchableOpacity, StyleSheet, SafeAreaView } from 'react-native';
 import Header from '../../../components/Header'  // Importe o componente de cabeçalho
 
-import DosadoresCloro from './DosadoresCloro'
+import AreaTanqueSulfato from './TanqueSulfatoAluminio';
 
 
 import CustomButton from '../../../components/CustomButton';
 
-export default function AbaDosadoresCloro() {
+export default function AbaAreaTanqueSulfato() {
 
     const [observacoes, setObservacoes] = useState({});
     const updateObservacao = (area, observacao) => {
@@ -61,15 +61,17 @@ export default function AbaDosadoresCloro() {
     }
 
     const [areaData, setAreaData] = useState({
-        DosadoresCloro: {
-
+        AreaTanqueSulfato: {
+            turbidimetroAguaRetorno: null,
+            descargaSulfato: null,
+            transferenciaSulfato: null,
             // ... outras opções
         },
         // Adicione outras áreas conforme necessário
     });
 
     const [showArea, setShowArea] = useState({
-        DosadoresCloro: true,
+        AreaTanqueSulfato: true,
         // Defina outras áreas aqui como 'true' se você quiser exibi-las inicialmente.
     });
 
@@ -80,9 +82,9 @@ export default function AbaDosadoresCloro() {
         });
     };
 
-    const [showDosadoresCloro, setShowDosadoresCloro] = useState(true);
-    const toggleDosadoresCloro = () => {
-        setShowDosadoresCloro(!showDosadoresCloro);
+    const [showAreaTanqueSulfato, setShowAreaTanqueSulfato] = useState(true);
+    const toggleAreaTanqueSulfato = () => {
+        setShowAreaTanqueSulfato(!showAreaTanqueSulfato);
     };
 
 
@@ -95,11 +97,11 @@ export default function AbaDosadoresCloro() {
                     showArea[area] ? (
                         <View style={styles.containerContent} key={area}>
                             <TouchableOpacity onPress={() => toggleArea(area)}>
-                                <Text style={styles.title}>Área Dosadores de Cloro</Text>
+                                <Text style={styles.title}>Área Tanque Sulfato Aluminio</Text>
                             </TouchableOpacity>
                             <View style={styles.local}>
-                                {area === 'DosadoresCloro' && (
-                                    <DosadoresCloro
+                                {area === 'AreaTanqueSulfato' && (
+                                    <AreaTanqueSulfato
                                         key={area} // Adicione a chave aqui
                                         choices={options}
                                         setChoices={(newChoices) => setAreaData({ ...areaData, [area]: newChoices })}
@@ -111,7 +113,7 @@ export default function AbaDosadoresCloro() {
                         </View>
                     ) : (
                         <TouchableOpacity key={area} onPress={() => toggleArea(area)}>
-                            <Text style={styles.title}>Área Dosadores de Cloro</Text>
+                            <Text style={styles.title}>Área Tanque Sulfato Aluminio</Text>
                         </TouchableOpacity>
                     )
                 ))}

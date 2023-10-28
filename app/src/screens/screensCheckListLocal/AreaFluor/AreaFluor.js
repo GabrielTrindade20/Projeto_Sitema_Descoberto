@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, TextInput } from 'react-native';
+import { Text, StyleSheet} from 'react-native';
 
 import OpcaoSelecao from './../../../components/OpcaoSelecao'
+import { Conteiner, QuestionContainer, ChoseOptions } from '../../../components/Layout';
+import Observacao from '../../../components/Observacao';
+import TextComponent from '../../../components/TextComponent';
 
 export default function AreaFluor({ choices, setChoices, updateObservacao }) {
     const [text, setTextoAreaFluor] = useState("");
@@ -67,11 +70,12 @@ export default function AreaFluor({ choices, setChoices, updateObservacao }) {
 
 
     return (
-        <View style={styles.conteiner}>
-            <View style={styles.questionContainer}>
-                <View style={styles.Options}>
-                    <Text style={styles.questionText}>Tanque de neutralização limpo?</Text>
-                </View>
+        <Conteiner style={styles.conteiner}>
+
+            <QuestionContainer style={styles.questionContainer}>
+                <ChoseOptions style={styles.ChoseOptions}>
+                    <TextComponent style='textQuestoes'>Tanque de neutralização limpo?</TextComponent>
+                </ChoseOptions>
                 <OpcaoSelecao
                     label="Tanque de neutralização limpo?"
                     value="Sim"
@@ -84,12 +88,12 @@ export default function AreaFluor({ choices, setChoices, updateObservacao }) {
                     selectedValue={tanqueNeutralizacao}
                     onValueChange={(value) => setTanqueNeutralizacao(value)}
                 />
-            </View>
+            </QuestionContainer>
 
-            <View style={styles.questionContainer}>
-                <View style={styles.Options}>
-                    <Text style={styles.questionText}>Registros de alimentação dos silos fechados?</Text>
-                </View>
+            <QuestionContainer style={styles.questionContainer}>
+                <ChoseOptions style={styles.Options}>
+                    <TextComponent style='textQuestoes'>Registros de alimentação dos silos fechados?</TextComponent>
+                </ChoseOptions>
                 <OpcaoSelecao
                     label="Registros de alimentação dos silos fechados?"
                     value="Sim"
@@ -102,12 +106,12 @@ export default function AreaFluor({ choices, setChoices, updateObservacao }) {
                     selectedValue={registroAlimentacao}
                     onValueChange={(value) => setRegistroAlimentacao(value)}
                 />
-            </View>
+            </QuestionContainer>
 
-            <View style={styles.questionContainer}>
-                <View style={styles.Options}>
-                    <Text style={styles.questionText}>Registro da área de contenção fechados?</Text>
-                </View>
+            <QuestionContainer style={styles.questionContainer}>
+                <ChoseOptions style={styles.Options}>
+                    <TextComponent style='textQuestoes'>Registro da área de contenção fechados?</TextComponent>
+                </ChoseOptions>
                 <OpcaoSelecao
                     label="Registro da área de contenção fechados?"
                     value="Sim"
@@ -120,12 +124,12 @@ export default function AreaFluor({ choices, setChoices, updateObservacao }) {
                     selectedValue={areaContencao}
                     onValueChange={(value) => setAreaContencao(value)}
                 />
-            </View>
+            </QuestionContainer>
 
-            <View style={styles.questionContainer}>
-                <View style={styles.Options}>
-                    <Text style={styles.questionText}>Área de contenção limpa?</Text>
-                </View>
+            <QuestionContainer style={styles.questionContainer}>
+                <ChoseOptions style={styles.Options}>
+                    <TextComponent style='textQuestoes'>Área de contenção limpa?</TextComponent>
+                </ChoseOptions>
                 <OpcaoSelecao
                     label="Área de contenção limpa?"
                     value="Sim"
@@ -138,12 +142,12 @@ export default function AreaFluor({ choices, setChoices, updateObservacao }) {
                     selectedValue={limpezaAreaContecao}
                     onValueChange={(value) => setLimpezaAreaContecao(value)}
                 />
-            </View>
+            </QuestionContainer>
 
-            <View style={styles.questionContainer}>
-                <View style={styles.Options}>
-                    <Text style={styles.questionText}>Sala de dosagem limpa?</Text>
-                </View>
+            <QuestionContainer style={styles.questionContainer}>
+                <ChoseOptions style={styles.Options}>
+                    <TextComponent style='textQuestoes'>Sala de dosagem limpa?</TextComponent>
+                </ChoseOptions>
                 <OpcaoSelecao
                     label="Sala de dosagem limpa?"
                     value="Sim"
@@ -156,12 +160,12 @@ export default function AreaFluor({ choices, setChoices, updateObservacao }) {
                     selectedValue={salaDosagem}
                     onValueChange={(value) => setSalaDosagem(value)}
                 />
-            </View>
+            </QuestionContainer>
 
-            <View style={styles.questionContainer}>
-                <View style={styles.Options}>
-                    <Text style={styles.questionText}>Há vazamentos?</Text>
-                </View>
+            <QuestionContainer style={styles.questionContainer}>
+                <ChoseOptions style={styles.Options}>
+                    <TextComponent style='textQuestoes'>Há vazamentos?</TextComponent>
+                </ChoseOptions>
                 <OpcaoSelecao
                     label="Há vazamentos?"
                     value="Sim"
@@ -174,12 +178,12 @@ export default function AreaFluor({ choices, setChoices, updateObservacao }) {
                     selectedValue={vazamentos}
                     onValueChange={(value) => setVazamentos(value)}
                 />
-            </View>
+            </QuestionContainer>
 
-            <View style={styles.questionContainer}>
-                <View style={styles.Options}>
-                    <Text style={styles.questionText}>Iluminação área ok?</Text>
-                </View>
+            <QuestionContainer style={styles.questionContainer}>
+                <ChoseOptions style={styles.Options}>
+                    <TextComponent style='textQuestoes'>Iluminação área ok?</TextComponent>
+                </ChoseOptions>
                 <OpcaoSelecao
                     label="Iluminação área ok?"
                     value="Sim"
@@ -192,12 +196,12 @@ export default function AreaFluor({ choices, setChoices, updateObservacao }) {
                     selectedValue={iluminacaoArea}
                     onValueChange={(value) => setIluminacaoArea(value)}
                 />
-            </View>
+            </QuestionContainer>
 
-            <View style={styles.questionContainer}>
-                <View style={styles.Options}>
-                    <Text style={styles.questionText}>Registro de água para os silos fechados?</Text>
-                </View>
+            <QuestionContainer style={styles.questionContainer}>
+                <ChoseOptions style={styles.Options}>
+                    <TextComponent style='textQuestoes'>Registro de água para os silos fechados?</TextComponent>
+                </ChoseOptions>
                 <OpcaoSelecao
                     label="Registro de água para os silos fechados?"
                     value="Sim"
@@ -210,12 +214,12 @@ export default function AreaFluor({ choices, setChoices, updateObservacao }) {
                     selectedValue={registroAgua}
                     onValueChange={(value) => setRegistroAgua(value)}
                 />
-            </View>
+            </QuestionContainer>
 
-            <View style={styles.questionContainer}>
-                <View style={styles.Options}>
-                    <Text style={styles.questionText}>A calha de contenção está limpa?</Text>
-                </View>
+            <QuestionContainer style={styles.questionContainer}>
+                <ChoseOptions style={styles.Options}>
+                    <TextComponent style='textQuestoes'>A calha de contenção está limpa?</TextComponent>
+                </ChoseOptions>
                 <OpcaoSelecao
                     label="A calha de contenção está limpa?"
                     value="Sim"
@@ -228,12 +232,12 @@ export default function AreaFluor({ choices, setChoices, updateObservacao }) {
                     selectedValue={calhaContencao}
                     onValueChange={(value) => setCalhaContencao(value)}
                 />
-            </View>
+            </QuestionContainer>
 
-            <View style={styles.questionContainer}>
-                <View style={styles.Options}>
-                    <Text style={styles.questionText}>Funcionamento do chuveiro de emergência ok?</Text>
-                </View>
+            <QuestionContainer style={styles.questionContainer}>
+                <ChoseOptions style={styles.Options}>
+                    <TextComponent style='textQuestoes'>Funcionamento do chuveiro de emergência ok?</TextComponent>
+                </ChoseOptions>
                 <OpcaoSelecao
                     label="Funcionamento do chuveiro de emergência ok?"
                     value="Sim"
@@ -246,144 +250,21 @@ export default function AreaFluor({ choices, setChoices, updateObservacao }) {
                     selectedValue={chuveiroEmergencia}
                     onValueChange={(value) => setChuveiroEmergencia(value)}
                 />
-            </View>
+            </QuestionContainer>
 
-            <View style={styles.questionContainer}>
-                <View style={styles.conteinerObservacao}>
-                    <Text style={styles.questionText}>Observações:</Text>
-                    <TextInput
-                        style={styles.textInput}
-                        multiline={true}
-                        numberOfLines={4}
-                        onChangeText={handleObservacaoChange} // Use a função de atualização
-                        defaultValue={text}
-                        placeholder="Digite sua observação aqui"
-                    />
-                </View>
-            </View>
+            <QuestionContainer style={styles.questionContainer}>
+                <Observacao value={text} onChange={handleObservacaoChange} />
+            </QuestionContainer>
             {/* Repita o padrão para outras perguntas */}
-        </View>
+        </Conteiner>
     );
 }
 
 
 const styles = StyleSheet.create({
-    conteiner: {
-        flexDirection: 'column',
-        padding: 10,
-        width: '100%',
-    },
-    questionContainer: {
-        marginBottom: 15,
-        flexDirection: 'row',
-        width: '100%',
-    },
-    Options: {
-        width: '75%',
-    },
     questionText: {
         fontSize: 20,
         flexDirection: 'row',
         // Estilos do texto da pergunta
-    },
-    buttonContainer: {
-        flexDirection: 'row',
-    },
-    radioButton: {
-        marginLeft: 30,
-        flexDirection: 'row',
-        alignItems: 'center',
-        // Estilos dos botões de rádio
-    },
-    outlineCircle: {
-        width: 20,
-        height: 20,
-        borderRadius: 10,
-        borderColor: '#777',
-        borderWidth: 2,
-        justifyContent: 'center',
-        alignItems: 'center',
-        marginRight: 5,
-    },
-    innerCircle: {
-        width: 10,
-        height: 10,
-        borderRadius: 5,
-        backgroundColor: 'transparent',
-    },
-    selectedInnerCircle: {
-        backgroundColor: 'blue',
-    },
-    buttonText: {
-        fontSize: 18,
-        color: 'black',
-    },
-    conteinerSituacao: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        marginBottom: 10,
-    },
-    Situacaopicker: {
-        backgroundColor: '#0C5AA5',
-        width: '30%',
-        borderRadius: 10,
-        color: '#fff',
-        fontWeight: 'bold',
-        marginLeft: -55,
-    },
-    // conteinerEquipamento: {
-    //     flexDirection: 'column',
-    // },
-    conteinerPiker: {
-        flexDirection: 'column',
-        width: '30%',
-        marginTop: 10,
-        marginBottom: 10,
-    },
-    questionContainerPiker: {
-        width: '100%',
-        flexDirection: 'row',
-        justifyContent: 'space-around',
-    },
-    picker: {
-        backgroundColor: '#0C5AA5',
-        width: '100%',
-        borderRadius: 10,
-        color: '#fff',
-        fontWeight: 'bold',
-
-    },
-    textInput: {
-        width: '100%',
-        backgroundColor: '#fff',
-        borderWidth: 1,
-        borderColor: '#0005',
-        padding: 10,
-        fontSize: 16,
-    },
-    selectedOutlineCircle: {
-        borderColor: 'blue', // Defina a cor da borda quando a opção estiver selecionada
-    },
-    conteinerObservacao: {
-        width: '100%',
-    },
-    OptionsPias: {
-        width: '100%',
-        backgroundColor: '#fff7',
-        padding: 5,
-    },
-    conteinerPias: {
-        justifyContent: 'space-between',
-        flexDirection: 'row',
-        marginTop: 5,
-    },
-    Pias: {
-        marginTop: 10,
-        marginBottom: -50,
-        height: '80%',
-        width: '30%',
-        flexDirection: 'column',
-        backgroundColor: '#D2D2D2',
-        borderRadius: 5,
     },
 });

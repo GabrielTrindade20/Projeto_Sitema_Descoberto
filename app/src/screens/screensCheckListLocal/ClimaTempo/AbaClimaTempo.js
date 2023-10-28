@@ -3,12 +3,12 @@ import React, { useState, useEffect } from 'react';
 import { ScrollView, View, Text, TouchableOpacity, StyleSheet, SafeAreaView } from 'react-native';
 import Header from '../../../components/Header'  // Importe o componente de cabeçalho
 
-import DosadoresCloro from './DosadoresCloro'
+import ClimaTempo from './ClimaTempo';
 
 
 import CustomButton from '../../../components/CustomButton';
 
-export default function AbaDosadoresCloro() {
+export default function AbaClimaTempo() {
 
     const [observacoes, setObservacoes] = useState({});
     const updateObservacao = (area, observacao) => {
@@ -61,15 +61,16 @@ export default function AbaDosadoresCloro() {
     }
 
     const [areaData, setAreaData] = useState({
-        DosadoresCloro: {
-
+        ClimaTempo: {
+            leituraPluviometrica: null,
+            birutas: null,
             // ... outras opções
         },
         // Adicione outras áreas conforme necessário
     });
 
     const [showArea, setShowArea] = useState({
-        DosadoresCloro: true,
+        ClimaTempo: true,
         // Defina outras áreas aqui como 'true' se você quiser exibi-las inicialmente.
     });
 
@@ -80,9 +81,9 @@ export default function AbaDosadoresCloro() {
         });
     };
 
-    const [showDosadoresCloro, setShowDosadoresCloro] = useState(true);
-    const toggleDosadoresCloro = () => {
-        setShowDosadoresCloro(!showDosadoresCloro);
+    const [showClimaTempo, setShowClimaTempo] = useState(true);
+    const toggleClimaTempo = () => {
+        setShowClimaTempo(!showClimaTempo);
     };
 
 
@@ -95,11 +96,11 @@ export default function AbaDosadoresCloro() {
                     showArea[area] ? (
                         <View style={styles.containerContent} key={area}>
                             <TouchableOpacity onPress={() => toggleArea(area)}>
-                                <Text style={styles.title}>Área Dosadores de Cloro</Text>
+                                <Text style={styles.title}>Clima e Tempo</Text>
                             </TouchableOpacity>
                             <View style={styles.local}>
-                                {area === 'DosadoresCloro' && (
-                                    <DosadoresCloro
+                                {area === 'ClimaTempo' && (
+                                    <ClimaTempo
                                         key={area} // Adicione a chave aqui
                                         choices={options}
                                         setChoices={(newChoices) => setAreaData({ ...areaData, [area]: newChoices })}
@@ -111,7 +112,7 @@ export default function AbaDosadoresCloro() {
                         </View>
                     ) : (
                         <TouchableOpacity key={area} onPress={() => toggleArea(area)}>
-                            <Text style={styles.title}>Área Dosadores de Cloro</Text>
+                            <Text style={styles.title}>Clima e Tempo</Text>
                         </TouchableOpacity>
                     )
                 ))}
@@ -154,12 +155,12 @@ const styles = StyleSheet.create({
     scrollView: {
         flexGrow: 1,
     },
-
+    
     Button: {
         width: '100%',
         alignItems: 'center',
         padding: 10,
-
+        
     },
     errorMessageContainer: {
         backgroundColor: '#ff0000', // Cor de fundo vermelha

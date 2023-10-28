@@ -114,7 +114,7 @@ export default function AbaPiso3() {
                     showArea[area] ? (
                         <View style={styles.containerContent} key={area}>
                             <TouchableOpacity onPress={() => toggleArea(area)}>
-                                <Text style={styles.title}>Área {area}</Text>
+                                <Text style={styles.title}>3º andar Casa Química I</Text>
                             </TouchableOpacity>
                             <View style={styles.local}>
                                 {area === 'Piso3CasaQuimica' && (
@@ -130,7 +130,7 @@ export default function AbaPiso3() {
                         </View>
                     ) : (
                         <TouchableOpacity key={area} onPress={() => toggleArea(area)}>
-                            <Text style={styles.title}>Área {area}</Text>
+                            <Text style={styles.title}>3º andar Casa Química I</Text>
                         </TouchableOpacity>
                     )
                 ))}

@@ -111,7 +111,7 @@ export default function AbaFluor() {
                     showArea[area] ? (
                         <View style={styles.containerContent} key={area}>
                             <TouchableOpacity onPress={() => toggleArea(area)}>
-                                <Text style={styles.title}>Área {area}</Text>
+                                <Text style={styles.title}>Área flúor</Text>
                             </TouchableOpacity>
                             <View style={styles.local}>
                                 {area === 'AreaFluor' && (
@@ -127,7 +127,7 @@ export default function AbaFluor() {
                         </View>
                     ) : (
                         <TouchableOpacity key={area} onPress={() => toggleArea(area)}>
-                            <Text style={styles.title}>Área {area}</Text>
+                            <Text style={styles.title}>Área flúor</Text>
                         </TouchableOpacity>
                     )
                 ))}

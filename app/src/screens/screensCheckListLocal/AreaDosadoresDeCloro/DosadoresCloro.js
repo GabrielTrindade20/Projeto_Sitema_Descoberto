@@ -1,20 +1,45 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, ScrollView, TextInput } from 'react-native';
 
-import CloradorPos from './DosadoresDeCloro/CloradorPos'
-import CloradorPre from './DosadoresDeCloro/CloradorPre'
-import CloradorByPass from './DosadoresDeCloro/CloradorByPass'
+import { CloradorPos } from './DosadoresDeCloro/CloradorPos';
+import { CloradorPre } from './DosadoresDeCloro/CloradorPre';
+import { CloradorByPass } from './DosadoresDeCloro/CloradorByPass';
 
-export default function DosadoresCloro({ choices, setChoices, updateObservacao }) {
-    const [text, setTextoDosadoresCloro] = useState("");
-    const [tabSelected, setTabSelected] = useState('CloradorPos'); // Inicialmente, a primeira aba está ativa
+export default function DosadoresCloro() {
+    const [tabSelected, setTabSelected] = useState('CloradorPos');
+    const [text, setText] = useState("");
 
     const handleObservacaoChange = (newText) => {
-        setTextoDosadoresCloro(newText);
-        updateObservacao(newText);
-    }
+        setText(newText);
+    };
 
-    const { situacao, modo, limpezaArea, silosTampados, bombas } = choices;
+    const updateObservacao = (newText) => {
+        handleObservacaoChange(newText);
+    };
+
+    const [choicesPos, setChoicesPos] = useState({
+        situacao: '',
+        modo: '',
+        pressaoVacuo: '',
+        dosagem: '',
+        limpesaRotametro: '',
+    });
+
+    const [choicesPre, setChoicesPre] = useState({
+        situacao: '',
+        modo: '',
+        pressaoVacuo: '',
+        dosagem: '',
+        limpesaRotametro: '',
+    });
+
+    const [choicesByPass, setChoicesByPass] = useState({
+        situacao: '',
+        modo: '',
+        pressaoVacuo: '',
+        dosagem: '',
+        limpesaRotametro: '',
+    });
 
     const setBombas = (value) => {
         setChoices({ ...choices, bombas: value });
@@ -48,29 +73,40 @@ export default function DosadoresCloro({ choices, setChoices, updateObservacao }
             </View>
             <ScrollView style={styles.content}>
                 {tabSelected === 'CloradorPos' && (
-                    // Conteúdo para a aba CloradorPos
-                    <View>
-                        <View>
-                            <CloradorPos choices={choices} setChoices={setChoices} />
-
-                        </View>
-                    </View>
+                    <CloradorPos
+                        choices={choicesPos}
+                        setChoices={setChoicesPos}
+                    />
                 )}
                 {tabSelected === 'CloradorPre' && (
-                    // Conteúdo para a aba CloradorPre
-                    <View>
-                        <CloradorPre choices={choices} setChoices={setChoices}/>
-                    </View>
+                    <CloradorPre
+                        choices={choicesPre}
+                        setChoices={setChoicesPre}
+                    />
                 )}
                 {tabSelected === 'CloradorByPass' && (
-                    // Conteúdo para a aba CloradorPre
-                    <View>
-                        <CloradorByPass choices={choices} setChoices={setChoices} />
-                    </View>
+                    <CloradorByPass
+                        choices={choicesByPass}
+                        setChoices={setChoicesByPass}
+                    />
                 )}
-                {/* Adicione outras condições para renderizar o conteúdo das abas */}
+
+                <View style={styles.questionContainer}>
+                    <View style={styles.conteinerObservacao}>
+                        <Text style={styles.questionText}>Observações:</Text>
+                        <TextInput
+                            style={styles.textInput}
+                            multiline={true}
+                            numberOfLines={4}
+                            onChangeText={handleObservacaoChange}
+                            value={text}
+                            placeholder="Digite sua observação aqui"
+                        />
+                    </View>
+                </View>
+
+                {/* ... Conteúdo comum ... */}
             </ScrollView>
-            {/* Conteúdo comum das abas aqui */}
         </View>
     );
 }
@@ -83,7 +119,7 @@ const styles = StyleSheet.create({
     tabs: {
         borderRadius: 10,
         flexDirection: 'row',
-        backgroundColor: '#C4C4C4',
+        backgroundColor: '#E4E4E4',
         elevation: 3,
 
     },
@@ -94,6 +130,7 @@ const styles = StyleSheet.create({
 
     },
     selectedTab: {
+        borderRadius: 5,
         backgroundColor: '#0C5AA5',
     },
     tabText: {
@@ -105,5 +142,28 @@ const styles = StyleSheet.create({
     },
     content: {
         flex: 1,
+    },
+    input: {
+        width: '30%',
+        marginLeft: -50,
+        marginVertical: 5,
+        padding: 10,
+        borderWidth: 1,
+        borderColor: 'rgba(0, 0, 0, 0.2)',
+        backgroundColor: '#fff',
+        borderRadius: 10,
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 5,
+        },
+    },
+    textInput: {
+        width: '100%',
+        backgroundColor: '#fff',
+        borderWidth: 1,
+        borderColor: '#0005',
+        padding: 10,
+        fontSize: 16,
     },
 });
