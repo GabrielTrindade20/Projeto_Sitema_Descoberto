@@ -3,6 +3,9 @@ import { View, Text, StyleSheet, TextInput } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 
 import OpcaoSelecao from '../../../components/OpcaoSelecao';
+import { Conteiner, QuestionContainer, ChoseOptions } from '../../../components/Layout';
+import Observacao from '../../../components/Observacao';
+import TextComponent from '../../../components/TextComponent';
 
 export default function AreaTanqueSulfato({ choices, setChoices, updateObservacao }) {
     const [text, setTextoAreaTanqueSulfato] = useState("");
@@ -30,12 +33,12 @@ export default function AreaTanqueSulfato({ choices, setChoices, updateObservaca
     };
 
     return (
-        <View style={styles.conteiner}>
+        <Conteiner style={styles.conteiner}>
 
-            <View style={styles.questionContainer}>
-                <View style={styles.Options}>
-                    <Text style={styles.questionText}>Defeito no Turbidímetro de água de retorno</Text>
-                </View>
+            <QuestionContainer style={styles.questionContainer}>
+                <ChoseOptions style={styles.Options}>
+                    <TextComponent style={styles.questionText}>Defeito no Turbidímetro de água de retorno</TextComponent>
+                </ChoseOptions>
                 <OpcaoSelecao
                     label="Defeito no Turbidímetro de água de retorno"
                     value="Sim"
@@ -48,12 +51,12 @@ export default function AreaTanqueSulfato({ choices, setChoices, updateObservaca
                     selectedValue={turbidimetroAguaRetorno}
                     onValueChange={(value) => setTurbidimetroAguaRetorno(value)}
                 />
-            </View>
+            </QuestionContainer>
 
-            <View style={styles.conteinerSituacao}>
-                <View style={styles.Options}>
-                    <Text style={styles.questionText}>Descarregamento de sulfato: </Text>
-                </View>
+            <QuestionContainer style={styles.conteinerSituacao}>
+                <ChoseOptions style={styles.Options}>
+                    <TextComponent style={styles.questionText}>Descarregamento de sulfato: </TextComponent>
+                </ChoseOptions>
                 <Picker
                     selectedValue={descargaSulfato}
                     onValueChange={(itemValue) => setChoices({ ...choices, descargaSulfato: itemValue })}
@@ -64,12 +67,12 @@ export default function AreaTanqueSulfato({ choices, setChoices, updateObservaca
                     <Picker.Item label="MB 6B" value="MB 6B" />
 
                 </Picker>
-            </View>
+            </QuestionContainer>
 
-            <View style={styles.conteinerSituacao}>
-                <View style={styles.Options}>
-                    <Text style={styles.questionText}>Transferência de sulfato: </Text>
-                </View>
+            <QuestionContainer style={styles.conteinerSituacao}>
+                <ChoseOptions style={styles.Options}>
+                    <TextComponent style={styles.questionText}>Transferência de sulfato: </TextComponent>
+                </ChoseOptions>
                 <Picker
                     selectedValue={transferenciaSulfato}
                     onValueChange={(itemValue) => setChoices({ ...choices, transferenciaSulfato: itemValue })}
@@ -80,23 +83,13 @@ export default function AreaTanqueSulfato({ choices, setChoices, updateObservaca
                     <Picker.Item label="MB 6B" value="MB 6B" />
 
                 </Picker>
-            </View>
+            </QuestionContainer>
 
-            <View style={styles.questionContainer}>
-                <View style={styles.conteinerObservacao}>
-                    <Text style={styles.questionText}>Observações:</Text>
-                    <TextInput
-                        style={styles.textInput}
-                        multiline={true}
-                        numberOfLines={4}
-                        onChangeText={handleObservacaoChange} // Use a função de atualização
-                        defaultValue={text}
-                        placeholder="Digite sua observação aqui"
-                    />
-                </View>
-            </View>
+            <QuestionContainer style={styles.questionContainer}>
+                <Observacao value={text} onChange={handleObservacaoChange} />                
+            </QuestionContainer>
             {/* Repita o padrão para outras perguntas */}
-        </View>
+        </Conteiner>
     );
 }
 

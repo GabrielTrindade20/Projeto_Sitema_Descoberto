@@ -40,6 +40,7 @@ const styles = StyleSheet.create({
   },
   ChoseOptions: {
     width: '75%',
+    textAlign: 'center'
   },
   // Adicione mais estilos conforme necessário
 });

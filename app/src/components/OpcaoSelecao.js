@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginLeft: 20,
+    paddingRight: 20,
   },
   label: {
     flex: 1,

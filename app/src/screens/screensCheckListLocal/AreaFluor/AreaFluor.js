@@ -261,10 +261,4 @@ export default function AreaFluor({ choices, setChoices, updateObservacao }) {
 }
 
 
-const styles = StyleSheet.create({
-    questionText: {
-        fontSize: 20,
-        flexDirection: 'row',
-        // Estilos do texto da pergunta
-    },
-});
+const styles = StyleSheet.create({});

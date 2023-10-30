@@ -5,6 +5,8 @@ import { CloradorPos } from './DosadoresDeCloro/CloradorPos';
 import { CloradorPre } from './DosadoresDeCloro/CloradorPre';
 import { CloradorByPass } from './DosadoresDeCloro/CloradorByPass';
 
+import TextComponent from '../../../components/TextComponent';
+
 export default function DosadoresCloro() {
     const [tabSelected, setTabSelected] = useState('CloradorPos');
     const [text, setText] = useState("");
@@ -93,7 +95,7 @@ export default function DosadoresCloro() {
 
                 <View style={styles.questionContainer}>
                     <View style={styles.conteinerObservacao}>
-                        <Text style={styles.questionText}>Observações:</Text>
+                        <TextComponent style='textQuestoes'>Observações:</TextComponent>
                         <TextInput
                             style={styles.textInput}
                             multiline={true}

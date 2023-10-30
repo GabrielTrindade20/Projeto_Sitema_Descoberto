@@ -31,6 +31,10 @@ export default function CheckList() {
         navigation.navigate('ClimaTempo');
     };
 
+    const navigateToAreaDioxidoCloro = () => {
+        navigation.navigate('AreaDioxidoCloro');
+    };
+
     return (
         <SafeAreaView>
             <ScrollView>
@@ -63,14 +67,18 @@ export default function CheckList() {
                             <Text style={styles.local}>Clima-Tempo</Text>
                         </TouchableOpacity>
 
-                        <TouchableOpacity onPress={navigateToPiso2CasaQuimica} style={styles.containerContent}>
-                            <Text style={styles.local}>Área Dosadores de Cloro</Text>
+                        <TouchableOpacity onPress={navigateToAreaDioxidoCloro} style={styles.containerContent}>
+                            <Text style={styles.local}>Dióxido de Cloro</Text>
                         </TouchableOpacity>
 
                         <TouchableOpacity onPress={navigateToPiso2CasaQuimica} style={styles.containerContent}>
                             <Text style={styles.local}>Área Evaporadores de Cloro</Text>
                         </TouchableOpacity>
 
+                        <TouchableOpacity onPress={navigateToPiso2CasaQuimica} style={styles.containerContent}>
+                            <Text style={styles.local}>Geocálcio</Text>
+                        </TouchableOpacity>
+                        
                         <TouchableOpacity onPress={navigateToPiso2CasaQuimica} style={styles.containerContent}>
                             <Text style={styles.local}>TAPQ</Text>
                         </TouchableOpacity>
