@@ -38,19 +38,45 @@ export default function AreaTanqueSulfato({ choices, setChoices, updateObservaca
         lavadorGases,
     } = choices;
 
+    const [showPicker1, setShowPicker1] = useState(false);
+    const [showPicker2, setShowPicker2] = useState(false);
+    const [showPicker3, setShowPicker3] = useState(false);
+
     const [tempoOperacao, setTempoOperacao] = useState(new Date());
-    const [showPicker, setShowPicker] = useState(false);
-    const handleDateClick = () => {
-        setShowPicker(true);
+    const [horaSensFluxoAcido, sethoraSensFluxoAcido] = useState(new Date());
+    const [horaSensFluxoClorito, sethoraSensFluxoClorito] = useState(new Date());
+
+
+    const handleDateClick1 = () => {
+        setShowPicker1(true);
     };
-    const handleDateChange = (event, selectedDate) => {
+
+    const handleDateClick2 = () => {
+        setShowPicker2(true);
+    };
+
+    const handleDateClick3 = () => {
+        setShowPicker3(true);
+    };
+
+    const hTempoOperacao = (event, selectedDate) => {
         const currentDate = selectedDate || tempoOperacao;
-        setShowPicker(Platform.OS === 'ios'); // Para fechar o picker automaticamente em iOS
+        setShowPicker1(Platform.OS === 'ios'); // Para fechar o picker automaticamente em iOS
         setTempoOperacao(currentDate);
     };
 
-    // const [horaSensFluxoAcido, sethoraSensFluxoAcido] = useState(new Horario());
-    // const [horaSensFluxoClorito, sethoraSensFluxoClorito] = useState(new Horario());
+    const hSensFluxoAcido = (event, selectedDate) => {
+        const currentDate = selectedDate || horaSensFluxoAcido;
+        setShowPicker2(Platform.OS === 'ios'); // Para fechar o picker automaticamente em iOS
+        sethoraSensFluxoAcido(currentDate);
+    };
+
+    const hSensFluxoClorito = (event, selectedDate) => {
+        const currentDate = selectedDate || horaSensFluxoClorito;
+        setShowPicker3(Platform.OS === 'ios'); // Para fechar o picker automaticamente em iOS
+        sethoraSensFluxoClorito(currentDate);
+    };
+
 
     const setDosando = (value) => {
         setChoices({ ...choices, dosando: value });
@@ -316,15 +342,15 @@ export default function AreaTanqueSulfato({ choices, setChoices, updateObservaca
                 <View style={styles.Button}>
                     <Button
                         title={tempoOperacao.toLocaleTimeString([('pt-BR')], { hour: '2-digit', minute: '2-digit' })}
-                        onPress={handleDateClick}
+                        onPress={handleDateClick1}
                     />
-                    {showPicker && (
+                    {showPicker1 && (
                         <DateTimePicker
                             value={tempoOperacao}
                             mode="time"
                             is24Hour={true}
                             display="spinner"
-                            onChange={handleDateChange}
+                            onChange={hTempoOperacao}
                         />
                     )}
                 </View>
@@ -366,7 +392,6 @@ export default function AreaTanqueSulfato({ choices, setChoices, updateObservaca
                 />
             </QuestionContainer>
 
-
             <QuestionContainer style={styles.questionContainer}>
                 <ChoseOptions style={styles.Options}>
                     <TextComponent style='textQuestoes'>Gerador de Dióxido em Funcionamento:</TextComponent>
@@ -383,7 +408,117 @@ export default function AreaTanqueSulfato({ choices, setChoices, updateObservaca
                 />
             </QuestionContainer>
 
+            <View style={styles.questionContainer}>
+                <View style={styles.OptionsBooster}>
+                    <View style={styles.Options}>
+                        <TextComponent style='textSubTitulo'>Sensor de fluxo de ácido clorídrico</TextComponent>
+                    </View>
+
+                    <View style={styles.conteinerOptionsBooster}>
+                        <View style={styles.choses}>
+                            <View style={styles.subtitulo}>
+                                <TextComponent style='textQuestoes'>Horário</TextComponent>
+                            </View>
+                            <View style={styles.Button2}>
+                                <Button
+                                    title={horaSensFluxoAcido.toLocaleTimeString([('pt-BR')], { hour: '2-digit', minute: '2-digit' })}
+                                    onPress={handleDateClick2}
+                                />
+                                {showPicker2 && (
+                                    <DateTimePicker
+                                        value={horaSensFluxoAcido}
+                                        mode="time"
+                                        is24Hour={true}
+                                        display="spinner"
+                                        onChange={hSensFluxoAcido}
+                                    />
+                                )}
+                            </View>
+                        </View>
+
+                        <View style={styles.choses}>
+                            <View style={styles.subtitulo}>
+                                <TextComponent style='textQuestoes'>Leitura</TextComponent>
+                            </View>
+                            <View style={styles.selectOption}>
+                                <TextInput
+                                    style={styles.inputBooster}
+                                    placeholder=""
+                                    value={leitSensFluxoAcido}
+                                    onChangeText={(number) => setLeitSensFluxoAcido(number)}
+                                />
+                            </View>
+                        </View>
+
+                    </View>
+                </View>
+            </View>
+
+            <View style={styles.questionContainer}>
+                <View style={styles.OptionsBooster}>
+                    <View style={styles.Options}>
+                        <TextComponent style='textSubTitulo'>Sensor de fluxo de Clorito de Sódio</TextComponent>
+                    </View>
+
+                    <View style={styles.conteinerOptionsBooster}>
+                        <View style={styles.choses}>
+                            <View style={styles.subtitulo}>
+                                <TextComponent style='textQuestoes'>Horário</TextComponent>
+                            </View>
+                            <View style={styles.Button2}>
+                                <Button
+                                    title={horaSensFluxoClorito.toLocaleTimeString([('pt-BR')], { hour: '2-digit', minute: '2-digit' })}
+                                    onPress={handleDateClick3}
+                                />
+                                {showPicker3 && (
+                                    <DateTimePicker
+                                        value={horaSensFluxoClorito}
+                                        mode="time"
+                                        is24Hour={true}
+                                        display="spinner"
+                                        onChange={hSensFluxoClorito}
+                                    />
+                                )}
+                            </View>
+                        </View>
+
+                        <View style={styles.choses}>
+                            <View style={styles.subtitulo}>
+                                <TextComponent style='textQuestoes'>Leitura</TextComponent>
+                            </View>
+                            <View style={styles.selectOption}>
+                                <TextInput
+                                    style={styles.inputBooster}
+                                    placeholder=""
+                                    value={leitSensFluxoClorito}
+                                    onChangeText={(number) => setLeitSensFluxoClorito(number)}
+                                />
+                            </View>
+                        </View>
+
+                    </View>
+                </View>
+            </View>
+
             <QuestionContainer style={styles.questionContainer}>
+                <ChoseOptions style={styles.Options}>
+                    <TextComponent style='textQuestoes'>Lavador de gases ligado?</TextComponent>
+                </ChoseOptions>
+                <OpcaoSelecao
+                    value="Sim"
+                    selectedValue={lavadorGases}
+                    onValueChange={(value) => setLavadorGases(value)}
+                />
+                <OpcaoSelecao
+                    value="Não"
+                    selectedValue={lavadorGases}
+                    onValueChange={(value) => setLavadorGases(value)}
+                />
+            </QuestionContainer>
+
+            <TextComponent style='textQuestoes'>Observações:</TextComponent>
+            <QuestionContainer style={styles.questionContainer}>
+
                 <Observacao value={text} onChange={handleObservacaoChange} />
             </QuestionContainer>
             {/* Repita o padrão para outras perguntas */}
@@ -490,5 +625,8 @@ const styles = StyleSheet.create({
     Button: {
         width: '30%',
         marginLeft: -50,
+    },
+    Button2: {
+        width: '100%',
     },
 });

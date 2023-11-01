@@ -7,10 +7,11 @@ import CheckListScreen from '../screens/CheckList';
 import Piso2CasaQuimica from '../screens/screensCheckListLocal/Piso2CasaQuimica/AbasPiso2CasaQuimica';
 import Piso3CasaQuimica from '../screens/screensCheckListLocal/Piso3CasaQuimica/AbasPiso3CasaQuimica';
 import AreaFluor from '../screens/screensCheckListLocal/AreaFluor/AbasAreaFluor'
-import DosadoresCloro from '../screens/screensCheckListLocal/AreaDosadoresDeCloro/AbasDosadoresCloro';
+import DosadoresCloro from '../screens/screensCheckListLocal/AreaDosadoresDeCloro/AbasDosadoresCloro'
 import AreaTanqueSulfato from '../screens/screensCheckListLocal/AreaTanquesSulfatoAlumínio/abasTanqueSulfato';
 import ClimaTempo from '../screens/screensCheckListLocal/ClimaTempo/AbaClimaTempo';
 import AreaDioxidoCloro from '../screens/screensCheckListLocal/DioxidoCloro/abaDioxidoCloro';
+import EvaporadoresCloro from '../screens/screensCheckListLocal/AreaEvaporadoresDeCloro/AbasEvaporadoresCloro'
 import TabNavigation from './TabNavigation';
 
 const Stack = createStackNavigator();
@@ -29,6 +30,7 @@ export default function Navigation() {
         <Stack.Screen name="AreaTanqueSulfato" component={AreaTanqueSulfato} options={{ headerShown: false }} />
         <Stack.Screen name="ClimaTempo" component={ClimaTempo} options={{ headerShown: false }} />
         <Stack.Screen name="AreaDioxidoCloro" component={AreaDioxidoCloro} options={{ headerShown: false }} />
+        <Stack.Screen name="EvaporadoresCloro" component={EvaporadoresCloro} options={{ headerShown: false }} />
         <Stack.Screen name="TabNavigation" component={TabNavigation} options={{ headerShown: false }} />
         {/* Adicione outras telas principais conforme necessário */}
       </Stack.Navigator>
