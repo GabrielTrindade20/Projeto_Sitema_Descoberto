@@ -1,7 +1,15 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
 
 import OpcaoSelecao from '../../../components/OpcaoSelecao';
+import {
+    Conteiner,
+    QuestionContainer,
+    ChoseOptions,
+} from '../../../components/Layout';
+
+import Observacao from '../../../components/Observacao';
+import TextComponent from '../../../components/TextComponent';
 
 export default function AreaSulfato({ choices, setChoices, updateObservacao }) {
     const [text, setTextoAreaSulfato] = useState("");
@@ -44,172 +52,111 @@ export default function AreaSulfato({ choices, setChoices, updateObservacao }) {
     };
 
     return (
-        <View style={styles.conteiner}>
-            <View style={styles.questionContainer}>
-                <View style={styles.Options}>
-                    <Text style={styles.questionText}>Caixa de solução de sulfato fechada?</Text>
-                </View>
+        <Conteiner style={styles.conteiner}>
+            <QuestionContainer style={styles.questionContainer}>
+                <ChoseOptions style={styles.Options}>
+                    <TextComponent style='textQuestoes'>Caixa de solução de sulfato fechada?</TextComponent>
+                </ChoseOptions>
                 <OpcaoSelecao
-                    label="Caixa de solução de sulfato fechada?"
                     value="Sim"
                     selectedValue={caixasolucao}
                     onValueChange={(value) => setCaixasolucao(value)}
                 />
                 <OpcaoSelecao
-                    label="Caixa de solução de sulfato fechada?"
                     value="Não"
                     selectedValue={caixasolucao}
                     onValueChange={(value) => setCaixasolucao(value)}
 
                 />
-            </View>
+            </QuestionContainer>
 
-            <View style={styles.questionContainer}>
-                <View style={styles.Options}>
-                    <Text style={styles.questionText}>Calha de dosagem de solução limpa?</Text>
-                </View>
+            <QuestionContainer style={styles.questionContainer}>
+                <ChoseOptions style={styles.Options}>
+                    <TextComponent style='textQuestoes'>Calha de dosagem de solução limpa?</TextComponent>
+                </ChoseOptions>
                 <OpcaoSelecao
-                    label="Calha de dosagem de solução limpa?"
                     value="Sim"
                     selectedValue={calhaDeDosagem}
                     onValueChange={(value) => setCalhaDeDosagem(value)}
                 />
                 <OpcaoSelecao
-                    label="Calha de dosagem de solução limpa?"
                     value="Não"
                     selectedValue={calhaDeDosagem}
                     onValueChange={(value) => setCalhaDeDosagem(value)}
                 />
-            </View>
+            </QuestionContainer>
 
-            <View style={styles.questionContainer}>
-                <View style={styles.Options}>
-                    <Text style={styles.questionText}>Água de diluição ok?</Text>
-                </View>
+            <QuestionContainer style={styles.questionContainer}>
+                <ChoseOptions style={styles.Options}>
+                    <TextComponent style='textQuestoes'>Água de diluição ok?</TextComponent>
+                </ChoseOptions>
                 <OpcaoSelecao
-                    label="Água de diluição ok?"
                     value="Sim"
                     selectedValue={aguaDiluicao}
                     onValueChange={(value) => setAguaDiluicao(value)}
                 />
                 <OpcaoSelecao
-                    label="Água de diluição ok?"
                     value="Não"
                     selectedValue={aguaDiluicao}
                     onValueChange={(value) => setAguaDiluicao(value)}
                 />
-            </View>
+            </QuestionContainer>
 
-            <View style={styles.questionContainer}>
-                <View style={styles.Options}>
-                    <Text style={styles.questionText}>Iluminação das bombas ok?</Text>
-                </View>
+            <QuestionContainer style={styles.questionContainer}>
+                <ChoseOptions style={styles.Options}>
+                    <TextComponent style='textQuestoes'>Iluminação das bombas ok?</TextComponent>
+                </ChoseOptions>
                 <OpcaoSelecao
-                    label="Iluminação das bombas ok?"
                     value="Sim"
                     selectedValue={iluminacaoBombas}
                     onValueChange={(value) => setIluminacaoBombas(value)}
                 />
                 <OpcaoSelecao
-                    label="Iluminação das bombas ok?"
                     value="Não"
                     selectedValue={iluminacaoBombas}
                     onValueChange={(value) => setIluminacaoBombas(value)}
                 />
-            </View>
+            </QuestionContainer>
 
-            <View style={styles.questionContainer}>
-                <View style={styles.Options}>
-                    <Text style={styles.questionText}>Limpeza do local ok?</Text>
-                </View>
+            <QuestionContainer style={styles.questionContainer}>
+                <ChoseOptions style={styles.Options}>
+                    <TextComponent style='textQuestoes'>Limpeza do local ok?</TextComponent>
+                </ChoseOptions>
                 <OpcaoSelecao
-                    label="Limpeza do local ok?"
                     value="Sim"
                     selectedValue={limpezaLocal}
                     onValueChange={(value) => setLimpezaLocal(value)}
                 />
                 <OpcaoSelecao
-                    label="Limpeza do local ok?"
                     value="Não"
                     selectedValue={limpezaLocal}
                     onValueChange={(value) => setLimpezaLocal(value)}
                 />
-            </View>
+            </QuestionContainer>
 
-            <View style={styles.questionContainer}>
-                <View style={styles.Options}>
-                    <Text style={styles.questionText}>Há vazamentos nas MB’s de tubulações?</Text>
-                </View>
+            <QuestionContainer style={styles.questionContainer}>
+                <ChoseOptions style={styles.Options}>
+                    <TextComponent style='textQuestoes'>Há vazamentos nas MB’s de tubulações?</TextComponent>
+                </ChoseOptions>
                 <OpcaoSelecao
-                    label="Há vazamentos nas MB’s de tubulações?"
                     value="Sim"
                     selectedValue={vazamentoTubulacoes}
                     onValueChange={(value) => setVazamentoTubulacoes(value)}
                 />
                 <OpcaoSelecao
-                    label="Há vazamentos nas MB’s de tubulações?"
                     value="Não"
                     selectedValue={vazamentoTubulacoes}
                     onValueChange={(value) => setVazamentoTubulacoes(value)}
                 />
-            </View>
+            </QuestionContainer>
 
-            <View style={styles.questionContainer}>
-                <View style={styles.conteinerObservacao}>
-                <Text style={styles.questionText}>Observações:</Text>
-                <TextInput
-                    style={styles.textInput}
-                    multiline={true}
-                    numberOfLines={4}
-                    onChangeText={handleObservacaoChange} // Use a função de atualização
-                    defaultValue={text}
-                    placeholder="Digite sua observação aqui"
-                />
-                </View>
-            </View>
+            <TextComponent style='textQuestoes'>Observações:</TextComponent>
+            <QuestionContainer style={styles.questionContainer}>
+                <Observacao value={text} onChange={handleObservacaoChange} />
+            </QuestionContainer>
             {/* Repita o padrão para outras perguntas */}
-        </View>
+        </Conteiner >
     );
 }
 
-const styles = StyleSheet.create({
-    conteiner: {
-        flexDirection: 'column',
-        padding: 10,
-        width: '100%',
-    },
-    questionContainer: {
-        marginBottom: 15,
-        flexDirection: 'row',
-        width: '100%',
-    },
-    Options: {
-        width: '75%',
-    },
-    questionText: {
-        fontSize: 20,
-        flexDirection: 'row',
-        // Estilos do texto da pergunta
-    },
-    buttonContainer: {
-        flexDirection: 'row',
-    },
-    radioButton: {
-        marginLeft: 30,
-        flexDirection: 'row',
-        alignItems: 'center',
-        // Estilos dos botões de rádio
-    },
-    conteinerObservacao:{
-        width: '100%',
-
-    },
-    textInput: {
-        width: '100%',
-        backgroundColor: '#fff',
-        borderWidth: 1,
-        borderColor: '#0005',
-        padding: 10,
-        fontSize: 16,
-    },
-});
+const styles = StyleSheet.create({});

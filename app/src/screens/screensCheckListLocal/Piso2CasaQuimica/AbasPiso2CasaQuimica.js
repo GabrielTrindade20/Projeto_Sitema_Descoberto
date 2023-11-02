@@ -166,7 +166,7 @@ export default function AbaPiso2() {
                                         choices={options}
                                         setChoices={(newChoices) => setAreaData({ ...areaData, [area]: newChoices })}
                                         updateObservacao={(newObservacao) => updateObservacao(area, newObservacao)}
-                                    />
+                                    />                        
                                 )}
                                 {area === 'AreaSulfato' && (
                                     <AreaSulfato

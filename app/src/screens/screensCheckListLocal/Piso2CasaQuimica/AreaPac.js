@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 
 import OpcaoSelecao from '../../../components/OpcaoSelecao';
@@ -200,14 +200,10 @@ export default function AreaPac({ choices, setChoices, updateObservacao }) {
                 </ConteinerAba>
             </QuestionContainer>
 
-
             <TextComponent style='textQuestoes'>Observações:</TextComponent>
             <QuestionContainer style={styles.questionContainer}>
                 <Observacao value={text} onChange={handleObservacaoChange} />
             </QuestionContainer>
-
-
-
 
             {/* Repita o padrão para outras perguntas */}
         </Conteiner>
