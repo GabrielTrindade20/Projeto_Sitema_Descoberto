@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
     },
     // Adicione mais estilos conforme necessário
     conteinerContent: {
-        justifyContent: 'space-around',
+        justifyContent: 'space-evenly',
         flexDirection: 'row',
         marginTop: 5,
         padding: 15,
@@ -61,13 +61,16 @@ const styles = StyleSheet.create({
     },
     conteinerChose: {
         width: '30%',
+        height: 150,
         flexDirection: 'column',
         backgroundColor: '#D2D2D2',
         borderRadius: 5,
         padding: 10,
-        justifyContent: 'space-between',
+        justifyContent: 'space-around',
+        alignItems: 'center',
     },
     options: {
+        width: '100%',
         alignItems: 'center',
         justifyContent: 'space-around',
         fontSize: 20,

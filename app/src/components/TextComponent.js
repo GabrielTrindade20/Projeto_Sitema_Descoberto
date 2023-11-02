@@ -10,7 +10,8 @@ const TextComponent = ({ style, children }) => {
         },
         textTitulo: {
             fontSize: 30,
-            color: 'red',
+            color: '#000',
+            fontWeight: 'bold',
             // Outros estilos
         },
         textSubTitulo: {

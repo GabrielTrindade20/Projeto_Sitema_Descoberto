@@ -1,8 +1,23 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, TextInput } from 'react-native';
+import { Text, StyleSheet, TextInput } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 
 import OpcaoSelecao from '../../../components/OpcaoSelecao';
+import {
+    Conteiner,
+    QuestionContainer,
+    ChoseOptions,
+} from '../../../components/Layout';
+import Observacao from '../../../components/Observacao';
+import TextComponent from '../../../components/TextComponent';
+
+import {
+    ConteinerAba,
+    ConteinerText,
+    ConteinerContent,
+    ConteinerChose,
+    Options
+} from '../../../components/LayoutSubAba'
 
 export default function AreaPac({ choices, setChoices, updateObservacao }) {
     const [text, setTextoAreaPac] = useState("");
@@ -72,11 +87,11 @@ export default function AreaPac({ choices, setChoices, updateObservacao }) {
 
 
     return (
-        <View style={styles.conteiner}>
-            <View style={styles.conteinerSituacao}>
-                <View style={styles.Options}>
-                    <Text style={styles.questionText}>Situação: </Text>
-                </View>
+        <Conteiner style={styles.conteiner}>
+            <QuestionContainer style={styles.conteinerSituacao}>
+                <ChoseOptions style={styles.Options}>
+                    <TextComponent style='textQuestoes'>Situação: </TextComponent>
+                </ChoseOptions>
                 <Picker
                     selectedValue={situacao}
                     onValueChange={(itemValue) => setChoices({ ...choices, situacao: itemValue })}
@@ -87,231 +102,200 @@ export default function AreaPac({ choices, setChoices, updateObservacao }) {
                     <Picker.Item label="Desligado" value="Desligado" />
 
                 </Picker>
-            </View>
+            </QuestionContainer>
 
-            <View style={styles.questionContainer}>
-                <View style={styles.Options}>
-                    <Text style={styles.questionText}>Iluminação da área ok?</Text>
-                </View>
+            <QuestionContainer style={styles.questionContainer}>
+                <ChoseOptions style={styles.Options}>
+                    <TextComponent style='textQuestoes'>Iluminação da área ok?</TextComponent>
+                </ChoseOptions>
                 <OpcaoSelecao
-                    label="Iluminação da área ok?"
                     value="Sim"
                     selectedValue={iluminacaoArea}
                     onValueChange={(value) => setIluminacaoArea(value)}
                 />
                 <OpcaoSelecao
-                    label="Iluminação da área ok?"
                     value="Não"
                     selectedValue={iluminacaoArea}
                     onValueChange={(value) => setIluminacaoArea(value)}
                 />
-            </View>
+            </QuestionContainer>
 
-            <View style={styles.questionContainer}>
-                <View style={styles.Options}>
-                    <Text style={styles.questionText}>Limpeza da área ok?</Text>
-                </View>
+            <QuestionContainer style={styles.questionContainer}>
+                <ChoseOptions style={styles.Options}>
+                    <TextComponent style='textQuestoes'>Limpeza da área ok?</TextComponent>
+                </ChoseOptions>
                 <OpcaoSelecao
-                    label="Limpeza da área ok?"
                     value="Sim"
                     selectedValue={limpezaArea}
                     onValueChange={(value) => setLimpezaArea(value)}
                 />
                 <OpcaoSelecao
-                    label="Limpeza da área ok?"
                     value="Não"
                     selectedValue={limpezaArea}
                     onValueChange={(value) => setLimpezaArea(value)}
                 />
-            </View>
+            </QuestionContainer>
 
-
-            <View style={styles.questionContainer}>
-                <View style={styles.Options}>
-                    <Text style={styles.questionText}>Silo de cal tampados?</Text>
-                </View>
+            <QuestionContainer style={styles.questionContainer}>
+                <ChoseOptions style={styles.Options}>
+                    <TextComponent style='textQuestoes'>Silo de cal tampados?</TextComponent>
+                </ChoseOptions>
                 <OpcaoSelecao
-                    label="Silo de cal tampados?"
                     value="Sim"
                     selectedValue={silosTampados}
                     onValueChange={(value) => setSilosTampados(value)}
                 />
                 <OpcaoSelecao
-                    label="Silo de cal tampados?"
                     value="Não"
                     selectedValue={silosTampados}
                     onValueChange={(value) => setSilosTampados(value)}
                 />
-            </View>
+            </QuestionContainer>
 
-            <View style={styles.questionContainer}>
-                <View style={styles.Options}>
-                    <Text style={styles.questionText}>Operação da talha manual ok?</Text>
-                </View>
+            <QuestionContainer style={styles.questionContainer}>
+                <ChoseOptions style={styles.Options}>
+                    <TextComponent style='textQuestoes'>Operação da talha manual ok?</TextComponent>
+                </ChoseOptions>
                 <OpcaoSelecao
-                    label="Operação da talha manual ok?"
                     value="Sim"
                     selectedValue={operacaoTalhaManual}
                     onValueChange={(value) => setOperacaoTalhaManual(value)}
                 />
                 <OpcaoSelecao
-                    label="Operação da talha manual ok?"
                     value="Não"
                     selectedValue={operacaoTalhaManual}
                     onValueChange={(value) => setOperacaoTalhaManual(value)}
                 />
-            </View>
+            </QuestionContainer>
 
-            <View style={styles.questionContainer}>
-                <View style={styles.Options}>
-                    <Text style={styles.questionText}>Contêineres vazios estão no monta carga?</Text>
-                </View>
+            <QuestionContainer style={styles.questionContainer}>
+                <ChoseOptions style={styles.Options}>
+                    <TextComponent style='textQuestoes'>Contêineres vazios estão no monta carga?</TextComponent>
+                </ChoseOptions>
                 <OpcaoSelecao
-                    label="Contêineres vazios estão no monta carga?"
                     value="Sim"
                     selectedValue={conteineresVazios}
                     onValueChange={(value) => setConteineresVazios(value)}
                 />
                 <OpcaoSelecao
-                    label="Contêineres vazios estão no monta carga?"
                     value="Não"
                     selectedValue={conteineresVazios}
                     onValueChange={(value) => setConteineresVazios(value)}
                 />
-            </View>
+            </QuestionContainer>
 
-            <View style={styles.questionContainer}>
-                <View style={styles.Options}>
-                    <Text style={styles.questionText}>Há vazamentos nas tubulações dos tanques de sulfato?</Text>
-                </View>
+            <QuestionContainer style={styles.questionContainer}>
+                <ChoseOptions style={styles.Options}>
+                    <TextComponent style='textQuestoes'>Há vazamentos nas tubulações dos tanques de sulfato?</TextComponent>
+                </ChoseOptions>
                 <OpcaoSelecao
-                    label="Há vazamentos nas tubulações dos tanques de sulfato?"
                     value="Sim"
                     selectedValue={vazamentoTubulacoes}
                     onValueChange={(value) => setVazamentoTubulacoes(value)}
                 />
                 <OpcaoSelecao
-                    label="Há vazamentos nas tubulações dos tanques de sulfato?"
                     value="Não"
                     selectedValue={vazamentoTubulacoes}
                     onValueChange={(value) => setVazamentoTubulacoes(value)}
                 />
-            </View>
+            </QuestionContainer>
 
-            <View style={styles.questionContainer}>
-                <View style={styles.Options}>
-                    <Text style={styles.questionText}>Haste do tanque de sulfato ok?</Text>
-                </View>
+            <QuestionContainer style={styles.questionContainer}>
+                <ChoseOptions style={styles.Options}>
+                    <TextComponent style='textQuestoes'>Haste do tanque de sulfato ok?</TextComponent>
+                </ChoseOptions>
                 <OpcaoSelecao
-                    label="Haste do tanque de sulfato ok?"
                     value="Sim"
                     selectedValue={hasteTanqueSulfato}
                     onValueChange={(value) => setHasteTanqueSulfato(value)}
                 />
                 <OpcaoSelecao
-                    label="Haste do tanque de sulfato ok?"
                     value="Não"
                     selectedValue={hasteTanqueSulfato}
                     onValueChange={(value) => setHasteTanqueSulfato(value)}
                 />
-            </View>
+            </QuestionContainer>
 
-            <View style={styles.questionContainer}>
-                <View style={styles.Options}>
-                    <Text style={styles.questionText}>Funcionamento do chuveiro de emergência ok?</Text>
-                </View>
+            <QuestionContainer style={styles.questionContainer}>
+                <ChoseOptions style={styles.Options}>
+                    <TextComponent style='textQuestoes'>Funcionamento do chuveiro de emergência ok?</TextComponent>
+                </ChoseOptions>
                 <OpcaoSelecao
-                    label="Funcionamento do chuveiro de emergência ok?"
                     value="Sim"
                     selectedValue={chuveiroDeEmergencia}
                     onValueChange={(value) => setChuveiroDeEmergencia(value)}
                 />
                 <OpcaoSelecao
-                    label="Funcionamento do chuveiro de emergência ok?"
                     value="Não"
                     selectedValue={chuveiroDeEmergencia}
                     onValueChange={(value) => setChuveiroDeEmergencia(value)}
                 />
-            </View>
+            </QuestionContainer>
 
-            <View style={styles.questionContainer}>
-                <View style={styles.OptionsPias}>
-                    <View style={styles.Options}>
-                        <Text style={styles.questionText}>Pias de preparo de polieletrólito:</Text>
-                    </View>
-                    <View style={styles.conteinerPias}>
-                        <View style={styles.Pias}>
-                            <Text style={styles.questionText}>Problema no Tanque A</Text>
-                            <View style={styles.questionText}>
+            <QuestionContainer style={styles.questionContainer}>
+                <ConteinerAba style={styles.OptionsPias}>
+                    <ConteinerText style={styles.Options}>
+                        <TextComponent style='textTitulo'>Problemas nas Pias de preparo de polieletrólito:</TextComponent>
+                    </ConteinerText>
+
+                    <ConteinerContent style={styles.conteinerPias}>
+                        <ConteinerChose style={styles.Pias}>
+                            <TextComponent style='textQuestoes'>Tanque A</TextComponent>
+                            <Options style='textQuestoes'>
                                 <OpcaoSelecao
-                                    label="Funcionamento do chuveiro de emergência ok?"
                                     value="Sim"
                                     selectedValue={preparoPiaPoliA}
                                     onValueChange={(value) => setPreparoPiaPoliA(value)}
                                 />
                                 <OpcaoSelecao
-                                    label="Funcionamento do chuveiro de emergência ok?"
                                     value="Não"
                                     selectedValue={preparoPiaPoliA}
                                     onValueChange={(value) => setPreparoPiaPoliA(value)}
                                 />
-                            </View>
-                        </View>
+                            </Options>
+                        </ConteinerChose>
 
-                        <View style={styles.Pias}>
-                            <Text style={styles.questionText}>Problema no Tanque B</Text>
-                            <View style={styles.questionText}>
+                        <ConteinerChose style={styles.Pias}>
+                            <TextComponent style='textQuestoes'>Tanque B</TextComponent>
+                            <Options style='textQuestoes'>
                                 <OpcaoSelecao
-                                    label="Funcionamento do chuveiro de emergência ok?"
                                     value="Sim"
                                     selectedValue={preparoPiaPoliB}
                                     onValueChange={(value) => setPreparoPiaPoliB(value)}
                                 />
                                 <OpcaoSelecao
-                                    label="Funcionamento do chuveiro de emergência ok?"
                                     value="Não"
                                     selectedValue={preparoPiaPoliB}
                                     onValueChange={(value) => setPreparoPiaPoliB(value)}
                                 />
-                            </View>
-                        </View>
+                            </Options>
+                        </ConteinerChose>
 
-                        <View style={styles.Pias}>
-                            <Text style={styles.questionText}>Problema no Tanque C</Text>
-                            <View style={styles.questionText}>
+                        <ConteinerChose style={styles.Pias}>
+                            <TextComponent style='textQuestoes'>Tanque C</TextComponent>
+                            <Options style='textQuestoes'>
                                 <OpcaoSelecao
-                                    label="Funcionamento do chuveiro de emergência ok?"
                                     value="Sim"
                                     selectedValue={preparoPiaPoliC}
                                     onValueChange={(value) => setPreparoPiaPoliC(value)}
                                 />
                                 <OpcaoSelecao
-                                    label="Funcionamento do chuveiro de emergência ok?"
                                     value="Não"
                                     selectedValue={preparoPiaPoliC}
                                     onValueChange={(value) => setPreparoPiaPoliC(value)}
                                 />
-                            </View>
-                        </View>
-                    </View>
-                </View>
-            </View>
+                            </Options>
+                        </ConteinerChose>
+                    </ConteinerContent>
+                </ConteinerAba>
+            </QuestionContainer>
 
-            <View style={styles.questionContainer}>
-                <View style={styles.conteinerObservacao}>
-                    <Text style={styles.questionText}>Observações:</Text>
-                    <TextInput
-                        style={styles.textInput}
-                        multiline={true}
-                        numberOfLines={4}
-                        onChangeText={handleObservacaoChange} // Use a função de atualização
-                        defaultValue={text}
-                        placeholder="Digite sua observação aqui"
-                    />
-                </View>
-            </View>
+            <TextComponent style='textQuestoes'>Observações:</TextComponent>
+            <QuestionContainer style={styles.questionContainer}>
+                <Observacao value={text} onChange={handleObservacaoChange} />
+            </QuestionContainer>
             {/* Repita o padrão para outras perguntas */}
-        </View>
+        </Conteiner>
     );
 }
 
@@ -417,12 +401,12 @@ const styles = StyleSheet.create({
         width: '100%',
     },
     OptionsPias: {
-        width: '100%',   
+        width: '100%',
         backgroundColor: '#fff7',
         padding: 5,
     },
     conteinerPias: {
-        justifyContent: 'space-between',  
+        justifyContent: 'space-between',
         flexDirection: 'row',
         marginTop: 5,
     },

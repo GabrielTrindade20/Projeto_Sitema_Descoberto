@@ -8,6 +8,8 @@ import {
     QuestionContainer,
     ChoseOptions,
 } from '../../../components/Layout';
+import Observacao from '../../../components/Observacao';
+import TextComponent from '../../../components/TextComponent';
 
 import {
     ConteinerAba,
@@ -17,8 +19,6 @@ import {
     Options
 } from '../../../components/LayoutSubAba'
 
-import Observacao from '../../../components/Observacao';
-import TextComponent from '../../../components/TextComponent';
 
 export default function AreaPac({ choices, setChoices, updateObservacao }) {
     const [text, setTextoAreaPac] = useState("");
