@@ -189,7 +189,7 @@ export default function AreaTanqueSulfato({ choices, setChoices, updateObservaca
                 />
             </QuestionContainer>
 
-            <View style={styles.questionContainer}>
+            <QuestionContainer style={styles.questionContainer}>
                 <View style={styles.OptionsBooster}>
                     <View style={styles.Options}>
                         <TextComponent style='textSubTitulo'>Booster</TextComponent>
@@ -243,9 +243,9 @@ export default function AreaTanqueSulfato({ choices, setChoices, updateObservaca
                         </View>
                     </View>
                 </View>
-            </View>
+            </QuestionContainer>
 
-            <View style={styles.questionContainer}>
+            <QuestionContainer style={styles.questionContainer}>
                 <View style={styles.OptionsBombas}>
                     <View style={styles.Options}>
                         <TextComponent style='textSubTitulo'>Bomba de Ácido em uso:</TextComponent>
@@ -288,9 +288,9 @@ export default function AreaTanqueSulfato({ choices, setChoices, updateObservaca
                         </QuestionContainer>
                     </View>
                 </View>
-            </View>
+            </QuestionContainer>
 
-            <View style={styles.questionContainer}>
+            <QuestionContainer style={styles.questionContainer}>
                 <View style={styles.OptionsBombas}>
                     <View style={styles.Options}>
                         <TextComponent style='textSubTitulo'>Bomba de Clorito de Sódio em uso:</TextComponent>
@@ -333,7 +333,7 @@ export default function AreaTanqueSulfato({ choices, setChoices, updateObservaca
                         </QuestionContainer>
                     </View>
                 </View>
-            </View>
+            </QuestionContainer>
 
             <QuestionContainer style={styles.questionContainer}>
                 <ChoseOptions style={styles.Options}>
@@ -408,7 +408,7 @@ export default function AreaTanqueSulfato({ choices, setChoices, updateObservaca
                 />
             </QuestionContainer>
 
-            <View style={styles.questionContainer}>
+            <QuestionContainer style={styles.questionContainer}>
                 <View style={styles.OptionsBooster}>
                     <View style={styles.Options}>
                         <TextComponent style='textSubTitulo'>Sensor de fluxo de ácido clorídrico</TextComponent>
@@ -452,9 +452,9 @@ export default function AreaTanqueSulfato({ choices, setChoices, updateObservaca
 
                     </View>
                 </View>
-            </View>
+            </QuestionContainer>
 
-            <View style={styles.questionContainer}>
+            <QuestionContainer style={styles.questionContainer}>
                 <View style={styles.OptionsBooster}>
                     <View style={styles.Options}>
                         <TextComponent style='textSubTitulo'>Sensor de fluxo de Clorito de Sódio</TextComponent>
@@ -498,7 +498,7 @@ export default function AreaTanqueSulfato({ choices, setChoices, updateObservaca
 
                     </View>
                 </View>
-            </View>
+            </QuestionContainer>
 
             <QuestionContainer style={styles.questionContainer}>
                 <ChoseOptions style={styles.Options}>
@@ -586,7 +586,6 @@ const styles = StyleSheet.create({
         justifyContent: 'space-around',
         fontSize: 20,
         flexDirection: 'row',
-        marginLeft: 10,
         // Estilos do texto da pergunta
     },
     Options: {

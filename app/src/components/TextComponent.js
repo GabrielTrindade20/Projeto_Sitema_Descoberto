@@ -26,6 +26,13 @@ const TextComponent = ({ style, children }) => {
             marginVertical: 2,
             // Outros estilos
         },
+        textQuestoes2: {
+            fontSize: 19,
+            flexDirection: 'row',
+            fontWeight: 'bold',
+            marginVertical: 2,
+            // Outros estilos
+        },
     };
 
     const getStyle = (style) => {
@@ -36,6 +43,8 @@ const TextComponent = ({ style, children }) => {
                 return styles.textQuestoes;
             case 'textSubTitulo':
                 return styles.textSubTitulo;
+            case 'textQuestoes2':
+                return styles.textQuestoes2;
             default:
                 return styles.defaultStyle;
         }

@@ -12,6 +12,8 @@ import AreaTanqueSulfato from '../screens/screensCheckListLocal/AreaTanquesSulfa
 import ClimaTempo from '../screens/screensCheckListLocal/ClimaTempo/AbaClimaTempo';
 import AreaDioxidoCloro from '../screens/screensCheckListLocal/DioxidoCloro/abaDioxidoCloro';
 import EvaporadoresCloro from '../screens/screensCheckListLocal/AreaEvaporadoresDeCloro/AbasEvaporadoresCloro'
+import AreaGeocalcio from '../screens/screensCheckListLocal/AreaGeocalcio/AbaGeocalcio'
+import Tapq from '../screens/screensCheckListLocal/Tapq/AbaTapq';
 import TabNavigation from './TabNavigation';
 
 const Stack = createStackNavigator();
@@ -31,6 +33,8 @@ export default function Navigation() {
         <Stack.Screen name="ClimaTempo" component={ClimaTempo} options={{ headerShown: false }} />
         <Stack.Screen name="AreaDioxidoCloro" component={AreaDioxidoCloro} options={{ headerShown: false }} />
         <Stack.Screen name="EvaporadoresCloro" component={EvaporadoresCloro} options={{ headerShown: false }} />
+        <Stack.Screen name="AreaGeocalcio" component={AreaGeocalcio} options={{ headerShown: false }} />
+        <Stack.Screen name="Tapq" component={Tapq} options={{ headerShown: false }} />
         <Stack.Screen name="TabNavigation" component={TabNavigation} options={{ headerShown: false }} />
         {/* Adicione outras telas principais conforme necessário */}
       </Stack.Navigator>

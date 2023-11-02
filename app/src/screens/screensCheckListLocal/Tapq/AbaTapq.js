@@ -1,14 +1,15 @@
 import axios from 'axios';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { ScrollView, View, Text, TouchableOpacity, StyleSheet, SafeAreaView } from 'react-native';
 import Header from '../../../components/Header'  // Importe o componente de cabeçalho
 
-import EvaporadoresCloro from './EvaporadoresCloro'
+import Tapq from './Tapq';
+
 
 
 import CustomButton from '../../../components/CustomButton';
 
-export default function AbaEvaporadoresCloro() {
+export default function AbaTapq() {
 
     const [observacoes, setObservacoes] = useState({});
     const updateObservacao = (area, observacao) => {
@@ -61,15 +62,29 @@ export default function AbaEvaporadoresCloro() {
     }
 
     const [areaData, setAreaData] = useState({
-        EvaporadoresCloro: {
-
+        Tapq: {
+            bomAmosAguFilt: null,
+            bomAmosFinal: null,
+            bomLimpAreaValv: null,
+            analiContTurb: null,
+            analiContPh: null,
+            analiContCloOper: null,
+            analiContClorRea: null,
+            analiContFluOper: null,
+            analiContFluRea: null,
+            salaAnaliEquiLimpa: null,
+            ilumiSalaAnali: null,
+            difuDosaCal: null,
+            limpAreaExter: null,
+            ilumiAreaExter: null,
+            apliGeoTapq: null,
             // ... outras opções
         },
         // Adicione outras áreas conforme necessário
     });
 
     const [showArea, setShowArea] = useState({
-        EvaporadoresCloro: true,
+        Tapq: true,
         // Defina outras áreas aqui como 'true' se você quiser exibi-las inicialmente.
     });
 
@@ -80,9 +95,9 @@ export default function AbaEvaporadoresCloro() {
         });
     };
 
-    const [showEvaporadoresCloro, setShowEvaporadoresCloro] = useState(true);
-    const toggleEvaporadoresCloro = () => {
-        setShowEvaporadoresCloro(!showEvaporadoresCloro);
+    const [showTapq, setShowTapq] = useState(true);
+    const toggleTapq = () => {
+        setShowTapq(!showTapq);
     };
 
 
@@ -95,11 +110,11 @@ export default function AbaEvaporadoresCloro() {
                     showArea[area] ? (
                         <View style={styles.containerContent} key={area}>
                             <TouchableOpacity onPress={() => toggleArea(area)}>
-                                <Text style={styles.title}>Área Evaporadores de Cloro</Text>
+                                <Text style={styles.title}>Área Dióxido de Cloro</Text>
                             </TouchableOpacity>
                             <View style={styles.local}>
-                                {area === 'EvaporadoresCloro' && (
-                                    <EvaporadoresCloro
+                                {area === 'Tapq' && (
+                                    <Tapq
                                         key={area} // Adicione a chave aqui
                                         choices={options}
                                         setChoices={(newChoices) => setAreaData({ ...areaData, [area]: newChoices })}
@@ -111,7 +126,7 @@ export default function AbaEvaporadoresCloro() {
                         </View>
                     ) : (
                         <TouchableOpacity key={area} onPress={() => toggleArea(area)}>
-                            <Text style={styles.title}>Área Evaporadores de Cloro</Text>
+                            <Text style={styles.title}>Área Dióxido de Cloro</Text>
                         </TouchableOpacity>
                     )
                 ))}
@@ -123,10 +138,7 @@ export default function AbaEvaporadoresCloro() {
             </ScrollView>
         </SafeAreaView>
     );
-}
-
-
-
+};
 
 const styles = StyleSheet.create({
     containerContent: {

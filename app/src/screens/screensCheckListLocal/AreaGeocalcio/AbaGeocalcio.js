@@ -1,14 +1,14 @@
 import axios from 'axios';
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { ScrollView, View, Text, TouchableOpacity, StyleSheet, SafeAreaView } from 'react-native';
 import Header from '../../../components/Header'  // Importe o componente de cabeçalho
 
-import EvaporadoresCloro from './EvaporadoresCloro'
+import AreaGeocalcio from './AreaGeocalcio';
 
 
 import CustomButton from '../../../components/CustomButton';
 
-export default function AbaEvaporadoresCloro() {
+export default function AbaAreaGeocalcio() {
 
     const [observacoes, setObservacoes] = useState({});
     const updateObservacao = (area, observacao) => {
@@ -61,15 +61,21 @@ export default function AbaEvaporadoresCloro() {
     }
 
     const [areaData, setAreaData] = useState({
-        EvaporadoresCloro: {
-
+        AreaGeocalcio: {
+            motor: null,
+            modo: null,
+            dosador: null,
+            hz: null,
+            vazamentoAgua: null,
+            vazamentoSolucao: null,
+            limpezaExterna: null,
             // ... outras opções
         },
         // Adicione outras áreas conforme necessário
     });
 
     const [showArea, setShowArea] = useState({
-        EvaporadoresCloro: true,
+        AreaGeocalcio: true,
         // Defina outras áreas aqui como 'true' se você quiser exibi-las inicialmente.
     });
 
@@ -80,9 +86,9 @@ export default function AbaEvaporadoresCloro() {
         });
     };
 
-    const [showEvaporadoresCloro, setShowEvaporadoresCloro] = useState(true);
-    const toggleEvaporadoresCloro = () => {
-        setShowEvaporadoresCloro(!showEvaporadoresCloro);
+    const [showAreaGeocalcio, setShowAreaGeocalcio] = useState(true);
+    const toggleAreaGeocalcio = () => {
+        setShowAreaGeocalcio(!showAreaGeocalcio);
     };
 
 
@@ -95,11 +101,11 @@ export default function AbaEvaporadoresCloro() {
                     showArea[area] ? (
                         <View style={styles.containerContent} key={area}>
                             <TouchableOpacity onPress={() => toggleArea(area)}>
-                                <Text style={styles.title}>Área Evaporadores de Cloro</Text>
+                                <Text style={styles.title}>Área Geocálcio</Text>
                             </TouchableOpacity>
                             <View style={styles.local}>
-                                {area === 'EvaporadoresCloro' && (
-                                    <EvaporadoresCloro
+                                {area === 'AreaGeocalcio' && (
+                                    <AreaGeocalcio
                                         key={area} // Adicione a chave aqui
                                         choices={options}
                                         setChoices={(newChoices) => setAreaData({ ...areaData, [area]: newChoices })}
@@ -111,7 +117,7 @@ export default function AbaEvaporadoresCloro() {
                         </View>
                     ) : (
                         <TouchableOpacity key={area} onPress={() => toggleArea(area)}>
-                            <Text style={styles.title}>Área Evaporadores de Cloro</Text>
+                            <Text style={styles.title}>Área Geocálcio</Text>
                         </TouchableOpacity>
                     )
                 ))}
@@ -123,10 +129,7 @@ export default function AbaEvaporadoresCloro() {
             </ScrollView>
         </SafeAreaView>
     );
-}
-
-
-
+};
 
 const styles = StyleSheet.create({
     containerContent: {

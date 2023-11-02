@@ -30,11 +30,7 @@ const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingRight: 20,
-  },
-  label: {
-    flex: 1,
-    fontSize: 20,
+    marginRight: 5,
   },
   buttonContainer: {
     flexDirection: 'row',
@@ -47,7 +43,6 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     justifyContent: 'center',
     alignItems: 'center',
-    marginLeft: 5,
   },
   innerCircle: {
     width: 15,
@@ -62,7 +57,6 @@ const styles = StyleSheet.create({
     color: 'black',
     fontSize: 20,
     fontWeight: 'bold',
-    marginVertical: 2,
   },
   selectedText: {
     color: '#0C5AA5',

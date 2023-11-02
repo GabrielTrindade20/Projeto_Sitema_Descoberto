@@ -16,26 +16,41 @@ export default function CloradorGenerico({
     const {
         situacao,
         modo,
-        pressaoVacuo,
-        dosagem,
-        limpesaRotametro,
+        nivelAgua,
+        pressaoCloro,
+        correnteAnoidica,
+        tempAgua,
     } = choices;
 
-    const setPressaoVacuo = (value) => {
-        setChoices({ ...choices, pressaoVacuo: value });
+    const setNivelAgua = (value) => {
+        setChoices({ ...choices, nivelAgua: value });
     };
 
-    const setDosagem = (value) => {
-        setChoices({ ...choices, dosagem: value });
+    const setPressaoCloro = (value) => {
+        setChoices({ ...choices, pressaoCloro: value });
     };
 
-    const setLimpesaRotametro = (value) => {
-        setChoices({ ...choices, limpesaRotametro: value });
+    const setCorrenteAnoidica = (value) => {
+        setChoices({ ...choices, correnteAnoidica: value });
     };
+
+    const setTempAgua = (value) => {
+        setChoices({ ...choices, tempAgua: value });
+    };   
+
+
+    const setExaustores = (value) => {
+        setChoices({ ...choices, exaustores: value });
+    };
+
+    const setCarretas = (value) => {
+        setChoices({ ...choices, carretas: value });
+    };
+
 
     return (
         <Conteiner style={styles.conteiner}>
-            <View style={styles.conteinerSituacao}>
+            <QuestionContainer style={styles.conteinerSituacao}>
                 <ChoseOptions style={styles.ChoseOptions}>
                     <TextComponent style='textQuestoes'>Situação: </TextComponent>
                 </ChoseOptions>
@@ -50,9 +65,9 @@ export default function CloradorGenerico({
                     <Picker.Item label="Operando" value="Operando" />
                     <Picker.Item label="Desligado" value="Desligado" />
                 </Picker>
-            </View>
+            </QuestionContainer>
 
-            <View style={styles.conteinerSituacao}>
+            <QuestionContainer style={styles.conteinerSituacao}>
                 <ChoseOptions style={styles.ChoseOptions}>
                     <TextComponent style='textQuestoes'>Modo: </TextComponent>
                 </ChoseOptions>
@@ -66,51 +81,59 @@ export default function CloradorGenerico({
                     <Picker.Item label="Automático" value="Automático" />
 
                 </Picker>
-            </View>
-
-            <QuestionContainer style={styles.questionContainer}>
-                <ChoseOptions style={styles.ChoseOptions}>
-                    <TextComponent style='textQuestoes'>Pressão de vácuo</TextComponent>
-                </ChoseOptions>
-                <TextInput
-                    style={styles.input}
-                    placeholder="kg/h"
-                    value={pressaoVacuo}
-                    onChangeText={(number) => setPressaoVacuo(number)}
-                />
             </QuestionContainer>
 
             <QuestionContainer style={styles.questionContainer}>
                 <ChoseOptions style={styles.ChoseOptions}>
-                    <TextComponent style='textQuestoes'>Dosagem kg/h</TextComponent>
-                </ChoseOptions>
-                <TextInput
-                    style={styles.input}
-                    placeholder="kg/h"
-                    value={dosagem}
-                    onChangeText={(number) => setDosagem(number)}
-                />
-            </QuestionContainer>
-
-            <QuestionContainer style={styles.questionContainer}>
-                <ChoseOptions style={styles.ChoseOptions}>
-                    <TextComponent style='textQuestoes'>Rotâmetro Limpo?</TextComponent>
+                    <TextComponent style='textQuestoes'>O nível de água está ok?</TextComponent>
                 </ChoseOptions>
                 <OpcaoSelecao
-                    label="Rotâmetro Limpo?"
                     value="Sim"
-                    selectedValue={limpesaRotametro}
-                    onValueChange={(value) => setLimpesaRotametro(value)}
+                    selectedValue={nivelAgua}
+                    onValueChange={(value) => setNivelAgua(value)}
                 />
                 <OpcaoSelecao
-                    label="Rotâmetro Limpo?"
                     value="Não"
-                    selectedValue={limpesaRotametro}
-                    onValueChange={(value) => setLimpesaRotametro(value)}
+                    selectedValue={nivelAgua}
+                    onValueChange={(value) => setNivelAgua(value)}
                 />
             </QuestionContainer>
 
+            <QuestionContainer style={styles.questionContainer}>
+                <ChoseOptions style={styles.Options}>
+                    <TextComponent style='textQuestoes'>Pressão de Cloro</TextComponent>
+                </ChoseOptions>
+                <TextInput
+                    style={styles.input}
+                    placeholder=""
+                    value={pressaoCloro}
+                    onChangeText={(number) => setPressaoCloro(number)}
+                />
+            </QuestionContainer>
 
+            <QuestionContainer style={styles.questionContainer}>
+                <ChoseOptions style={styles.ChoseOptions}>
+                    <TextComponent style='textQuestoes'>Corrente Anódica</TextComponent>
+                </ChoseOptions>
+                <TextInput
+                    style={styles.input}
+                    placeholder=""
+                    value={correnteAnoidica}
+                    onChangeText={(number) => setCorrenteAnoidica(number)}
+                />
+            </QuestionContainer>
+
+            <QuestionContainer style={styles.questionContainer}>
+                <ChoseOptions style={styles.ChoseOptions}>
+                    <TextComponent style='textQuestoes'>Temperatura da Água</TextComponent>
+                </ChoseOptions>
+                <TextInput
+                    style={styles.input}
+                    placeholder="Cº"
+                    value={tempAgua}
+                    onChangeText={(number) => setTempAgua(number)}
+                />
+            </QuestionContainer>
             {/* Repita o padrão para outras perguntas */}
         </Conteiner>
 
@@ -164,6 +187,54 @@ const styles = StyleSheet.create({
         borderColor: 'rgba(0, 0, 0, 0.2)',
         backgroundColor: '#fff',
         borderRadius: 10,
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 5,
+        },
+    },
+    OptionsBooster: {
+        width: '100%',
+        backgroundColor: '#fff7',
+        padding: 5,
+        marginBottom: 20,
+    },
+    conteinerOptionsBooster: {
+        justifyContent: 'space-around',
+        flexDirection: 'row',
+        marginTop: 5,
+        padding: 15,
+        marginBottom: 15,
+
+    },
+    choses: {
+        width: '30%',
+        flexDirection: 'column',
+        backgroundColor: '#D2D2D2',
+        borderRadius: 5,
+        padding: 10,
+    },
+    selectOption: {
+        justifyContent: 'space-around',
+        fontSize: 20,
+        flexDirection: 'row',
+        // Estilos do texto da pergunta
+    },
+    Options: {
+        alignItems: 'center',
+        marginBottom: 10,
+    },
+    subtitulo: {
+        alignItems: 'center',
+        marginBottom: 10,
+    },
+    inputBooster: {
+        width: '100%',
+        padding: 10,
+        borderWidth: 1,
+        borderColor: 'rgba(0, 0, 0, 0.2)',
+        backgroundColor: '#fff',
+        borderRadius: 5,
         shadowColor: "#000",
         shadowOffset: {
             width: 0,

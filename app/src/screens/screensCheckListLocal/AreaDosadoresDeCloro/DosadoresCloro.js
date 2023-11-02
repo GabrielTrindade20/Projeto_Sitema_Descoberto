@@ -5,6 +5,9 @@ import { CloradorPos } from './DosadoresDeCloro/CloradorPos';
 import { CloradorPre } from './DosadoresDeCloro/CloradorPre';
 import { CloradorByPass } from './DosadoresDeCloro/CloradorByPass';
 
+import OpcaoSelecao from './../../../components/OpcaoSelecao'
+import { Conteiner, QuestionContainer, ChoseOptions } from '../../../components/Layout';
+import Observacao from '../../../components/Observacao';
 import TextComponent from '../../../components/TextComponent';
 
 export default function DosadoresCloro() {
@@ -93,20 +96,11 @@ export default function DosadoresCloro() {
                     />
                 )}
 
-                <View style={styles.questionContainer}>
-                    <View style={styles.conteinerObservacao}>
-                        <TextComponent style='textQuestoes'>Observações:</TextComponent>
-                        <TextInput
-                            style={styles.textInput}
-                            multiline={true}
-                            numberOfLines={4}
-                            onChangeText={handleObservacaoChange}
-                            value={text}
-                            placeholder="Digite sua observação aqui"
-                        />
-                    </View>
-                </View>
+                <TextComponent style='textQuestoes'>Observações:</TextComponent>
 
+                <QuestionContainer style={styles.questionContainer}>
+                    <Observacao value={text} onChange={handleObservacaoChange} />
+                </QuestionContainer>
                 {/* ... Conteúdo comum ... */}
             </ScrollView>
         </View>

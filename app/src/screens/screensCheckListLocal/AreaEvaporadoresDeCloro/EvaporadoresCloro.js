@@ -1,15 +1,30 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, ScrollView, TextInput } from 'react-native';
+import { Picker } from '@react-native-picker/picker';
+import DateTimePicker from '@react-native-community/datetimepicker';
 
-import { CloradorPos } from './EvaporadoresDeCloro/EvaporadorPos';
-import { CloradorPre } from './EvaporadoresDeCloro/EvaporadorPre';
-import { CloradorByPass } from './EvaporadoresDeCloro/EvaporadorByPass';
+import { EvaporadorPos } from './EvaporadoresDeCloro/EvaporadorPos';
+import { EvaporadorPre } from './EvaporadoresDeCloro/EvaporadorPre';
+import { EvaporadorByPass } from './EvaporadoresDeCloro/EvaporadorByPass';
 
+import OpcaoSelecao from './../../../components/OpcaoSelecao'
+import { Conteiner, QuestionContainer, ChoseOptions } from '../../../components/Layout';
+import Observacao from '../../../components/Observacao';
 import TextComponent from '../../../components/TextComponent';
 
 export default function DosadoresCloro() {
-    const [tabSelected, setTabSelected] = useState('CloradorPos');
+    const [tabSelected, setTabSelected] = useState('EvaporadorByPass');
     const [text, setText] = useState("");
+
+    const [exaustores, setExautores] = useState({
+        exaustores: '',
+    });
+    const [carretas, setCarretas] = useState({
+        carretas: '',
+    });
+    const [funcExautores, setFuncExautores] = useState({
+        funcExautores: '',
+    });
 
     const handleObservacaoChange = (newText) => {
         setText(newText);
@@ -22,90 +37,131 @@ export default function DosadoresCloro() {
     const [choicesPos, setChoicesPos] = useState({
         situacao: '',
         modo: '',
-        pressaoVacuo: '',
-        dosagem: '',
-        limpesaRotametro: '',
+        nivelAgua: '',
+        pressaoCloro: '',
+        correnteAnoidica: '',
+        tempAgua: '',
     });
 
     const [choicesPre, setChoicesPre] = useState({
         situacao: '',
         modo: '',
-        pressaoVacuo: '',
-        dosagem: '',
-        limpesaRotametro: '',
+        nivelAgua: '',
+        pressaoCloro: '',
+        correnteAnoidica: '',
+        tempAgua: '',
     });
 
     const [choicesByPass, setChoicesByPass] = useState({
         situacao: '',
         modo: '',
-        pressaoVacuo: '',
-        dosagem: '',
-        limpesaRotametro: '',
+        nivelAgua: '',
+        pressaoCloro: '',
+        correnteAnoidica: '',
+        tempAgua: '',
     });
-
-    const setBombas = (value) => {
-        setChoices({ ...choices, bombas: value });
-    };
 
     return (
         <View style={styles.container}>
             <View style={styles.tabs}>
                 <TouchableOpacity
-                    style={[styles.tab, tabSelected === 'CloradorPos' && styles.selectedTab]}
-                    onPress={() => setTabSelected('CloradorPos')}
+                    style={[styles.tab, tabSelected === 'EvaporadorByPass' && styles.selectedTab]}
+                    onPress={() => setTabSelected('EvaporadorByPass')}
                 >
-                    <Text style={[styles.tabText, tabSelected === 'CloradorPos' && styles.selectedTabText]}>Clorador Pós</Text>
+                    <Text style={[styles.tabText, tabSelected === 'EvaporadorByPass' && styles.selectedTabText]}>Evaporador By Pass</Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity
-                    style={[styles.tab, tabSelected === 'CloradorPre' && styles.selectedTab]}
-                    onPress={() => setTabSelected('CloradorPre')}
+                    style={[styles.tab, tabSelected === 'EvaporadorPre' && styles.selectedTab]}
+                    onPress={() => setTabSelected('EvaporadorPre')}
                 >
-                    <Text style={[styles.tabText, tabSelected === 'CloradorPre' && styles.selectedTabText]}>Clorador Pré</Text>
+                    <Text style={[styles.tabText, tabSelected === 'EvaporadorPre' && styles.selectedTabText]}>Evaporador Pré</Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity
-                    style={[styles.tab, tabSelected === 'CloradorByPass' && styles.selectedTab]}
-                    onPress={() => setTabSelected('CloradorByPass')}
+                    style={[styles.tab, tabSelected === 'EvaporadorPos' && styles.selectedTab]}
+                    onPress={() => setTabSelected('EvaporadorPos')}
                 >
-                    <Text style={[styles.tabText, tabSelected === 'CloradorByPass' && styles.selectedTabText]}>Clorador By Pass</Text>
+                    <Text style={[styles.tabText, tabSelected === 'EvaporadorPos' && styles.selectedTabText]}>Evaporador Pós</Text>
                 </TouchableOpacity>
 
                 {/* Adicione outras abas conforme necessário */}
             </View>
             <ScrollView style={styles.content}>
-                {tabSelected === 'CloradorPos' && (
-                    <CloradorPos
-                        choices={choicesPos}
-                        setChoices={setChoicesPos}
-                    />
-                )}
-                {tabSelected === 'CloradorPre' && (
-                    <CloradorPre
-                        choices={choicesPre}
-                        setChoices={setChoicesPre}
-                    />
-                )}
-                {tabSelected === 'CloradorByPass' && (
-                    <CloradorByPass
+                {tabSelected === 'EvaporadorByPass' && (
+                    <EvaporadorByPass
                         choices={choicesByPass}
                         setChoices={setChoicesByPass}
                     />
                 )}
+                {tabSelected === 'EvaporadorPre' && (
+                    <EvaporadorPre
+                        choices={choicesPre}
+                        setChoices={setChoicesPre}
+                    />
+                )}
+                {tabSelected === 'EvaporadorPos' && (
+                    <EvaporadorPos
+                        choices={choicesPos}
+                        setChoices={setChoicesPos}
+                    />
+                )}
+                <QuestionContainer style={styles.questionContainer}>
+                    <ChoseOptions style={styles.Options}>
+                        <TextComponent style='textQuestoes'>Problemas com os Exaustores?</TextComponent>
+                    </ChoseOptions>
+                    <OpcaoSelecao
+                        value="Sim"
+                        selectedValue={funcExautores}
+                        onValueChange={(value) => setFuncExautores(value)}
+                    />
+                    <OpcaoSelecao
+                        value="Não"
+                        selectedValue={funcExautores}
+                        onValueChange={(value) => setFuncExautores(value)}
+                    />
+                </QuestionContainer>
 
-                <View style={styles.questionContainer}>
-                    <View style={styles.conteinerObservacao}>
-                        <TextComponent style='textQuestoes'>Observações:</TextComponent>
-                        <TextInput
-                            style={styles.textInput}
-                            multiline={true}
-                            numberOfLines={4}
-                            onChangeText={handleObservacaoChange}
-                            value={text}
-                            placeholder="Digite sua observação aqui"
-                        />
-                    </View>
-                </View>
+                <QuestionContainer style={styles.conteinerSituacao}>
+                    <ChoseOptions style={styles.Options}>
+                        <TextComponent style='textQuestoes'>Operação dos Exaustores:</TextComponent>
+                    </ChoseOptions>
+
+                    <Picker
+                        selectedValue={exaustores}
+                        onValueChange={(itemValue) = setExautores}
+                        style={styles.Situacaopicker}
+                    >
+                        <Picker.Item label="Modo:" />
+                        <Picker.Item label="Manual" value="Manual" />
+                        <Picker.Item label="Automático" value="Automático" />
+
+                    </Picker>
+
+
+                </QuestionContainer>
+
+                <QuestionContainer style={styles.conteinerSituacao}>
+                    <ChoseOptions style={styles.Options}>
+                        <TextComponent style='textQuestoes'>Carretas: </TextComponent>
+                    </ChoseOptions>
+                    <Picker
+                        selectedValue={carretas}
+                        onValueChange={(itemValue) = setCarretas}
+                        style={styles.Situacaopicker}
+                    >
+                        <Picker.Item label="Modo:" />
+                        <Picker.Item label="Manual" value="Manual" />
+                        <Picker.Item label="Automático" value="Automático" />
+
+                    </Picker>
+                </QuestionContainer>
+
+                <TextComponent style='textQuestoes'>Observações:</TextComponent>
+
+                <QuestionContainer style={styles.questionContainer}>
+                    <Observacao value={text} onChange={handleObservacaoChange} />
+                </QuestionContainer>
 
                 {/* ... Conteúdo comum ... */}
             </ScrollView>
@@ -167,5 +223,21 @@ const styles = StyleSheet.create({
         borderColor: '#0005',
         padding: 10,
         fontSize: 16,
+    },
+    Situacaopicker: {
+        backgroundColor: '#0C5AA5',
+        width: '30%',
+        borderRadius: 10,
+        color: '#fff',
+        fontWeight: 'bold',
+        marginLeft: -55,
+    },
+    pickerBooster: {
+        backgroundColor: '#0C5AA5',
+        width: '100%',
+        borderRadius: 10,
+        color: '#fff',
+        fontWeight: 'bold',
+        marginTop: 50,
     },
 });
