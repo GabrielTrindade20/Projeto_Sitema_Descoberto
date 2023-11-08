@@ -104,9 +104,9 @@ export default function AbaDioxidoCloro() {
 
 
     return (
-        <SafeAreaView>
+        <View style={styles.SafeAreaView}>
+            <Header />
             <ScrollView style={styles.scrollView}>
-                <Header />
 
                 {Object.entries(areaData).map(([area, options]) => (
                     showArea[area] ? (
@@ -138,11 +138,15 @@ export default function AbaDioxidoCloro() {
                 </View>
 
             </ScrollView>
-        </SafeAreaView>
+        </View>
     );
 };
 
 const styles = StyleSheet.create({
+    SafeAreaView: {
+        paddingTop: 30,
+        marginBottom: 60,
+    },
     containerContent: {
         width: 'auto',
         marginLeft: 10,

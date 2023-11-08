@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, TextInput } from 'react-native';
+import { Text, StyleSheet, TextInput } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 
 import OpcaoSelecao from '../../../../components/OpcaoSelecao'
@@ -35,7 +35,7 @@ export default function CloradorGenerico({
 
     return (
         <Conteiner style={styles.conteiner}>
-            <View style={styles.conteinerSituacao}>
+            <QuestionContainer style={styles.questionContainer}>
                 <ChoseOptions style={styles.ChoseOptions}>
                     <TextComponent style='textQuestoes'>Situação: </TextComponent>
                 </ChoseOptions>
@@ -50,9 +50,9 @@ export default function CloradorGenerico({
                     <Picker.Item label="Operando" value="Operando" />
                     <Picker.Item label="Desligado" value="Desligado" />
                 </Picker>
-            </View>
+            </QuestionContainer>
 
-            <View style={styles.conteinerSituacao}>
+            <QuestionContainer style={styles.questionContainer}>
                 <ChoseOptions style={styles.ChoseOptions}>
                     <TextComponent style='textQuestoes'>Modo: </TextComponent>
                 </ChoseOptions>
@@ -66,7 +66,7 @@ export default function CloradorGenerico({
                     <Picker.Item label="Automático" value="Automático" />
 
                 </Picker>
-            </View>
+            </QuestionContainer>
 
             <QuestionContainer style={styles.questionContainer}>
                 <ChoseOptions style={styles.ChoseOptions}>
@@ -107,8 +107,6 @@ export default function CloradorGenerico({
                     onValueChange={(value) => setLimpesaRotametro(value)}
                 />
             </QuestionContainer>
-
-
             {/* Repita o padrão para outras perguntas */}
         </Conteiner>
 
@@ -117,15 +115,6 @@ export default function CloradorGenerico({
 
 
 const styles = StyleSheet.create({
-    buttonText: {
-        fontSize: 18,
-        color: 'black',
-    },
-    conteinerSituacao: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        marginBottom: 10,
-    },
     Situacaopicker: {
         backgroundColor: '#0C5AA5',
         width: '30%',
@@ -133,25 +122,6 @@ const styles = StyleSheet.create({
         color: '#fff',
         fontWeight: 'bold',
         marginLeft: -55,
-    },
-    conteinerPiker: {
-        flexDirection: 'column',
-        width: '30%',
-        marginTop: 10,
-        marginBottom: 10,
-    },
-    questionContainerPiker: {
-        width: '100%',
-        flexDirection: 'row',
-        justifyContent: 'space-around',
-    },
-    picker: {
-        backgroundColor: '#0C5AA5',
-        width: '100%',
-        borderRadius: 10,
-        color: '#fff',
-        fontWeight: 'bold',
-
     },
     input: {
         width: '30%',

@@ -43,6 +43,7 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: '#ffff'
   },
   innerCircle: {
     width: 15,
@@ -52,6 +53,8 @@ const styles = StyleSheet.create({
   },
   selectedInnerCircle: {
     backgroundColor: '#0C5AA5',
+    width: 18,
+    height: 18,
   },
   select: {
     color: 'black',

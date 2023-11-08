@@ -89,10 +89,9 @@ export default function AbaAreaTanqueSulfato() {
 
 
     return (
-        <SafeAreaView>
+        <View style={styles.SafeAreaView}>
+            <Header />
             <ScrollView style={styles.scrollView}>
-                <Header />
-
                 {Object.entries(areaData).map(([area, options]) => (
                     showArea[area] ? (
                         <View style={styles.containerContent} key={area}>
@@ -123,7 +122,7 @@ export default function AbaAreaTanqueSulfato() {
                 </View>
 
             </ScrollView>
-        </SafeAreaView>
+        </View>
     );
 }
 
@@ -131,6 +130,10 @@ export default function AbaAreaTanqueSulfato() {
 
 
 const styles = StyleSheet.create({
+    SafeAreaView: {
+        paddingTop: 30,
+        marginBottom: 60,
+    },
     containerContent: {
         width: 'auto',
         marginLeft: 10,

@@ -5,10 +5,25 @@ import DateTimePicker from '@react-native-community/datetimepicker';
 
 
 import OpcaoSelecao from '../../../components/OpcaoSelecao';
-import { Conteiner, QuestionContainer, ChoseOptions } from '../../../components/Layout';
+import {
+    Conteiner,
+    QuestionContainer,
+    ChoseOptions,
+    LayoutGrid,
+    LayoutGridRow,
+    LayoutGridCollumn,
+    LayoutGridContent,
+} from '../../../components/Layout';
 import Observacao from '../../../components/Observacao';
 import TextComponent from '../../../components/TextComponent';
-import CustomButton from '../../../components/CustomButton';
+
+import {
+    ConteinerAba,
+    ConteinerText,
+    ConteinerContent,
+    ConteinerChose,
+    Options
+} from '../../../components/LayoutSubAba'
 
 export default function AreaTanqueSulfato({ choices, setChoices, updateObservacao }) {
     const [text, setTextoAreaTanqueSulfato] = useState("");
@@ -29,6 +44,7 @@ export default function AreaTanqueSulfato({ choices, setChoices, updateObservaca
         regisProvetaAcido,
         regisEntSaiClorito,
         regisProvetaClorito,
+        tempoOperacao,
         vazaoEta,
         dosagemDioxido,
         vazaoDioxido,
@@ -38,18 +54,11 @@ export default function AreaTanqueSulfato({ choices, setChoices, updateObservaca
         lavadorGases,
     } = choices;
 
-    const [showPicker1, setShowPicker1] = useState(false);
     const [showPicker2, setShowPicker2] = useState(false);
     const [showPicker3, setShowPicker3] = useState(false);
 
-    const [tempoOperacao, setTempoOperacao] = useState(new Date());
     const [horaSensFluxoAcido, sethoraSensFluxoAcido] = useState(new Date());
     const [horaSensFluxoClorito, sethoraSensFluxoClorito] = useState(new Date());
-
-
-    const handleDateClick1 = () => {
-        setShowPicker1(true);
-    };
 
     const handleDateClick2 = () => {
         setShowPicker2(true);
@@ -57,12 +66,6 @@ export default function AreaTanqueSulfato({ choices, setChoices, updateObservaca
 
     const handleDateClick3 = () => {
         setShowPicker3(true);
-    };
-
-    const hTempoOperacao = (event, selectedDate) => {
-        const currentDate = selectedDate || tempoOperacao;
-        setShowPicker1(Platform.OS === 'ios'); // Para fechar o picker automaticamente em iOS
-        setTempoOperacao(currentDate);
     };
 
     const hSensFluxoAcido = (event, selectedDate) => {
@@ -110,6 +113,9 @@ export default function AreaTanqueSulfato({ choices, setChoices, updateObservaca
         setChoices({ ...choices, regisProvetaClorito: value });
     };
 
+    const setTempoOperacao = (value) => {
+        setChoices({ ...choices, tempoOperacao: value });
+    };
     const setVazaoEta = (value) => {
         setChoices({ ...choices, vazaoEta: value });
     };
@@ -163,10 +169,10 @@ export default function AreaTanqueSulfato({ choices, setChoices, updateObservaca
                 </ChoseOptions>
                 <Picker
                     selectedValue={modo}
-                    onValueChange={(itemValue) => setChoices({ ...choices, situacao: itemValue })}
+                    onValueChange={(itemValue) => setChoices({ ...choices, modo: itemValue })}
                     style={styles.Situacaopicker}
                 >
-                    <Picker.Item label="Situação:" />
+                    <Picker.Item label="Modo:" />
                     <Picker.Item label="Operando" value="Operando" />
                     <Picker.Item label="Desligado" value="Desligado" />
 
@@ -190,45 +196,35 @@ export default function AreaTanqueSulfato({ choices, setChoices, updateObservaca
             </QuestionContainer>
 
             <QuestionContainer style={styles.questionContainer}>
-                <View style={styles.OptionsBooster}>
-                    <View style={styles.Options}>
+                <ConteinerAba style={styles.conteinerAba}>
+                    <ConteinerText style={styles.conteinerText}>
                         <TextComponent style='textSubTitulo'>Booster</TextComponent>
-                    </View>
+                    </ConteinerText>
 
-                    <View style={styles.conteinerOptionsBooster}>
-                        <View style={styles.choses}>
-                            <View style={styles.subtitulo}>
-                                <TextComponent style='textQuestoes'>Rotâmetro</TextComponent>
-                            </View>
-                            <View style={styles.selectOption}>
+                    <ConteinerContent style={styles.conteinerOptionsBooster}>
+                        <ConteinerChose style={styles.conteinerChose}>
+                            <TextComponent style='textQuestoes'>Rotâmetro</TextComponent>
                                 <TextInput
                                     style={styles.inputBooster}
                                     placeholder="m³/h"
                                     value={rotametro}
                                     onChangeText={(number) => setRotametro(number)}
                                 />
-                            </View>
-                        </View>
+                        </ConteinerChose>
 
-                        <View style={styles.choses}>
-                            <View style={styles.subtitulo}>
-                                <TextComponent style='textQuestoes'>Monômetro</TextComponent>
-                            </View>
-                            <View style={styles.selectOption}>
+                        <ConteinerChose style={styles.conteinerChose}>
+                            <TextComponent style='textQuestoes'>Monômetro</TextComponent>
                                 <TextInput
                                     style={styles.inputBooster}
                                     placeholder="bar"
                                     value={monometro}
                                     onChangeText={(number) => setMonometro(number)}
                                 />
-                            </View>
-                        </View>
+                        </ConteinerChose>
 
-                        <View style={styles.choses}>
-                            <View style={styles.subtitulo}>
-                                <TextComponent style='textQuestoes'>Operação</TextComponent>
-                            </View>
-                            <View style={styles.selectOption}>
+                        <ConteinerChose style={styles.conteinerChose}>
+                            <TextComponent style='textQuestoes'>Operação</TextComponent>
+                            <LayoutGridRow style={styles.layoutGridRow}>
                                 <OpcaoSelecao
                                     value="A"
                                     selectedValue={operacaoBooster}
@@ -239,21 +235,21 @@ export default function AreaTanqueSulfato({ choices, setChoices, updateObservaca
                                     selectedValue={operacaoBooster}
                                     onValueChange={(value) => setOperacaoBooster(value)}
                                 />
-                            </View>
-                        </View>
-                    </View>
-                </View>
+                            </LayoutGridRow>
+                        </ConteinerChose>
+                    </ConteinerContent>
+                </ConteinerAba>
             </QuestionContainer>
 
             <QuestionContainer style={styles.questionContainer}>
-                <View style={styles.OptionsBombas}>
-                    <View style={styles.Options}>
+                <View style={styles.cardBombas}>
+                    <LayoutGridCollumn style={styles.layoutGridCollumn}>
                         <TextComponent style='textSubTitulo'>Bomba de Ácido em uso:</TextComponent>
-                    </View>
+                    </LayoutGridCollumn>
 
-                    <View style={styles.conteinerOptionsBomba}>
+                    <LayoutGridCollumn style={styles.layoutGridCollumn}>
                         <QuestionContainer style={styles.questionContainer}>
-                            <ChoseOptions style={styles.Options}>
+                            <ChoseOptions style={styles.ChoseOptions}>
                                 <TextComponent style='textQuestoes'>Registros de Entrada e saída abertos?</TextComponent>
                             </ChoseOptions>
 
@@ -271,7 +267,7 @@ export default function AreaTanqueSulfato({ choices, setChoices, updateObservaca
 
 
                         <QuestionContainer style={styles.questionContainer}>
-                            <ChoseOptions style={styles.Options}>
+                            <ChoseOptions style={styles.ChoseOptions}>
                                 <TextComponent style='textQuestoes'>Registros de Proveta Fechado?</TextComponent>
                             </ChoseOptions>
 
@@ -286,17 +282,17 @@ export default function AreaTanqueSulfato({ choices, setChoices, updateObservaca
                                 onValueChange={(value) => setRegisProvetaAcido(value)}
                             />
                         </QuestionContainer>
-                    </View>
+                    </LayoutGridCollumn>
                 </View>
             </QuestionContainer>
 
             <QuestionContainer style={styles.questionContainer}>
-                <View style={styles.OptionsBombas}>
-                    <View style={styles.Options}>
+                <View style={styles.cardBombas}>
+                    <LayoutGridCollumn style={styles.layoutGridCollumn}>
                         <TextComponent style='textSubTitulo'>Bomba de Clorito de Sódio em uso:</TextComponent>
-                    </View>
+                    </LayoutGridCollumn>
 
-                    <View style={styles.conteinerOptionsBomba}>
+                    <LayoutGridCollumn style={styles.layoutGridCollumn}>
                         <QuestionContainer style={styles.questionContainer}>
                             <ChoseOptions style={styles.Options}>
                                 <TextComponent style='textQuestoes'>Registros de Entrada e saída abertos?</TextComponent>
@@ -331,7 +327,7 @@ export default function AreaTanqueSulfato({ choices, setChoices, updateObservaca
                                 onValueChange={(value) => setRegisProvetaClorito(value)}
                             />
                         </QuestionContainer>
-                    </View>
+                    </LayoutGridCollumn>
                 </View>
             </QuestionContainer>
 
@@ -339,21 +335,13 @@ export default function AreaTanqueSulfato({ choices, setChoices, updateObservaca
                 <ChoseOptions style={styles.Options}>
                     <TextComponent style='textQuestoes'>Tempo de Operação</TextComponent>
                 </ChoseOptions>
-                <View style={styles.Button}>
-                    <Button
-                        title={tempoOperacao.toLocaleTimeString([('pt-BR')], { hour: '2-digit', minute: '2-digit' })}
-                        onPress={handleDateClick1}
-                    />
-                    {showPicker1 && (
-                        <DateTimePicker
-                            value={tempoOperacao}
-                            mode="time"
-                            is24Hour={true}
-                            display="spinner"
-                            onChange={hTempoOperacao}
-                        />
-                    )}
-                </View>
+
+                <TextInput
+                    style={styles.input}
+                    placeholder="min"
+                    value={tempoOperacao}
+                    onChangeText={(number) => setTempoOperacao(number)}
+                />
             </QuestionContainer>
 
             <QuestionContainer style={styles.questionContainer}>
@@ -409,16 +397,14 @@ export default function AreaTanqueSulfato({ choices, setChoices, updateObservaca
             </QuestionContainer>
 
             <QuestionContainer style={styles.questionContainer}>
-                <View style={styles.OptionsBooster}>
-                    <View style={styles.Options}>
+                <ConteinerAba style={styles.OptionsBooster}>
+                    <ConteinerText style={styles.Options}>
                         <TextComponent style='textSubTitulo'>Sensor de fluxo de ácido clorídrico</TextComponent>
-                    </View>
+                    </ConteinerText>
 
-                    <View style={styles.conteinerOptionsBooster}>
-                        <View style={styles.choses}>
-                            <View style={styles.subtitulo}>
-                                <TextComponent style='textQuestoes'>Horário</TextComponent>
-                            </View>
+                    <ConteinerContent style={styles.layoutGridRow}>
+                        <ConteinerChose style={styles.conteinerContent}>
+                            <TextComponent style='textQuestoes'>Horário</TextComponent>
                             <View style={styles.Button2}>
                                 <Button
                                     title={horaSensFluxoAcido.toLocaleTimeString([('pt-BR')], { hour: '2-digit', minute: '2-digit' })}
@@ -434,37 +420,31 @@ export default function AreaTanqueSulfato({ choices, setChoices, updateObservaca
                                     />
                                 )}
                             </View>
-                        </View>
+                        </ConteinerChose>
 
-                        <View style={styles.choses}>
-                            <View style={styles.subtitulo}>
-                                <TextComponent style='textQuestoes'>Leitura</TextComponent>
-                            </View>
-                            <View style={styles.selectOption}>
+                        <ConteinerChose style={styles.conteinerChose}>
+                            <TextComponent style='textQuestoes'>Leitura</TextComponent>
                                 <TextInput
                                     style={styles.inputBooster}
                                     placeholder=""
                                     value={leitSensFluxoAcido}
                                     onChangeText={(number) => setLeitSensFluxoAcido(number)}
                                 />
-                            </View>
-                        </View>
+                        </ConteinerChose>
 
-                    </View>
-                </View>
+                    </ConteinerContent>
+                </ConteinerAba>
             </QuestionContainer>
 
             <QuestionContainer style={styles.questionContainer}>
-                <View style={styles.OptionsBooster}>
-                    <View style={styles.Options}>
+                <ConteinerAba style={styles.OptionsBooster}>
+                    <ConteinerText style={styles.Options}>
                         <TextComponent style='textSubTitulo'>Sensor de fluxo de Clorito de Sódio</TextComponent>
-                    </View>
+                    </ConteinerText>
 
-                    <View style={styles.conteinerOptionsBooster}>
-                        <View style={styles.choses}>
-                            <View style={styles.subtitulo}>
-                                <TextComponent style='textQuestoes'>Horário</TextComponent>
-                            </View>
+                    <ConteinerContent style={styles.conteinerOptionsBooster}>
+                        <ConteinerChose style={styles.conteinerChose}>
+                            <TextComponent style='textQuestoes'>Horário</TextComponent>
                             <View style={styles.Button2}>
                                 <Button
                                     title={horaSensFluxoClorito.toLocaleTimeString([('pt-BR')], { hour: '2-digit', minute: '2-digit' })}
@@ -480,24 +460,20 @@ export default function AreaTanqueSulfato({ choices, setChoices, updateObservaca
                                     />
                                 )}
                             </View>
-                        </View>
+                        </ConteinerChose>
 
-                        <View style={styles.choses}>
-                            <View style={styles.subtitulo}>
-                                <TextComponent style='textQuestoes'>Leitura</TextComponent>
-                            </View>
-                            <View style={styles.selectOption}>
+                        <ConteinerChose style={styles.conteinerChose}>
+                            <TextComponent style='textQuestoes'>Leitura</TextComponent>
                                 <TextInput
                                     style={styles.inputBooster}
                                     placeholder=""
                                     value={leitSensFluxoClorito}
                                     onChangeText={(number) => setLeitSensFluxoClorito(number)}
                                 />
-                            </View>
-                        </View>
+                        </ConteinerChose>
 
-                    </View>
-                </View>
+                    </ConteinerContent>
+                </ConteinerAba>
             </QuestionContainer>
 
             <QuestionContainer style={styles.questionContainer}>
@@ -518,7 +494,6 @@ export default function AreaTanqueSulfato({ choices, setChoices, updateObservaca
 
             <TextComponent style='textQuestoes'>Observações:</TextComponent>
             <QuestionContainer style={styles.questionContainer}>
-
                 <Observacao value={text} onChange={handleObservacaoChange} />
             </QuestionContainer>
             {/* Repita o padrão para outras perguntas */}
@@ -527,15 +502,6 @@ export default function AreaTanqueSulfato({ choices, setChoices, updateObservaca
 };
 
 const styles = StyleSheet.create({
-    buttonText: {
-        fontSize: 18,
-        color: 'black',
-    },
-    conteinerSituacao: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        marginBottom: 10,
-    },
     Situacaopicker: {
         backgroundColor: '#0C5AA5',
         width: '30%',
@@ -544,58 +510,21 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         marginLeft: -55,
     },
-    pickerBooster: {
-        backgroundColor: '#0C5AA5',
-        width: '100%',
-        borderRadius: 10,
-        color: '#fff',
-        fontWeight: 'bold',
-        marginTop: 50,
-    },
     input: {
         width: '30%',
         marginLeft: -50,
+        marginVertical: 5,
         padding: 10,
         borderWidth: 1,
         borderColor: 'rgba(0, 0, 0, 0.2)',
         backgroundColor: '#fff',
         borderRadius: 10,
-    },
-    OptionsBooster: {
-        width: '100%',
-        backgroundColor: '#fff7',
-        padding: 5,
-        marginBottom: 20,
-    },
-    conteinerOptionsBooster: {
-        justifyContent: 'space-around',
-        flexDirection: 'row',
-        marginTop: 5,
-        padding: 15,
-        marginBottom: 15,
-
-    },
-    choses: {
-        width: '30%',
-        flexDirection: 'column',
-        backgroundColor: '#D2D2D2',
-        borderRadius: 5,
-        padding: 10,
-    },
-    selectOption: {
-        justifyContent: 'space-around',
-        fontSize: 20,
-        flexDirection: 'row',
-        // Estilos do texto da pergunta
-    },
-    Options: {
-        alignItems: 'center',
-        marginBottom: 10,
-    },
-    subtitulo: {
-        alignItems: 'center',
-        marginBottom: 10,
-    },
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 5,
+        },
+    },      
     inputBooster: {
         width: '100%',
         padding: 10,
@@ -609,21 +538,11 @@ const styles = StyleSheet.create({
             height: 5,
         },
     },
-    OptionsBombas: {
+    cardBombas: {
         width: '100%',
         backgroundColor: '#fff7',
-        padding: 5,
+        padding: 15,
         marginBottom: 20,
-    },
-    conteinerOptionsBomba: {
-        flexDirection: 'column',
-        marginTop: 5,
-        marginBottom: 15,
-        width: '100%'
-    },
-    Button: {
-        width: '30%',
-        marginLeft: -50,
     },
     Button2: {
         width: '100%',

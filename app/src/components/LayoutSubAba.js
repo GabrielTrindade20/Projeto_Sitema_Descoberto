@@ -68,6 +68,7 @@ const styles = StyleSheet.create({
         padding: 10,
         justifyContent: 'space-around',
         alignItems: 'center',
+        textAlign: 'center',
     },
     options: {
         width: '100%',

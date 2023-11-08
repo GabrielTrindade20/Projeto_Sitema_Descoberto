@@ -142,15 +142,6 @@ export default function CloradorGenerico({
 
 
 const styles = StyleSheet.create({
-    buttonText: {
-        fontSize: 18,
-        color: 'black',
-    },
-    conteinerSituacao: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        marginBottom: 10,
-    },
     Situacaopicker: {
         backgroundColor: '#0C5AA5',
         width: '30%',
@@ -158,25 +149,6 @@ const styles = StyleSheet.create({
         color: '#fff',
         fontWeight: 'bold',
         marginLeft: -55,
-    },
-    conteinerPiker: {
-        flexDirection: 'column',
-        width: '30%',
-        marginTop: 10,
-        marginBottom: 10,
-    },
-    questionContainerPiker: {
-        width: '100%',
-        flexDirection: 'row',
-        justifyContent: 'space-around',
-    },
-    picker: {
-        backgroundColor: '#0C5AA5',
-        width: '100%',
-        borderRadius: 10,
-        color: '#fff',
-        fontWeight: 'bold',
-
     },
     input: {
         width: '30%',
@@ -187,54 +159,6 @@ const styles = StyleSheet.create({
         borderColor: 'rgba(0, 0, 0, 0.2)',
         backgroundColor: '#fff',
         borderRadius: 10,
-        shadowColor: "#000",
-        shadowOffset: {
-            width: 0,
-            height: 5,
-        },
-    },
-    OptionsBooster: {
-        width: '100%',
-        backgroundColor: '#fff7',
-        padding: 5,
-        marginBottom: 20,
-    },
-    conteinerOptionsBooster: {
-        justifyContent: 'space-around',
-        flexDirection: 'row',
-        marginTop: 5,
-        padding: 15,
-        marginBottom: 15,
-
-    },
-    choses: {
-        width: '30%',
-        flexDirection: 'column',
-        backgroundColor: '#D2D2D2',
-        borderRadius: 5,
-        padding: 10,
-    },
-    selectOption: {
-        justifyContent: 'space-around',
-        fontSize: 20,
-        flexDirection: 'row',
-        // Estilos do texto da pergunta
-    },
-    Options: {
-        alignItems: 'center',
-        marginBottom: 10,
-    },
-    subtitulo: {
-        alignItems: 'center',
-        marginBottom: 10,
-    },
-    inputBooster: {
-        width: '100%',
-        padding: 10,
-        borderWidth: 1,
-        borderColor: 'rgba(0, 0, 0, 0.2)',
-        backgroundColor: '#fff',
-        borderRadius: 5,
         shadowColor: "#000",
         shadowOffset: {
             width: 0,
