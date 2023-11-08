@@ -48,9 +48,9 @@ export default function CheckList() {
     };
 
     return (
-        <SafeAreaView style={styles.SafeAreaView}>
+        <View style={styles.SafeAreaView}>
+            <Header />
             <ScrollView>
-                <Header />
                 <View>
                     <Text style={styles.title}>Check List Local</Text>
                     <View style={styles.Card}>
@@ -89,7 +89,7 @@ export default function CheckList() {
                         <TouchableOpacity onPress={navigateToAreaGeocalcio} style={styles.containerContent}>
                             <Text style={styles.local}>Geocálcio</Text>
                         </TouchableOpacity>
-                        
+
                         <TouchableOpacity onPress={navigateToTapq} style={styles.containerContent}>
                             <Text style={styles.local}>TAPQ</Text>
                         </TouchableOpacity>
@@ -97,11 +97,15 @@ export default function CheckList() {
                 </View>
 
             </ScrollView>
-        </SafeAreaView>
+        </View>
     );
 }
 
 const styles = StyleSheet.create({
+    SafeAreaView: {
+        paddingTop: 30,
+        marginBottom: 60,
+    },
     SafeAreaView: {
         paddingTop: 30
     },
@@ -126,12 +130,16 @@ const styles = StyleSheet.create({
         backgroundColor: '#85BBE3',
         marginLeft: 20,
         marginTop: 15,
+        color: '#000',
+        fontWeight: 'bold',
     },
     local: {
         fontSize: 20,
-        padding: 5,
+        padding: 10,
         marginTop: 10,
-        backgroundColor: '#D9D9D9',
+        backgroundColor: '#E9E9E9',
         borderRadius: 5,
+        color: '#000',
+        fontWeight: '200',
     },
 })

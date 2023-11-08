@@ -32,6 +32,9 @@ export default function AreaGeocalcio({ choices, setChoices, updateObservacao })
         setChoices({ ...choices, motor: value });
     };
 
+    const setVazamentoAgua = (value) => {
+        setChoices({ ...choices, vazamentoAgua: value });
+    };
     const setVazamentoSolucao = (value) => {
         setChoices({ ...choices, vazamentoSolucao: value });
     };
@@ -43,7 +46,6 @@ export default function AreaGeocalcio({ choices, setChoices, updateObservacao })
 
     return (
         <Conteiner style={styles.conteiner}>
-
             <QuestionContainer style={styles.questionContainer}>
                 <ChoseOptions style={styles.Options}>
                     <TextComponent style='textQuestoes'>Há vazamento de água?</TextComponent>
@@ -97,12 +99,12 @@ export default function AreaGeocalcio({ choices, setChoices, updateObservacao })
                     <TextComponent style='textQuestoes'>Motores em Uso</TextComponent>
                 </ChoseOptions>
                 <OpcaoSelecao
-                    value="A"
+                    value=" A   "
                     selectedValue={motor}
                     onValueChange={(value) => setMotor(value)}
                 />
                 <OpcaoSelecao
-                    value="B"
+                    value=" B    "
                     selectedValue={motor}
                     onValueChange={(value) => setMotor(value)}
                 />

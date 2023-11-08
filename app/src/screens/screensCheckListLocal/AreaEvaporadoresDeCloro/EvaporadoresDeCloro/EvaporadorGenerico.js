@@ -105,7 +105,7 @@ export default function CloradorGenerico({
                 </ChoseOptions>
                 <TextInput
                     style={styles.input}
-                    placeholder=""
+                    placeholder="ppm"
                     value={pressaoCloro}
                     onChangeText={(number) => setPressaoCloro(number)}
                 />
