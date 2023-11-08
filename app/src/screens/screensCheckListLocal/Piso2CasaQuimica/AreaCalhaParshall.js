@@ -11,8 +11,8 @@ export default function AreaCalhaParshall({ choices, setChoices, updateObservaca
 
     const handleObservacaoChange = (newText) => {
         setTextoAreaCalhaParshall(newText);
-        updateObservacao(newText);
-    }
+        updateObservacao('AreaCalhaParshall', newText);
+    };
 
     const { bombaAguaBruta,
         limpezaPreAlcalinizacao,
@@ -109,7 +109,6 @@ export default function AreaCalhaParshall({ choices, setChoices, updateObservaca
             <QuestionContainer style={styles.questionContainer}>
                 <Observacao value={text} onChange={handleObservacaoChange} />
             </QuestionContainer>
-            {/* Repita o padrão para outras perguntas */}
         </Conteiner>
     );
 }

@@ -14,12 +14,14 @@ import Observacao from '../../../components/Observacao';
 import TextComponent from '../../../components/TextComponent';
 
 export default function AreaPoli({ choices, setChoices, updateObservacao }) {
+    
     const [text, setTextoAreaPoli] = useState("");
-
-    const handleObservacaoChange = (newText) => {
+    
+    const TextObservacao = (newText) => {
         setTextoAreaPoli(newText);
-        updateObservacao(newText);
-    }
+        updateObservacao('AreaPoli', newText);
+        // Aqui, newText é o texto que mudou na área de observação
+    };
 
     const { iluminacaoBombas,
         aguaDiluicao,
@@ -137,7 +139,7 @@ export default function AreaPoli({ choices, setChoices, updateObservacao }) {
                 </ChoseOptions>
                 <Picker
                     selectedValue={alimentacaoAgua}
-                    onValueChange={(itemValue) => setChoices({ ...choices, situacao: itemValue })}
+                    onValueChange={(itemValue) => setChoices({ ...choices, alimentacaoAgua: itemValue })}
                     style={styles.Situacaopicker}
                 >
                     <Picker.Item label="Equipamento:" />
@@ -214,9 +216,8 @@ export default function AreaPoli({ choices, setChoices, updateObservacao }) {
 
             <TextComponent style='textQuestoes'>Observações:</TextComponent>
             <QuestionContainer style={styles.questionContainer}>
-                <Observacao value={text} onChange={handleObservacaoChange} />
+                <Observacao value={text} onChange={TextObservacao} />
             </QuestionContainer>
-            {/* Repita o padrão para outras perguntas */}
         </Conteiner >
     );
 }

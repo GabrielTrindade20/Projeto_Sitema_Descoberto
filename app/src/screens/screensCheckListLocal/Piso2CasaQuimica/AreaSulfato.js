@@ -16,8 +16,8 @@ export default function AreaSulfato({ choices, setChoices, updateObservacao }) {
 
     const handleObservacaoChange = (newText) => {
         setTextoAreaSulfato(newText);
-        updateObservacao(newText);
-    }
+        updateObservacao('AreaSulfato', newText);
+    };
 
     const { caixasolucao,
         calhaDeDosagem,
@@ -154,7 +154,6 @@ export default function AreaSulfato({ choices, setChoices, updateObservacao }) {
             <QuestionContainer style={styles.questionContainer}>
                 <Observacao value={text} onChange={handleObservacaoChange} />
             </QuestionContainer>
-            {/* Repita o padrão para outras perguntas */}
         </Conteiner >
     );
 }

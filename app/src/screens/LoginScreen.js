@@ -6,6 +6,7 @@ import Header from '../components/Header';
 import CustomButton from '../components/CustomButton';
 
 
+
 export default function LoginScreen({ navigation }) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -29,7 +30,7 @@ export default function LoginScreen({ navigation }) {
     };
 
     return (
-        <SafeAreaView style={styles.container}>
+        <SafeAreaView style={styles.SafeAreaView}>
             <Header />
 
             <View style={styles.card}>
@@ -66,16 +67,17 @@ export default function LoginScreen({ navigation }) {
 }
 
 const styles = StyleSheet.create({
-    container: {
+    SafeAreaView: {
         justifyContent: 'center',
         alignItems: 'center',
+        marginTop: 30,
     },
-
     card: {
         justifyContent: 'center',
+        marginTop: 20,
         alignItems: 'center',
-        backgroundColor: '#E7E7E7',
-        padding: 10,
+        backgroundColor: '#E1E1E1',
+        padding: 5,
         width: '70%',
         borderRadius: 20,
     },
@@ -89,14 +91,15 @@ const styles = StyleSheet.create({
 
     label: {
         width: '100%', // Ajuste o tamanho conforme necessário
-        fontSize: 20,
+        fontSize: 23,
         alignItems: 'flex-start',
         marginLeft: 30,
+        fontWeight: 'bold',
     },
 
     input: {
         width: '100%', // Ajuste o tamanho conforme necessário
-        marginVertical: 5,
+        marginVertical: 3,
         padding: 10,
         borderWidth: 1,
         borderColor: 'rgba(0, 0, 0, 0.2)',

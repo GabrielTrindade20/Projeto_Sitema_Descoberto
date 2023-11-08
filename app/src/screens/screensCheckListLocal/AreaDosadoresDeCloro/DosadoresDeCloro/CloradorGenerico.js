@@ -97,13 +97,11 @@ export default function CloradorGenerico({
                     <TextComponent style='textQuestoes'>Rotâmetro Limpo?</TextComponent>
                 </ChoseOptions>
                 <OpcaoSelecao
-                    label="Rotâmetro Limpo?"
                     value="Sim"
                     selectedValue={limpesaRotametro}
                     onValueChange={(value) => setLimpesaRotametro(value)}
                 />
                 <OpcaoSelecao
-                    label="Rotâmetro Limpo?"
                     value="Não"
                     selectedValue={limpesaRotametro}
                     onValueChange={(value) => setLimpesaRotametro(value)}

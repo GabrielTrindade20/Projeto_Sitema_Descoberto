@@ -77,13 +77,11 @@ export default function AreaFluor({ choices, setChoices, updateObservacao }) {
                     <TextComponent style='textQuestoes'>Tanque de neutralização limpo?</TextComponent>
                 </ChoseOptions>
                 <OpcaoSelecao
-                    label="Tanque de neutralização limpo?"
                     value="Sim"
                     selectedValue={tanqueNeutralizacao}
                     onValueChange={(value) => setTanqueNeutralizacao(value)}
                 />
                 <OpcaoSelecao
-                    label="Tanque de neutralização limpo?"
                     value="Não"
                     selectedValue={tanqueNeutralizacao}
                     onValueChange={(value) => setTanqueNeutralizacao(value)}
@@ -95,13 +93,11 @@ export default function AreaFluor({ choices, setChoices, updateObservacao }) {
                     <TextComponent style='textQuestoes'>Registros de alimentação dos silos fechados?</TextComponent>
                 </ChoseOptions>
                 <OpcaoSelecao
-                    label="Registros de alimentação dos silos fechados?"
                     value="Sim"
                     selectedValue={registroAlimentacao}
                     onValueChange={(value) => setRegistroAlimentacao(value)}
                 />
                 <OpcaoSelecao
-                    label="Registros de alimentação dos silos fechados?"
                     value="Não"
                     selectedValue={registroAlimentacao}
                     onValueChange={(value) => setRegistroAlimentacao(value)}
@@ -113,13 +109,11 @@ export default function AreaFluor({ choices, setChoices, updateObservacao }) {
                     <TextComponent style='textQuestoes'>Registro da área de contenção fechados?</TextComponent>
                 </ChoseOptions>
                 <OpcaoSelecao
-                    label="Registro da área de contenção fechados?"
                     value="Sim"
                     selectedValue={areaContencao}
                     onValueChange={(value) => setAreaContencao(value)}
                 />
                 <OpcaoSelecao
-                    label="Registro da área de contenção fechados?"
                     value="Não"
                     selectedValue={areaContencao}
                     onValueChange={(value) => setAreaContencao(value)}
@@ -131,13 +125,11 @@ export default function AreaFluor({ choices, setChoices, updateObservacao }) {
                     <TextComponent style='textQuestoes'>Área de contenção limpa?</TextComponent>
                 </ChoseOptions>
                 <OpcaoSelecao
-                    label="Área de contenção limpa?"
                     value="Sim"
                     selectedValue={limpezaAreaContecao}
                     onValueChange={(value) => setLimpezaAreaContecao(value)}
                 />
                 <OpcaoSelecao
-                    label="Área de contenção limpa?"
                     value="Não"
                     selectedValue={limpezaAreaContecao}
                     onValueChange={(value) => setLimpezaAreaContecao(value)}
@@ -149,13 +141,11 @@ export default function AreaFluor({ choices, setChoices, updateObservacao }) {
                     <TextComponent style='textQuestoes'>Sala de dosagem limpa?</TextComponent>
                 </ChoseOptions>
                 <OpcaoSelecao
-                    label="Sala de dosagem limpa?"
                     value="Sim"
                     selectedValue={salaDosagem}
                     onValueChange={(value) => setSalaDosagem(value)}
                 />
                 <OpcaoSelecao
-                    label="Sala de dosagem limpa?"
                     value="Não"
                     selectedValue={salaDosagem}
                     onValueChange={(value) => setSalaDosagem(value)}
@@ -167,13 +157,11 @@ export default function AreaFluor({ choices, setChoices, updateObservacao }) {
                     <TextComponent style='textQuestoes'>Há vazamentos?</TextComponent>
                 </ChoseOptions>
                 <OpcaoSelecao
-                    label="Há vazamentos?"
                     value="Sim"
                     selectedValue={vazamentos}
                     onValueChange={(value) => setVazamentos(value)}
                 />
                 <OpcaoSelecao
-                    label="Há vazamentos?"
                     value="Não"
                     selectedValue={vazamentos}
                     onValueChange={(value) => setVazamentos(value)}
@@ -185,13 +173,11 @@ export default function AreaFluor({ choices, setChoices, updateObservacao }) {
                     <TextComponent style='textQuestoes'>Iluminação área ok?</TextComponent>
                 </ChoseOptions>
                 <OpcaoSelecao
-                    label="Iluminação área ok?"
                     value="Sim"
                     selectedValue={iluminacaoArea}
                     onValueChange={(value) => setIluminacaoArea(value)}
                 />
                 <OpcaoSelecao
-                    label="Iluminação área ok?"
                     value="Não"
                     selectedValue={iluminacaoArea}
                     onValueChange={(value) => setIluminacaoArea(value)}
@@ -203,13 +189,11 @@ export default function AreaFluor({ choices, setChoices, updateObservacao }) {
                     <TextComponent style='textQuestoes'>Registro de água para os silos fechados?</TextComponent>
                 </ChoseOptions>
                 <OpcaoSelecao
-                    label="Registro de água para os silos fechados?"
                     value="Sim"
                     selectedValue={registroAgua}
                     onValueChange={(value) => setRegistroAgua(value)}
                 />
                 <OpcaoSelecao
-                    label="Registro de água para os silos fechados?"
                     value="Não"
                     selectedValue={registroAgua}
                     onValueChange={(value) => setRegistroAgua(value)}
@@ -221,13 +205,11 @@ export default function AreaFluor({ choices, setChoices, updateObservacao }) {
                     <TextComponent style='textQuestoes'>A calha de contenção está limpa?</TextComponent>
                 </ChoseOptions>
                 <OpcaoSelecao
-                    label="A calha de contenção está limpa?"
                     value="Sim"
                     selectedValue={calhaContencao}
                     onValueChange={(value) => setCalhaContencao(value)}
                 />
                 <OpcaoSelecao
-                    label="A calha de contenção está limpa?"
                     value="Não"
                     selectedValue={calhaContencao}
                     onValueChange={(value) => setCalhaContencao(value)}
@@ -239,13 +221,11 @@ export default function AreaFluor({ choices, setChoices, updateObservacao }) {
                     <TextComponent style='textQuestoes'>Funcionamento do chuveiro de emergência ok?</TextComponent>
                 </ChoseOptions>
                 <OpcaoSelecao
-                    label="Funcionamento do chuveiro de emergência ok?"
                     value="Sim"
                     selectedValue={chuveiroEmergencia}
                     onValueChange={(value) => setChuveiroEmergencia(value)}
                 />
                 <OpcaoSelecao
-                    label="Funcionamento do chuveiro de emergência ok?"
                     value="Não"
                     selectedValue={chuveiroEmergencia}
                     onValueChange={(value) => setChuveiroEmergencia(value)}
@@ -257,6 +237,7 @@ export default function AreaFluor({ choices, setChoices, updateObservacao }) {
             </QuestionContainer>
             {/* Repita o padrão para outras perguntas */}
         </Conteiner>
+        
     );
 }
 

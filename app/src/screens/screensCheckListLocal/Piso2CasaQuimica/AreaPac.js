@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { StyleSheet } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 
+
 import OpcaoSelecao from '../../../components/OpcaoSelecao';
 import {
     Conteiner,
@@ -25,8 +26,8 @@ export default function AreaPac({ choices, setChoices, updateObservacao }) {
 
     const handleObservacaoChange = (newText) => {
         setTextoAreaPac(newText);
-        updateObservacao(newText);
-    }
+        updateObservacao('AreaPac', newText);
+    };
 
 
     const {
@@ -39,6 +40,7 @@ export default function AreaPac({ choices, setChoices, updateObservacao }) {
         DescargaPac,
         TranferenciaPac,
     } = choices;
+
 
     const setIluminacaoBombas = (value) => {
         setChoices({ ...choices, iluminacaoBombas: value });
@@ -205,7 +207,6 @@ export default function AreaPac({ choices, setChoices, updateObservacao }) {
                 <Observacao value={text} onChange={handleObservacaoChange} />
             </QuestionContainer>
 
-            {/* Repita o padrão para outras perguntas */}
         </Conteiner>
     );
 }

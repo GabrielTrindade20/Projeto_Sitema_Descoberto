@@ -12,11 +12,13 @@ import CustomButton from '../../../components/CustomButton';
 
 export default function AbaPiso2() {
 
+
     const [observacoes, setObservacoes] = useState({});
     const updateObservacao = (area, observacao) => {
         setObservacoes({ ...observacoes, [area]: observacao });
     }
 
+    //inteira todas as áreas e prepara os dados de cada área para enviar para o servidor
     async function handleEnviar() {
         let validationFailed = false;
 
@@ -26,6 +28,7 @@ export default function AbaPiso2() {
                 observacao: observacoes[area],
             };
 
+            //Caso a área pac esteja em operação
             if (area === 'AreaPac' && areaData.AreaPac.situacao === 'Operando') {
                 if (!checkAllOptionsSelected(areaData.AreaPac)) {
                     console.error('Você deve selecionar todas as opções na ÁreaPac quando a situação é Operando.');
@@ -34,7 +37,7 @@ export default function AbaPiso2() {
                 }
             }
 
-            // Agora envie os dados para o servidor
+            // prepara os dados
             await enviarDadosParaServidor(data, area.toLowerCase());
         }
 
@@ -81,7 +84,6 @@ export default function AbaPiso2() {
             iluminacaoPiso2: null,
             calhaAplicacao: null,
             calhaDosagemSolucao: null,
-            // ... outras opções
         },
         AreaSulfato: {
             caixasolucao: null,
@@ -90,7 +92,6 @@ export default function AbaPiso2() {
             iluminacaoBombas: null,
             limpezaLocal: null,
             vazamentoTubulacoes: null,
-            // ... outras opções
         },
         AreaPac: {
             situacao: null,
@@ -101,7 +102,6 @@ export default function AbaPiso2() {
             limpezaEquipamentos: null,
             DescargaPac: null,
             TranferenciaPac: null,
-            // ... outras opções
         },
         AreaCalhaParshall: {
             bombaAguaBruta: null,
@@ -109,24 +109,32 @@ export default function AbaPiso2() {
             bombaAguaCoagulada: null,
             analizadorChemtrac: null,
         }
-        // Adicione outras áreas conforme necessário
     });
+
+    const areaNames = {
+        AreaPoli: 'Área Polieletrolito',
+        AreaSulfato: 'Área Sulfato',
+        AreaPac: 'Área Pac',
+        AreaCalhaParshall: 'Área Calha Parshall',
+    };
 
     const [showArea, setShowArea] = useState({
         AreaPoli: false,
         AreaSulfato: false,
         AreaPac: false,
         AreaCalhaParshall: false,
-        // Defina outras áreas aqui como 'true' se você quiser exibi-las inicialmente.
     });
 
+    // Inverte a visibilidade da área clicada
     const toggleArea = (area) => {
         setShowArea({
             ...showArea,
-            [area]: !showArea[area], // Inverte a visibilidade da área clicada
+            [area]: !showArea[area],
         });
     };
 
+
+    // ⇊ cria a visibilidade das áreas ⇊
     const [showAreaPoli, setShowAreaPoli] = useState(true);
     const toggleAreaPoli = () => {
         setShowAreaPoli(!showAreaPoli);
@@ -149,20 +157,20 @@ export default function AbaPiso2() {
 
 
     return (
-        <SafeAreaView>
+        <View style={styles.SafeAreaView}>
+            <Header />
             <ScrollView style={styles.scrollView}>
-                <Header />
 
                 {Object.entries(areaData).map(([area, options]) => (
                     showArea[area] ? (
                         <View style={styles.containerContent} key={area}>
                             <TouchableOpacity onPress={() => toggleArea(area)}>
-                                <Text style={styles.title}>Área {area}</Text>
+                                <Text style={styles.title}>{areaNames[area]}</Text>
                             </TouchableOpacity>
                             <View style={styles.local}>
                                 {area === 'AreaPoli' && (
                                     <AreaPoli
-                                        key={area} // Adicione a chave aqui
+                                        key={area}
                                         choices={options}
                                         setChoices={(newChoices) => setAreaData({ ...areaData, [area]: newChoices })}
                                         updateObservacao={(newObservacao) => updateObservacao(area, newObservacao)}
@@ -170,7 +178,7 @@ export default function AbaPiso2() {
                                 )}
                                 {area === 'AreaSulfato' && (
                                     <AreaSulfato
-                                        key={area} // Adicione a chave aqui
+                                        key={area}
                                         choices={options}
                                         setChoices={(newChoices) => setAreaData({ ...areaData, [area]: newChoices })}
                                         updateObservacao={(newObservacao) => updateObservacao(area, newObservacao)}
@@ -178,7 +186,7 @@ export default function AbaPiso2() {
                                 )}
                                 {area === 'AreaPac' && (
                                     <AreaPac
-                                        key={area} // Adicione a chave aqui
+                                        key={area}
                                         choices={options}
                                         setChoices={(newChoices) => setAreaData({ ...areaData, [area]: newChoices })}
                                         updateObservacao={(newObservacao) => updateObservacao(area, newObservacao)}
@@ -186,7 +194,7 @@ export default function AbaPiso2() {
                                 )}
                                 {area === 'AreaCalhaParshall' && (
                                     <AreaCalhaParshall
-                                        key={area} // Adicione a chave aqui
+                                        key={area}
                                         choices={options}
                                         setChoices={(newChoices) => setAreaData({ ...areaData, [area]: newChoices })}
                                         updateObservacao={(newObservacao) => updateObservacao(area, newObservacao)}
@@ -196,7 +204,7 @@ export default function AbaPiso2() {
                         </View>
                     ) : (
                         <TouchableOpacity key={area} onPress={() => toggleArea(area)}>
-                            <Text style={styles.title}>Área {area}</Text>
+                            <Text style={styles.title}>{areaNames[area]}</Text>
                         </TouchableOpacity>
                     )
                 ))}
@@ -206,7 +214,7 @@ export default function AbaPiso2() {
                 </View>
 
             </ScrollView>
-        </SafeAreaView>
+        </View>
     );
 }
 
@@ -214,6 +222,10 @@ export default function AbaPiso2() {
 
 
 const styles = StyleSheet.create({
+    SafeAreaView: {
+        paddingTop: 30,
+        marginBottom: 60,
+    },
     containerContent: {
         width: 'auto',
         marginLeft: 10,

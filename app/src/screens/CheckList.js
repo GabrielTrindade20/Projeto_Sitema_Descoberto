@@ -48,10 +48,9 @@ export default function CheckList() {
     };
 
     return (
-        <SafeAreaView>
+        <SafeAreaView style={styles.SafeAreaView}>
             <ScrollView>
                 <Header />
-
                 <View>
                     <Text style={styles.title}>Check List Local</Text>
                     <View style={styles.Card}>
@@ -103,6 +102,9 @@ export default function CheckList() {
 }
 
 const styles = StyleSheet.create({
+    SafeAreaView: {
+        paddingTop: 30
+    },
     Card: {
         width: '92%',
         marginLeft: 30,

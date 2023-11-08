@@ -1,17 +1,18 @@
 import React from 'react';
-import { View, Text, StyleSheet, Image, SafeAreaView } from 'react-native';
+import { View, Text, StyleSheet, Image } from 'react-native';
 
 const Header = () => {
+
+  
   return (
-    <SafeAreaView style={styles.header}>
+    <View style={styles.header}>
       <Image
         source={require('../assets/imagens/Logo_Caesb.png')}
         style={styles.logo}
       />
       <Text style={styles.titulo}>SISTEMA DESCOBERTO</Text>
-
       <View />
-    </SafeAreaView>
+    </View>
   );
 };
 
@@ -21,22 +22,21 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'space-around',
     backgroundColor: '#0C5AA5',
-    height: 80, // Altura do cabeçalho
+    height: 50, // Altura do cabeçalho
     paddingHorizontal: 50,
     width: '100%',
-    marginBottom: 20,
-
+    position: 'sticky',
+    top: 0,
+    zIndex: 999, // Define a camada do cabeçalho para aparecer acima dos demais conteúdos
   },
   logo: {
-    alignItems: 'flex-start',
-    width: 40, // Largura da imagem
-    height: 40, // Altura da imagem
+    width: 30, // Largura da imagem
+    height: 30, // Altura da imagem
   },
   titulo: {
-    fontSize: 25, // Tamanho da fonte do nome do aplicativo
+    fontSize: 20, // Tamanho da fonte do nome do aplicativo
     fontWeight: 'bold', // Peso da fonte
     color: '#fff', // Cor do texto
-    paddingRight: 50,
   },
 });
 

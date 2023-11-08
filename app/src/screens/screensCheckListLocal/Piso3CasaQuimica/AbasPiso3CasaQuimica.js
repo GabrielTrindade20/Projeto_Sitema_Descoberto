@@ -106,9 +106,9 @@ export default function AbaPiso3() {
 
 
     return (
-        <SafeAreaView>
+        <View style={styles.SafeAreaView}>
+            <Header />
             <ScrollView style={styles.scrollView}>
-                <Header />
 
                 {Object.entries(areaData).map(([area, options]) => (
                     showArea[area] ? (
@@ -140,7 +140,7 @@ export default function AbaPiso3() {
                 </View>
 
             </ScrollView>
-        </SafeAreaView>
+        </View>
     );
 }
 
@@ -148,6 +148,10 @@ export default function AbaPiso3() {
 
 
 const styles = StyleSheet.create({
+    SafeAreaView: {
+        paddingTop: 30,
+        marginBottom: 60,
+    },
     containerContent: {
         width: 'auto',
         marginLeft: 10,
@@ -170,27 +174,12 @@ const styles = StyleSheet.create({
         borderBottomEndRadius: 10,
         borderBottomStartRadius: 10,
     },
-    scrollView: {
-        flexGrow: 1,
-    },
+
 
     Button: {
         width: '100%',
         alignItems: 'center',
         padding: 10,
 
-    },
-    errorMessageContainer: {
-        backgroundColor: '#ff0000', // Cor de fundo vermelha
-        padding: 10,
-        alignItems: 'center',
-        justifyContent: 'center',
-        Button: 0,
-        left: 0,
-        right: 0,
-    },
-    errorMessageText: {
-        color: '#ffffff', // Cor do texto branca
-        fontSize: 20,
     },
 });
