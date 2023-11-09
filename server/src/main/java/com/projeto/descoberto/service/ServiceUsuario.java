@@ -20,11 +20,14 @@ public class ServiceUsuario {
 			if (usuarioRepository.findByEmail(user.getEmail()) != null) {
 				throw new EmailExistsException("Existe um email cadastrado para :" + user.getEmail());
 			}
-			user.setSenha(Util.md5(user.getToken()));
+			System.out.println("Senha recebida para criptografia: " + user.getSenha());
+			String senhaCriptografada = Util.md5(user.getSenha());
+			System.out.println("Senha criptografada: " + senhaCriptografada);
+			user.setSenha(senhaCriptografada);
+			usuarioRepository.save(user);
 		} catch (Exception e) {
 			throw new CriptoExistsException("Erro na criptografia da senha!");
 		}
-		usuarioRepository.save(user);
 	}
 
 	public Usuario loginUser(String email, String senha) throws Exception {

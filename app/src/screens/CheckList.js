@@ -1,78 +1,69 @@
-import React from 'react';
-import { View, Text, TouchableOpacity, SafeAreaView, StyleSheet, ScrollView } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, TouchableOpacity, StyleSheet, Tabs, ScrollView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 import Header from '../components/Header';
 
+import CheckListLocal from './CheckListLocal';
+import CheckListSistema from './CheckListSistema'
+
 export default function CheckList() {
-    const navigation = useNavigation();
+    const [showCheckListLocal, setShowCheckListLocal] = useState(false);
+    const [showCheckListSistema, setShowCheckListSistema] = useState(false);
 
-    const navigateToPiso2 = () => {
-        navigation.navigate('Piso2CasaQuimica');
+    const toggleCheckListLocal = () => {
+        setShowCheckListLocal(!showCheckListLocal);
+        setShowCheckListSistema(false); // Certifique-se de desabilitar o outro componente ao clicar em um
     };
 
-    const navigateToPiso3 = () => {
-        navigation.navigate('Piso3CasaQuimica');
+    const toggleCheckListSistema = () => {
+        setShowCheckListSistema(!showCheckListSistema);
+        setShowCheckListLocal(false); // Certifique-se de desabilitar o outro componente ao clicar em um
     };
+
+    
 
     return (
-        <SafeAreaView>
-            <ScrollView>
-                <Header />
+        <View style={styles.SafeAreaView}>
+            <Header />
+            <ScrollView style={styles.scrollView}>
+                <View style={styles.containerContent}>
+                    <TouchableOpacity onPress={toggleCheckListLocal}>
+                        <Text style={styles.title}>Check List dos Locais</Text>
+                    </TouchableOpacity>
 
-                <View>
-                    <Text style={styles.title}>Check List Local</Text>
-                    <View style={styles.Card}>
-                        <TouchableOpacity onPress={navigateToPiso2} style={styles.containerContent}>
-                            <Text style={styles.local}>2º Piso - Casa Química I</Text>
-                        </TouchableOpacity>
+                    <View style={styles.local}>
+                        {showCheckListLocal && (
+                            <CheckListLocal />
+                        )}
+                    </View>
 
-                        <TouchableOpacity onPress={navigateToPiso3} style={styles.containerContent}>
-                            <Text style={styles.local}>3º Piso - Casa Química I</Text>
-                        </TouchableOpacity>
+                    <TouchableOpacity onPress={toggleCheckListSistema}>
+                        <Text style={styles.title}>Check List dos Sistemas</Text>
+                    </TouchableOpacity>
 
-                        <TouchableOpacity onPress={navigateToPiso2} style={styles.containerContent}>
-                            <Text style={styles.local}>Área Fluor</Text>
-                        </TouchableOpacity>
-
-                        <TouchableOpacity onPress={navigateToPiso2} style={styles.containerContent}>
-                            <Text style={styles.local}>Área Tanques de Sulfato</Text>
-                        </TouchableOpacity>
-
-                        <TouchableOpacity onPress={navigateToPiso2} style={styles.containerContent}>
-                            <Text style={styles.local}>Área Dioxido de Cloro</Text>
-                        </TouchableOpacity>
-
-                        <TouchableOpacity onPress={navigateToPiso2} style={styles.containerContent}>
-                            <Text style={styles.local}>Área Geocalcio</Text>
-                        </TouchableOpacity>
-
-                        <TouchableOpacity onPress={navigateToPiso2} style={styles.containerContent}>
-                            <Text style={styles.local}>Área Dosadores de Cloro</Text>
-                        </TouchableOpacity>
-
-                        <TouchableOpacity onPress={navigateToPiso2} style={styles.containerContent}>
-                            <Text style={styles.local}>Área Evaporadores de Cloro</Text>
-                        </TouchableOpacity>
-
-                        <TouchableOpacity onPress={navigateToPiso2} style={styles.containerContent}>
-                            <Text style={styles.local}>TAPQ</Text>
-                        </TouchableOpacity>
+                    <View style={styles.local}>
+                        {showCheckListSistema && (
+                            <CheckListSistema />
+                        )}
                     </View>
                 </View>
-
             </ScrollView>
-        </SafeAreaView>
+        </View>
     );
 }
 
 const styles = StyleSheet.create({
+    SafeAreaView: {
+        paddingTop: 30,
+        marginBottom: 60,
+    },
     Card: {
         width: '92%',
         marginLeft: 30,
         borderBottomEndRadius: 10,
         borderBottomStartRadius: 10,
-        backgroundColor: '#C5C4C4',
+        // backgroundColor: '#C5C4C4',
     },
     containerContent: {
         width: 'auto',
@@ -90,10 +81,10 @@ const styles = StyleSheet.create({
         marginTop: 15,
     },
     local: {
-        fontSize: 20,
-        padding: 5,
-        marginTop: 10,
-        backgroundColor: '#D9D9D9',
-        borderRadius: 5,
+        backgroundColor: '#C5C4C4',
+        width: '92%',
+        marginLeft: 30,
+        borderBottomEndRadius: 10,
+        borderBottomStartRadius: 10,
     },
 })

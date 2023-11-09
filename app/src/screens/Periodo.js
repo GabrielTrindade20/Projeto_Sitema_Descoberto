@@ -7,13 +7,13 @@ import { useDispatch } from 'react-redux';
 import Header from '../components/Header';
 import CustomButton from '../components/CustomButton';
 import RadioButton from '../components/BotaoRadio';
+import OpcaoSelecao from '../components/OpcaoSelecao';
+
 
 export default function PeriodoScreen({ navigation }) {
     const [data, setData] = useState(new Date());
-    const [turno, setTurno] = useState('');
+    const [turno, setTurno] = useState('Diurno');
     const [show, setShow] = useState(false);
-    const [mode, setMode] = useState('date');
-    const dispatch = useDispatch();
 
     const setDate = (event, date) => {
         if (event.type === 'set') {
@@ -28,7 +28,7 @@ export default function PeriodoScreen({ navigation }) {
 
     const handlePeriodo = async () => {
         try {
-            const response = await axios.post('http://192.168.1.9:8080/api/periodo', {
+            const response = await axios.post('http://192.168.1.13:8080/api/periodo', {
                 data: data,
                 turno: turno,
             });
@@ -45,15 +45,11 @@ export default function PeriodoScreen({ navigation }) {
     };
 
     return (
-        <SafeAreaView style={styles.container}>
+        <SafeAreaView style={styles.SafeAreaView}>
             <Header />
 
             <View style={styles.card}>
                 <View style={styles.view}>
-                    <Text style={styles.label}>
-                        Data:
-                    </Text>
-
                     <View style={styles.containerData}>
                         <View style={styles.containerBotao}>
                             <Button title="Selecione a Data" onPress={() => showMode(true)} />
@@ -80,12 +76,19 @@ export default function PeriodoScreen({ navigation }) {
                 </View>
 
                 <View style={styles.view}>
-                    <Text style={styles.label}>Turno</Text>
-                    <RadioButton
-                        options={['Diurno', 'Noturno']}
-                        selected={turno}
-                        onChangeSelect={(opt) => setTurno(opt)}
-                    />
+                    <Text style={styles.label}>Turno:</Text>
+                    <View style={styles.opcoes}>
+                        <OpcaoSelecao
+                            value="Diurno"
+                            selectedValue={turno}
+                            onValueChange={setTurno}
+                        />
+                        <OpcaoSelecao
+                            value="Noturno"
+                            selectedValue={turno}
+                            onValueChange={setTurno}
+                        />
+                    </View>
                 </View>
 
                 <CustomButton title="Entrar" onPress={handlePeriodo} />
@@ -96,16 +99,16 @@ export default function PeriodoScreen({ navigation }) {
 
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
+    SafeAreaView: {
         justifyContent: 'center',
         alignItems: 'center',
+        marginTop: 30,
     },
-
     card: {
         justifyContent: 'center',
+        marginTop: 20,
         alignItems: 'center',
-        backgroundColor: '#E7E7E7',
+        backgroundColor: '#E1E1E1',
         padding: 10,
         width: '70%',
         borderRadius: 20,
@@ -116,13 +119,23 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         marginTop: 5,
+        flexDirection: 'column',
+    },
+    opcoes: {
+        width: '100%',
+        justifyContent: 'space-evenly',
+        alignItems: 'center',
+        marginTop: 5,
+        flexDirection: 'row',
     },
 
     label: {
         width: '100%', // Ajuste o tamanho conforme necessário
-        fontSize: 20,
+        fontSize: 23,
         alignItems: 'flex-start',
         marginLeft: 30,
+        fontWeight: 'bold',
+        marginVertical: 2,
     },
 
     input: {
@@ -144,7 +157,6 @@ const styles = StyleSheet.create({
         width: '100%',
         borderRadius: 10, // Borda arredondada
         alignItems: 'center',
-
     },
 
     containerBotao: {
