@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import CheckList from '../screens/CheckList';
+import CheckList from '../screens/CheckListLocal';
 import CheckListLocal from '../screens/screensCheckListLocal/CheckListLocal';
 
 

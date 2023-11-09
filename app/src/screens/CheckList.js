@@ -1,101 +1,53 @@
-import React from 'react';
-import { View, Text, TouchableOpacity, SafeAreaView, StyleSheet, ScrollView } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, TouchableOpacity, StyleSheet, Tabs, ScrollView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 import Header from '../components/Header';
 
+import CheckListLocal from './CheckListLocal';
+import CheckListSistema from './CheckListSistema'
+
 export default function CheckList() {
-    const navigation = useNavigation();
+    const [showCheckListLocal, setShowCheckListLocal] = useState(false);
+    const [showCheckListSistema, setShowCheckListSistema] = useState(false);
 
-    const navigateToPiso2CasaQuimica = () => {
-        navigation.navigate('Piso2CasaQuimica');
+    const toggleCheckListLocal = () => {
+        setShowCheckListLocal(!showCheckListLocal);
+        setShowCheckListSistema(false); // Certifique-se de desabilitar o outro componente ao clicar em um
     };
 
-    const navigateToPiso3CasaQuimica = () => {
-        navigation.navigate('Piso3CasaQuimica');
+    const toggleCheckListSistema = () => {
+        setShowCheckListSistema(!showCheckListSistema);
+        setShowCheckListLocal(false); // Certifique-se de desabilitar o outro componente ao clicar em um
     };
 
-    const navigateToAreaFluor = () => {
-        navigation.navigate('AreaFluor');
-    };
-
-    const navigateToDosadoresCloro = () => {
-        navigation.navigate('DosadoresCloro');
-    };
-
-    const navigateToAreaTanqueSulfato = () => {
-        navigation.navigate('AreaTanqueSulfato');
-    };
-
-    const navigateToClimaTempo = () => {
-        navigation.navigate('ClimaTempo');
-    };
-
-    const navigateToAreaDioxidoCloro = () => {
-        navigation.navigate('AreaDioxidoCloro');
-    };
-
-    const navigateToEvaporadoresCloro = () => {
-        navigation.navigate('EvaporadoresCloro');
-    };
-
-    const navigateToAreaGeocalcio = () => {
-        navigation.navigate('AreaGeocalcio');
-    };
-
-    const navigateToTapq = () => {
-        navigation.navigate('Tapq');
-    };
+    
 
     return (
         <View style={styles.SafeAreaView}>
             <Header />
-            <ScrollView>
-                <View>
-                    <Text style={styles.title}>Check List Local</Text>
-                    <View style={styles.Card}>
-                        <TouchableOpacity onPress={navigateToPiso2CasaQuimica} style={styles.containerContent}>
-                            <Text style={styles.local}>2º Piso - Casa Química I</Text>
-                        </TouchableOpacity>
+            <ScrollView style={styles.scrollView}>
+                <View style={styles.containerContent}>
+                    <TouchableOpacity onPress={toggleCheckListLocal}>
+                        <Text style={styles.title}>Check List dos Locais</Text>
+                    </TouchableOpacity>
 
-                        <TouchableOpacity onPress={navigateToPiso3CasaQuimica} style={styles.containerContent}>
-                            <Text style={styles.local}>3º Piso - Casa Química I</Text>
-                        </TouchableOpacity>
+                    <View style={styles.local}>
+                        {showCheckListLocal && (
+                            <CheckListLocal />
+                        )}
+                    </View>
 
-                        <TouchableOpacity onPress={navigateToAreaFluor} style={styles.containerContent}>
-                            <Text style={styles.local}>Área Fluor</Text>
-                        </TouchableOpacity>
+                    <TouchableOpacity onPress={toggleCheckListSistema}>
+                        <Text style={styles.title}>Check List dos Sistemas</Text>
+                    </TouchableOpacity>
 
-                        <TouchableOpacity onPress={navigateToDosadoresCloro} style={styles.containerContent}>
-                            <Text style={styles.local}>Área Dosadores de Cloro</Text>
-                        </TouchableOpacity>
-
-                        <TouchableOpacity onPress={navigateToAreaTanqueSulfato} style={styles.containerContent}>
-                            <Text style={styles.local}>Tanques de Sulfato de Alumínio</Text>
-                        </TouchableOpacity>
-
-                        <TouchableOpacity onPress={navigateToClimaTempo} style={styles.containerContent}>
-                            <Text style={styles.local}>Clima-Tempo</Text>
-                        </TouchableOpacity>
-
-                        <TouchableOpacity onPress={navigateToAreaDioxidoCloro} style={styles.containerContent}>
-                            <Text style={styles.local}>Dióxido de Cloro</Text>
-                        </TouchableOpacity>
-
-                        <TouchableOpacity onPress={navigateToEvaporadoresCloro} style={styles.containerContent}>
-                            <Text style={styles.local}>Área Evaporadores de Cloro</Text>
-                        </TouchableOpacity>
-
-                        <TouchableOpacity onPress={navigateToAreaGeocalcio} style={styles.containerContent}>
-                            <Text style={styles.local}>Geocálcio</Text>
-                        </TouchableOpacity>
-
-                        <TouchableOpacity onPress={navigateToTapq} style={styles.containerContent}>
-                            <Text style={styles.local}>TAPQ</Text>
-                        </TouchableOpacity>
+                    <View style={styles.local}>
+                        {showCheckListSistema && (
+                            <CheckListSistema />
+                        )}
                     </View>
                 </View>
-
             </ScrollView>
         </View>
     );
@@ -106,15 +58,12 @@ const styles = StyleSheet.create({
         paddingTop: 30,
         marginBottom: 60,
     },
-    SafeAreaView: {
-        paddingTop: 30
-    },
     Card: {
         width: '92%',
         marginLeft: 30,
         borderBottomEndRadius: 10,
         borderBottomStartRadius: 10,
-        backgroundColor: '#C5C4C4',
+        // backgroundColor: '#C5C4C4',
     },
     containerContent: {
         width: 'auto',
@@ -130,16 +79,12 @@ const styles = StyleSheet.create({
         backgroundColor: '#85BBE3',
         marginLeft: 20,
         marginTop: 15,
-        color: '#000',
-        fontWeight: 'bold',
     },
     local: {
-        fontSize: 20,
-        padding: 10,
-        marginTop: 10,
-        backgroundColor: '#E9E9E9',
-        borderRadius: 5,
-        color: '#000',
-        fontWeight: '200',
+        backgroundColor: '#C5C4C4',
+        width: '92%',
+        marginLeft: 30,
+        borderBottomEndRadius: 10,
+        borderBottomStartRadius: 10,
     },
 })

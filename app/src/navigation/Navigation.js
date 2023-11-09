@@ -24,7 +24,10 @@ export default function Navigation() {
       <Stack.Navigator initialRouteName="Login">
         <Stack.Screen name="Login" component={LoginScreen} options={{ headerShown: false }} />
         <Stack.Screen name="Periodo" component={PeriodoScreen} options={{ headerShown: false }} />
+
+        <Stack.Screen name="TabNavigation" component={TabNavigation} options={{ headerShown: false }} />
         <Stack.Screen name="CheckList" component={CheckListScreen} options={{ headerShown: false }} />
+        
         <Stack.Screen name="Piso2CasaQuimica" component={Piso2CasaQuimica} options={{ headerShown: false }} />
         <Stack.Screen name="Piso3CasaQuimica" component={Piso3CasaQuimica} options={{ headerShown: false }} />
         <Stack.Screen name="AreaFluor" component={AreaFluor} options={{ headerShown: false }} />
@@ -35,7 +38,7 @@ export default function Navigation() {
         <Stack.Screen name="EvaporadoresCloro" component={EvaporadoresCloro} options={{ headerShown: false }} />
         <Stack.Screen name="AreaGeocalcio" component={AreaGeocalcio} options={{ headerShown: false }} />
         <Stack.Screen name="Tapq" component={Tapq} options={{ headerShown: false }} />
-        <Stack.Screen name="TabNavigation" component={TabNavigation} options={{ headerShown: false }} />
+
         {/* Adicione outras telas principais conforme necessário */}
       </Stack.Navigator>
     </NavigationContainer>
