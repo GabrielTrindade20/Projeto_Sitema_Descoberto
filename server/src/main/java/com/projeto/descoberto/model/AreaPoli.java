@@ -1,12 +1,8 @@
 package com.projeto.descoberto.model;
 
-<<<<<<< HEAD
 import java.util.List;
 
-=======
-
 import javax.persistence.Column;
->>>>>>> 6c74202df112317495bc70784cb982831a6c1a1b
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -29,7 +25,6 @@ public class AreaPoli {
 	private String iluminacaoPiso2;
 	private String calhaAplicacao;
 	private String calhaDosagemSolucao;
-<<<<<<< HEAD
 	private String observacao;
 
 	    
@@ -44,11 +39,7 @@ public class AreaPoli {
 	public void setObservacao(String observacao) {
 		this.observacao = observacao;
 	}
-
-=======
-    private String observacao;
 	
->>>>>>> 6c74202df112317495bc70784cb982831a6c1a1b
 	public String getIluminacaoBombas() {
 		return iluminacaoBombas;
 	}
@@ -121,13 +112,6 @@ public class AreaPoli {
 		this.calhaDosagemSolucao = calhaDosagemSolucao;
 	}
 
-	public String getObservacao() {
-		return observacao;
-	}
-
-	public void setObservacao(String observacao) {
-		this.observacao = observacao;
-	}
 
 }
 
