@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Text, StyleSheet} from 'react-native';
+import { StyleSheet} from 'react-native';
+
 
 import OpcaoSelecao from './../../../components/OpcaoSelecao'
 import { Conteiner, QuestionContainer, ChoseOptions } from '../../../components/Layout';
@@ -67,6 +68,8 @@ export default function AreaFluor({ choices, setChoices, updateObservacao }) {
     const setChuveiroEmergencia = (value) => {
         setChoices({ ...choices, chuveiroEmergencia: value });
     };
+
+
 
 
     return (

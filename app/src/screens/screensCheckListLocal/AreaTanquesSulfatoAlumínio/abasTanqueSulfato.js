@@ -1,14 +1,16 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { ScrollView, View, Text, TouchableOpacity, StyleSheet, SafeAreaView } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+
 import Header from '../../../components/Header'  // Importe o componente de cabeçalho
-
 import AreaTanqueSulfato from './TanqueSulfatoAluminio';
-
-
 import CustomButton from '../../../components/CustomButton';
+import BotaoVoltar from '../../../components/BotaoVoltar';
+
 
 export default function AbaAreaTanqueSulfato() {
+    const navigation = useNavigation();
 
     const [observacoes, setObservacoes] = useState({});
     const updateObservacao = (area, observacao) => {
@@ -87,10 +89,16 @@ export default function AbaAreaTanqueSulfato() {
         setShowAreaTanqueSulfato(!showAreaTanqueSulfato);
     };
 
+    //Função criada para voltar para a página de CheckList
+    const handleGoBack = () => {
+        navigation.navigate('CheckList'); // ou a rota para a tela CheckList
+    };
 
     return (
         <View style={styles.SafeAreaView}>
             <Header />
+            <BotaoVoltar onPress={handleGoBack} />
+
             <ScrollView style={styles.scrollView}>
                 {Object.entries(areaData).map(([area, options]) => (
                     showArea[area] ? (
